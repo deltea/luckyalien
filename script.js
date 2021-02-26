@@ -110,7 +110,7 @@ function create() {
   sfx.background.play();
 
   // Create background
-  this.add.image(500, 450, "background");
+  this.add.image(500, 400, "background");
 
   // Player
   game.player = this.physics.add.sprite(500, 630, "player").setScale(1.5);
@@ -203,7 +203,7 @@ function create() {
 
   // Create boxes
   for (var x = 0; x < 3; x++) {
-    game.boxes.create([500, 150, 850][x], [500, 300, 300][x], "activeBox").setScale(0.6).setSize(41, 42).setOffset(15, 30).active = true;
+    game.boxes.create([500, 150, 850][x], [500, 300, 300][x], "activeBox").setScale(0.3).setSize(38, 38).setOffset(45, 45).active = true;
   }
 
   // Collider Player, Box
@@ -216,10 +216,9 @@ function create() {
         // Box
         box.setTexture("inactiveBox");
         box.active = false;
-        box.x += 36;
-        box.y += 7;
+
         // Create coin
-        game.coins.create(box.x - 38, box.y - 80, "coin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+        game.coins.create(box.x, box.y - 30, "coin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
       }
     }
   });

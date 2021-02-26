@@ -43,14 +43,13 @@ function preload() {
   // ActiveBox
   this.load.image("activeBox", "assets/imgs/activeBox.png");
 
-  // Spritesheets
   // Player
-  this.load.spritesheet("player", "assets/imgs/player.png", {
-    // Proportions
-    frameWidth: 20,
-    frameHeight: 40
-  });
+  this.load.image("player", "assets/imgs/player.png");
+  this.load.image("playerShoot", "assets/imgs/playerJump.png");
+  this.load.image("playerWalk0", "assets/imgs/playerWalk0.png");
+  this.load.image("playerWalk1", "assets/imgs/playerWalk1.png");
 
+  // Spritesheets
   // Coin frames
   this.load.image("coin0", "assets/imgs/coin0.png");
   this.load.image("coin1", "assets/imgs/coin1.png");
@@ -64,6 +63,10 @@ function preload() {
   // Spring frames
   this.load.image("spring0", "assets/imgs/spring0.png");
   this.load.image("spring1", "assets/imgs/spring1.png");
+
+  // Spider frames
+  this.load.image("spider0", "assets/imgs/spider0.png");
+  this.load.image("spider1", "assets/imgs/spider1.png");
 
   // SFX
   // Background
@@ -113,7 +116,7 @@ function create() {
   this.add.image(500, 400, "background");
 
   // Player
-  game.player = this.physics.add.sprite(500, 630, "player").setScale(1.5);
+  game.player = this.physics.add.sprite(500, 280, "player").setScale(0.8);
 
   // Bounds
   game.player.setCollideWorldBounds(true);
@@ -316,36 +319,71 @@ function create() {
     spring.destroy();
   });
 
+  // Spider
+  game.spiders = this.physics.add.group();
+
+  // Create spider
+  for (var x = 0; x < 1; x++) {
+    spider = game.spiders.create([500][x], [700][x], "spider0").setCollideWorldBounds(true).setScale(0.8);
+    spider.dir = ["L"][x];
+    if (spider.dir === "R") {
+      spider.vel = 200;
+    } else {
+      spider.vel = -200;
+    }
+  }
+
+  // Collider Spider, Mushroom
+  this.physics.add.collider(game.spiders, game.mushrooms, function(spider, mushroom) {
+    if (spider.dir === "R") {
+      spider.vel = -200;
+      spider.dir = "L";
+      spider.flipX = false;
+    } else {
+      spider.vel = 200;
+      spider.dir = "R";
+      spider.flipX = true;
+    }
+  });
+
+  // Collider Spider, Carrot
+  this.physics.add.collider(game.spiders, game.carrots, function(spider, carrot) {
+    // SFX
+    sfx.explosion.play();
+
+    // Destroy
+    carrot.destroy();
+    spider.destroy();
+  });
+
+  // Collider Spider, Player
+  this.physics.add.overlap(game.spiders, game.player, function(player, spider) {
+    if (player.body.touching.down && spider.body.touching.up) {
+      // SFX
+      sfx.explosion.play();
+
+      // Destroy
+      player.setVelocityY(-500);
+      spider.destroy();
+    }
+  });
+
   // Animation
   // Run
   this.anims.create({
     // Animation key
-    key: "run",
+    key: "walk",
 
     // Frames
-    frames: this.anims.generateFrameNumbers("player", {
-      start: 0,
-      end: 7
-    }),
+    frames: [{
+      key: "playerWalk0"
+    },
+    {
+      key: "playerWalk1"
+    }],
 
     // Options
-    frameRate: 30,
-    repeat: -1
-  });
-
-  // Idle
-  this.anims.create({
-    // Animation key
-    key: "idle",
-
-    // Frames
-    frames: this.anims.generateFrameNumbers("player", {
-      start: 0,
-      end: 1
-    }),
-
-    // Options
-    frameRate: 4,
+    frameRate: 10,
     repeat: -1
   });
 
@@ -408,6 +446,24 @@ function create() {
     frameRate: 8,
     repeat: -1
   });
+
+  // Spider
+  this.anims.create({
+    // Animation key
+    key: "spider",
+
+    // Frames
+    frames: [{
+      key: "spider0"
+    },
+    {
+      key: "spider1"
+    }],
+
+    // Options
+    frameRate: 8,
+    repeat: -1
+  });
 }
 
 // Update
@@ -419,10 +475,13 @@ function update() {
     game.player.setVelocityX(350);
 
     // Play player move animation
-    game.player.anims.play("run", true);
+    game.player.anims.play("walk", true);
 
     // Flip image
-    game.player.flipX = true;
+    game.player.flipX = false;
+
+    // Dir var
+    game.player.dir = "R";
 
   // Left
   } else if (game.cursors.left.isDown) {
@@ -430,18 +489,21 @@ function update() {
     game.player.setVelocityX(-350);
 
     // Play move animation
-    game.player.anims.play("run", true);
+    game.player.anims.play("walk", true);
 
     // Flip image
-    game.player.flipX = false;
+    game.player.flipX = true;
+
+    // Dir var
+    game.player.dir = "L";
 
   // None
   } else {
     // Don't move
     game.player.setVelocityX(0);
 
-    // Play idle
-    game.player.anims.play("idle", true);
+    // Stop anims
+    game.player.setTexture("player");
   }
 
   // Jump
@@ -462,11 +524,10 @@ function update() {
     sfx.carrot.play();
 
     // Flip
-    if (game.player.flipX) {
-      let carrot = game.carrots.create(game.player.x, game.player.y, "carrot").setVelocityY(-400).setVelocityX(500).setScale(0.5);
+    if (game.player.dir === "R") {
+      game.carrots.create(game.player.x, game.player.y, "carrot").setVelocityY(-400).setVelocityX(500).setScale(0.5);
     } else {
-      let carrot = game.carrots.create(game.player.x, game.player.y, "carrot").setVelocityY(-400).setVelocityX(-500).setScale(0.5);
-      carrot.flipX = true;
+      game.carrots.create(game.player.x, game.player.y, "carrot").setVelocityY(-400).setVelocityX(-500).setScale(0.5);
     }
   }
 
@@ -515,6 +576,15 @@ function update() {
 
     // Rotate
     sprite.angle += 5;
+
+    // Move
+    sprite.setVelocityX(sprite.vel);
+  });
+
+  // Spider
+  game.spiders.getChildren().forEach(sprite => {
+    // Animation
+    sprite.anims.play("spider", true);
 
     // Move
     sprite.setVelocityX(sprite.vel);

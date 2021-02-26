@@ -86,6 +86,9 @@ function preload() {
 
   // Explosion
   this.load.audio("explosion", "assets/sfx/explosion.wav");
+
+  // Box
+  this.load.audio("box", "assets/sfx/box.ogg");
 }
 
 // Create
@@ -98,6 +101,7 @@ function create() {
   sfx.coin = this.sound.add("coin");
   sfx.carrot = this.sound.add("carrot");
   sfx.explosion = this.sound.add("explosion");
+  sfx.box = this.sound.add("box");
 
   // Loop music
   sfx.background.setLoop(true);
@@ -206,6 +210,9 @@ function create() {
   this.physics.add.collider(game.player, game.boxes, function(player, box) {
     if (player.body.touching.up && box.body.touching.down) {
       if (box.active) {
+        // SFX
+        sfx.box.play();
+
         // Box
         box.setTexture("inactiveBox");
         box.active = false;

@@ -481,6 +481,11 @@ function update() {
     sprite.anims.play("spring", true);
   });
 
+  // Rotate carrots
+  game.carrots.getChildren().forEach(sprite => {
+    sprite.angle += 20;
+  });
+
   // Spike
   game.spikes.getChildren().forEach(sprite => {
     // Animation

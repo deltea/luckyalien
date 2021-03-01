@@ -1,13 +1,14 @@
-// Stick Man Platformer
+// Alien
 // Game obj
 let game = {
   jumpHeight: 800,
-  big: false
+  carrot: false
 };
 
 // Stats obj
 let stats = {
-  coins: 0
+  coins: 0,
+  carrotCounter: 15
 }
 
 // SFX obj
@@ -42,6 +43,12 @@ function preload() {
 
   // ActiveBox
   this.load.image("activeBox", "assets/imgs/activeBox.png");
+
+  // CarrotStat
+  this.load.image("carrotStat", "assets/imgs/carrotStat.png");
+
+  // CarrotPowerup
+  this.load.image("carrotPowerup", "assets/imgs/carrotPowerup.png");
 
   // Player
   this.load.image("player", "assets/imgs/player.png");
@@ -92,6 +99,9 @@ function preload() {
 
   // Box
   this.load.audio("box", "assets/sfx/box.ogg");
+
+  // CarrotPowerup
+  this.load.audio("carrotPowerup", "assets/sfx/carrotPowerup.ogg");
 }
 
 // Create
@@ -105,6 +115,7 @@ function create() {
   sfx.carrot = this.sound.add("carrot");
   sfx.explosion = this.sound.add("explosion");
   sfx.box = this.sound.add("box");
+  sfx.carrotPowerup = this.sound.add("carrotPowerup");
 
   // Loop music
   sfx.background.setLoop(true);
@@ -205,8 +216,11 @@ function create() {
   game.boxes = this.physics.add.staticGroup();
 
   // Create boxes
-  for (var x = 0; x < 3; x++) {
-    game.boxes.create([500, 150, 850][x], [500, 300, 300][x], "activeBox").setScale(0.3).setSize(38, 38).setOffset(45, 45).active = true;
+  for (var x = 0; x < 4; x++) {
+    let box = game.boxes.create([500, 150, 850, 500][x], [500, 300, 300, 150][x], "activeBox");
+    box.setScale(0.3).setSize(38, 38).setOffset(45, 45);
+    box.active = true;
+    box.entity = ["carrotPowerup", "coin", "coin", "coin"][x];
   }
 
   // Collider Player, Box
@@ -220,8 +234,13 @@ function create() {
         box.setTexture("inactiveBox");
         box.active = false;
 
-        // Create coin
-        game.coins.create(box.x, box.y - 30, "coin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+        if (box.entity === "coin") {
+          // Create coin
+          game.coins.create(box.x, box.y - 30, "coin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+        } else {
+          // Create carrotPowerup
+          game.carrotPowerup.create(box.x, box.y - 30, "carrotPowerup").setCollideWorldBounds(true).setScale(0.5).setVelocityY(-500);
+        }
       }
     }
   });
@@ -313,6 +332,7 @@ function create() {
   this.physics.add.collider(game.springs, game.carrots, function(spring, carrot) {
     // SFX
     sfx.explosion.play();
+    spring.setVelocityY(-500);
 
     // Destroy
     carrot.destroy();
@@ -357,7 +377,7 @@ function create() {
   });
 
   // Collider Spider, Player
-  this.physics.add.overlap(game.spiders, game.player, function(player, spider) {
+  this.physics.add.collider(game.spiders, game.player, function(spider, player) {
     if (player.body.touching.down && spider.body.touching.up) {
       // SFX
       sfx.explosion.play();
@@ -366,6 +386,39 @@ function create() {
       player.setVelocityY(-500);
       spider.destroy();
     }
+  });
+
+  // CarrotPowerup
+  game.carrotPowerup = this.physics.add.group();
+
+  // Collider Box, CarrotPowerup
+  this.physics.add.collider(game.boxes, game.carrotPowerup);
+
+  // Carrot stat
+  game.carrotStat = this.physics.add.staticSprite(160, 40, "carrotStat").setScale(0.70);
+  game.carrotStatText = this.add.text(190, 25, `:${stats.carrotCounter}`, {
+    fontSize: "35px",
+    fill: "#000"
+  });
+
+  // Hide
+  game.carrotStat.visible = false;
+  game.carrotStatText.visible = false;
+
+  // Collider Player, CarrotPowerup
+  this.physics.add.overlap(game.player, game.carrotPowerup, function(player, powerup) {
+    // SFX
+    sfx.carrotPowerup.play();
+
+    // Add to coins
+    game.carrot = true;
+
+    // Destroy
+    powerup.destroy();
+
+    // Show
+    game.carrotStat.visible = true;
+    game.carrotStatText.visible = true;
   });
 
   // Animation
@@ -519,9 +572,22 @@ function update() {
   }
 
   // Shoot
-  if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE))) {
+  if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)) && game.carrot) {
     // SFX
     sfx.carrot.play();
+
+    // Decrease
+    stats.carrotCounter--;
+
+    // Update stat
+    game.carrotStatText.setText(`:${stats.carrotCounter}`);
+
+    // Check
+    if (stats.carrotCounter === 0) {
+      game.carrotStat.visible = false;
+      game.carrotStatText.visible = false;
+      game.carrot = false;
+    }
 
     // Flip
     if (game.player.dir === "R") {
@@ -614,7 +680,7 @@ const config = {
 
       // Options
       enableBody: true,
-      // debug: true
+      debug: true
     }
   },
 

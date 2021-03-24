@@ -2,9 +2,9 @@
 // Game obj
 let game = {
   jumpHeight: 700,
-  carrot: false,
+  carrot: true,
   checkpoint: [200, 1100],
-  bounceMagic: false
+  bounceMagic: true
 };
 
 // Stats obj
@@ -18,8 +18,9 @@ let sfx = {};
 // Preload
 function preload() {
   // Load images
-  // Background
-  this.load.image("background", "assets/imgs/background0.png");
+  // Backgrounds
+  this.load.image("background0", "assets/imgs/background0.png");
+  this.load.image("background1", "assets/imgs/background1.png");
 
   // Grass block
   this.load.image("grassBlock", "assets/imgs/grassBlock.png");
@@ -99,8 +100,9 @@ function preload() {
   this.load.image("flagMove1", "assets/imgs/flagMove1.png");
 
   // SFX
-  // Background
-  this.load.audio("background", "assets/sfx/background.mp3");
+  // Backgrounds
+  this.load.audio("background0", "assets/sfx/background0.mp3");
+  this.load.audio("background1", "assets/sfx/background1.mp3");
 
   // Jump
   this.load.audio("jump", "assets/sfx/jump.ogg");
@@ -133,7 +135,8 @@ function preload() {
 // Create
 function create() {
   // SFX
-  sfx.background = this.sound.add("background");
+  sfx.background0 = this.sound.add("background0");
+  sfx.background1 = this.sound.add("background1");
   sfx.jump = this.sound.add("jump");
   sfx.mushroom = this.sound.add("mushroom");
   sfx.coin = this.sound.add("coin");
@@ -145,17 +148,18 @@ function create() {
   sfx.checkpoint = this.sound.add("checkpoint");
 
   // Loop music
-  sfx.background.setLoop(true);
+  sfx.background0.setLoop(true);
+  sfx.background1.setLoop(true);
 
   // Play music
-  sfx.background.play();
+  sfx.background0.play();
 
   // Create background
   for (var i = 0; i < 8; i++) {
     if (i < 3) {
-      this.add.image(i * 1024, 900, "background");
+      this.add.image(i * 1024, 900, "background0");
     } else {
-      this.add.image(i * 1024, 900, "background");
+      this.add.image(i * 1024, 900, "background1");
     }
   }
 
@@ -379,13 +383,12 @@ function create() {
   });
 
   // Collider Spike, Carrot
-  this.physics.add.collider(game.spikes, game.carrots, function(spike, carrot) {
+  this.physics.add.overlap(game.spikes, game.carrots, function(spike, carrot) {
     // SFX
     sfx.explosion.play();
 
     // Destroy
     carrot.destroy();
-    spike.destroy();
   });
 
   // Springs
@@ -788,7 +791,11 @@ function update() {
     }
 
     // Rotate
-    sprite.angle += 5;
+    if (sprite.dir === "L") {
+      sprite.angle -= 5;
+    } else {
+      sprite.angle += 5;
+    }
 
     // Move
     sprite.setVelocityX(sprite.vel);
@@ -825,6 +832,13 @@ function update() {
     // Move
     sprite.setVelocityX(sprite.vel);
   });
+
+  // Change music
+  if (game.player.x < 2536) {
+    sfx.background1.play();
+  } else {
+    sfx.background0.play();
+  }
 }
 
 // Phaser config
@@ -833,7 +847,7 @@ const config = {
   type: Phaser.AUTO,
 
   // Proportions
-  width: 1000,
+  width: 1300,
 	height: 643,
 
   // Color

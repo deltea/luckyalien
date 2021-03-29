@@ -139,9 +139,17 @@ const world = {
 
     // Mini wall
     [1340, 442, "stoneBlock"],
+    [1340, 402, "stoneBlock"],
 
     // Mini wall
     [1700, 442, "stoneBlock"],
+    [1700, 402, "stoneBlock"],
+
+    // Platform
+    [1740, 402, "stoneBlock"],
+    [1780, 402, "stoneBlock"],
+    [1820, 402, "stoneBlock"],
+    [1860, 402, "stoneBlock"],
 
     // Mini wall
     [2180, 1122, "grassBlock"],
@@ -257,17 +265,20 @@ const world = {
     [2740, 562, "stoneBlock"],
     [2740, 602, "stoneBlock"],
 
-    // Floating platform
-    [2560, 460, "grassBlock"],
-
     // Mini wall
     [3100, 602, "stoneBlock"],
     [3100, 562, "stoneBlock"],
+
+    // Mini wall
+    [2060, 162, "grassBlock"],
   ],
   mushrooms: [
     // Besides wall
     [2500, 1110],
     [2620, 1110],
+
+    // On box
+    [1640, 421],
   ],
   boxes: [
     // Alternate
@@ -290,6 +301,8 @@ const world = {
 
     // In box
     [2260, 460, "coin"],
+    [2560, 460, "coin"],
+
 
     // CarrotPowerup
     [3300, 460, "carrotPowerup"],
@@ -325,14 +338,24 @@ const world = {
     [2980, 515],
   ],
   spikes: [
+    // In box
+    [2330, 582],
+    [3180, 582],
+
     // On box
     [1650, 430],
-
-    // In box
-    [2340, 582],
-    [3180, 582],
+  ],
+  snails: [
+  ],
+  lasers: [
+    [3340, 153, "L"],
   ],
   flags: [
+    // Box
     [2005, 552],
+    [2005, 152],
+
+    // Wall
+    [2580, 710],
   ]
 }

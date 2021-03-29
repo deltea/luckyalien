@@ -52,6 +52,10 @@ function preload() {
   // House
   this.load.image("house", "assets/imgs/house.png");
 
+  // Laser
+  this.load.image("laser", "assets/imgs/laser.png");
+  this.load.image("laserShooter", "assets/imgs/laserShooter.png");
+
   // Numbers
   this.load.image("0", "assets/imgs/0.png");
   this.load.image("1", "assets/imgs/1.png");
@@ -99,6 +103,11 @@ function preload() {
   this.load.image("flagMove0", "assets/imgs/flagMove0.png");
   this.load.image("flagMove1", "assets/imgs/flagMove1.png");
 
+  // Snail frames
+  this.load.image("snail0", "assets/imgs/snail0.png");
+  this.load.image("snail1", "assets/imgs/snail1.png");
+  this.load.image("snailShell", "assets/imgs/snailShell.png");
+
   // SFX
   // Backgrounds
   this.load.audio("background0", "assets/sfx/background0.mp3");
@@ -130,6 +139,9 @@ function preload() {
 
   // Checkpoint
   this.load.audio("checkpoint", "assets/sfx/checkpoint.wav");
+
+  // Shield
+  this.load.audio("shield", "assets/sfx/shield.ogg");
 }
 
 // Create
@@ -146,6 +158,7 @@ function create() {
   sfx.powerup = this.sound.add("powerup");
   sfx.die = this.sound.add("die");
   sfx.checkpoint = this.sound.add("checkpoint");
+  sfx.shield = this.sound.add("shield");
 
   // Loop music
   sfx.background0.setLoop(true);
@@ -326,7 +339,7 @@ function create() {
     });
 
     for (var i = 0; i < stats.coins.toString().split("").length; i++) {
-      game.coinNumbers.create(90, 40, stats.coins.toString().split("")[i]);
+      game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
     }
 
     // Destroy
@@ -385,10 +398,91 @@ function create() {
   // Collider Spike, Carrot
   this.physics.add.overlap(game.spikes, game.carrots, function(spike, carrot) {
     // SFX
-    sfx.explosion.play();
+    sfx.shield.play();
 
     // Destroy
     carrot.destroy();
+  });
+
+  // Snail
+  game.snails = this.physics.add.group();
+
+  // Create snails
+  for (var x = 0; x < world.snails.length; x++) {
+    snail = game.snails.create(world.snails[x][0], world.snails[x][1], "snail0").setCollideWorldBounds(true).setScale(0.5).setSize(0, 80).setOffset(0, 50);
+    snail.dir = ["R", "L"][x];
+    snail.active = true;
+    if (snail.dir === "R") {
+      snail.vel = 250;
+    } else {
+      snail.vel = -250;
+    }
+  }
+
+  // Collider Snails, Mushrooms
+  this.physics.add.collider(game.snails, game.mushrooms, function(snail, mushroom) {
+    if (snail.body.touching.left || snail.body.touching.right) {
+      if (snail.dir === "R") {
+        snail.vel = -250;
+        snail.dir = "L";
+        snail.flipX = false;
+      } else {
+        snail.vel = 250;
+        snail.dir = "R";
+        snail.flipX = true;
+      }
+    }
+  });
+
+  // Collider Snails, Blocks
+  this.physics.add.collider(game.snails, game.blocks, function(snail, block) {
+    if (snail.body.touching.left || snail.body.touching.right) {
+      if (snail.dir === "R") {
+        snail.vel = -250;
+        snail.dir = "L";
+        snail.flipX = false;
+      } else {
+        snail.vel = 250;
+        snail.dir = "R";
+        snail.flipX = true;
+      }
+    }
+  });
+
+  // Collider Snails, Player
+  this.physics.add.overlap(game.player, game.snails, (player, snail) => {
+    if (snail.active) {
+      if (player.body.touching.down && snail.body.touching.up) {
+        // SFX
+        sfx.shield.play();
+
+        // Shell
+        snail.active = false;
+        snail.timer = 250;
+
+        // Bounce
+        player.setVelocityY(-500);
+      } else {
+        // Die
+        sfx.die.play();
+        this.cameras.main.shake(240, 0.05, false);
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
+    }
+  });
+
+  // Collider Snails, Carrot
+  this.physics.add.overlap(game.snails, game.carrots, function(snail, carrot) {
+    // SFX
+    sfx.shield.play();
+
+    // Destroy
+    carrot.destroy();
+
+    // Shell
+    snail.active = false;
+    snail.timer = 250;
   });
 
   // Springs
@@ -531,6 +625,58 @@ function create() {
     powerup.destroy();
   });
 
+  // Laser
+  game.lasers = this.physics.add.staticGroup();
+  game.laserBlasts = this.physics.add.group();
+
+  // Create lasers
+  for (var x = 0; x < world.lasers.length; x++) {
+    laser = game.lasers.create(world.lasers[x][0], world.lasers[x][1], "laserShooter").setCollideWorldBounds(true).setScale(0.8).setSize(50, 50).setOffset(15, 15);
+    laser.dir = world.lasers[x][2];
+    laser.timer = 100;
+    if (laser.dir === "R") {
+      laser.flipX = true;
+    } else {
+      laser.flipX = false;
+    }
+  }
+
+  // Collider Laser, Player
+  this.physics.add.collider(game.lasers, game.player);
+
+  // Collider LaserBlasts, Player
+  this.physics.add.collider(game.laserBlasts, game.player, (player, blast) => {
+    // Die
+    sfx.die.play();
+    this.cameras.main.shake(240, 0.05, false);
+    player.x = game.checkpoint[0];
+    player.y = game.checkpoint[1] - 10;
+  });
+
+  // Collider LaserBlasts, Carrots
+  this.physics.add.collider(game.laserBlasts, game.carrots, function(blast, carrot) {
+    // SFX
+    sfx.explosion.play();
+
+    // Destroy
+    carrot.destroy();
+  });
+
+  // Collider LaserBlasts, Blocks
+  this.physics.add.collider(game.laserBlasts, game.blocks, function(blast, block) {
+    // Destroy
+    blast.destroy();
+  });
+
+  // Collider Lasers, Carrot
+  this.physics.add.overlap(game.lasers, game.carrots, function(laser, carrot) {
+    // SFX
+    sfx.shield.play();
+
+    // Destroy
+    carrot.destroy();
+  });
+
   // Flags
   game.flags = this.physics.add.staticGroup();
   world.flags.forEach(data => {
@@ -663,6 +809,24 @@ function create() {
     repeat: -1
   });
 
+  // Snail
+  this.anims.create({
+    // Animation key
+    key: "snail",
+
+    // Frames
+    frames: [{
+      key: "snail0"
+    },
+    {
+      key: "snail1"
+    }],
+
+    // Options
+    frameRate: 8,
+    repeat: -1
+  });
+
   // Flag
   this.anims.create({
     // Animation key
@@ -723,9 +887,9 @@ function update() {
   }
 
   // Jump
-  if (game.cursors.up.isDown && game.player.body.blocked.down) {
+  if (game.cursors.up.isDown/* && game.player.body.blocked.down*/) {
     // SFX
-    sfx.jump.play();
+    // sfx.jump.play();
 
     // Jump
     game.player.setVelocityY(-game.jumpHeight);
@@ -735,7 +899,7 @@ function update() {
   }
 
   // Shoot
-  if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.SPACE)) && game.carrot) {
+  if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C)) && game.carrot) {
     // SFX
     sfx.carrot.play();
 
@@ -801,6 +965,49 @@ function update() {
     sprite.setVelocityX(sprite.vel);
   });
 
+  // Snail
+  game.snails.getChildren().forEach(sprite => {
+    // Check pos
+    // Left edge
+    if (sprite.x < 30) {
+      if (sprite.dir === "R") {
+        sprite.vel = 200;
+        sprite.dir = "L";
+      } else {
+        sprite.vel = -200;
+        sprite.dir = "R";
+      }
+    }
+
+    // Right edge
+    if (sprite.x > config.width + 4970) {
+      if (sprite.dir === "L") {
+        sprite.vel = 200;
+        sprite.dir = "R";
+      } else {
+        sprite.vel = -200;
+        sprite.dir = "L";
+      }
+    }
+
+    // Active
+    if (sprite.active) {
+      // Animation
+      sprite.anims.play("snail", true);
+
+      // Move
+      sprite.setVelocityX(sprite.vel);
+    } else {
+      if (sprite.timer < 0) {
+        sprite.active = true;
+      } else {
+        sprite.setVelocityX(0);
+        sprite.setTexture("snailShell");
+        sprite.timer--;
+      }
+    }
+  });
+
   // Spider
   game.spiders.getChildren().forEach(sprite => {
     // Animation
@@ -839,6 +1046,33 @@ function update() {
   } else {
     sfx.background0.play();
   }
+
+  // Laser
+  game.lasers.getChildren().forEach(sprite => {
+    // Decrement
+    sprite.timer--;
+
+    // Check
+    if (sprite.timer < 0) {
+      // Reset timer
+      sprite.timer = 100;
+
+      // Attributes
+      laserBlast = game.laserBlasts.create(sprite.x, sprite.y, "laser");
+      laserBlast.setGravityY(-1500);
+      laserBlast.dir = sprite.dir;
+      laserBlast.setSize(35, 10);
+      laserBlast.setImmovable(true);
+      this.children.bringToTop(sprite);
+
+      // Move
+      if (laserBlast.dir === "R") {
+        laserBlast.setVelocityX(300);
+      } else {
+        laserBlast.setVelocityX(-300);
+      }
+    }
+  });
 }
 
 // Phaser config

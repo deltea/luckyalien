@@ -887,9 +887,9 @@ function update() {
   }
 
   // Jump
-  if (game.cursors.up.isDown/* && game.player.body.blocked.down*/) {
+  if (game.cursors.up.isDown && game.player.body.blocked.down) {
     // SFX
-    // sfx.jump.play();
+    sfx.jump.play();
 
     // Jump
     game.player.setVelocityY(-game.jumpHeight);

@@ -2,9 +2,9 @@
 // Game obj
 let game = {
   jumpHeight: 700,
-  carrot: true,
+  carrot: false,
   checkpoint: [200, 1100],
-  bounceMagic: true
+  bounceMagic: false
 };
 
 // Stats obj

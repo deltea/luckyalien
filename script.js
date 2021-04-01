@@ -3,6 +3,7 @@
 let game = {
   jumpHeight: 700,
   carrot: false,
+  sword: false,
   checkpoint: [200, 1100],
   bounceMagic: false
 };
@@ -28,14 +29,20 @@ function preload() {
   // Stone block
   this.load.image("stoneBlock", "assets/imgs/stoneBlock.png");
 
+  // Speed block
+  this.load.image("speedBlock", "assets/imgs/speedBlock.png");
+
   // Mushroom
   this.load.image("mushroom", "assets/imgs/mushroom.png");
 
   // Coin stat
   this.load.image("coinStat", "assets/imgs/coinStat.png");
 
-  // Coin stat
+  // Carrot
   this.load.image("carrot", "assets/imgs/carrot.png");
+
+  // Sword
+  this.load.image("sword", "assets/imgs/sword.png");
 
   // InactiveBox
   this.load.image("inactiveBox", "assets/imgs/inactiveBox.png");
@@ -114,25 +121,28 @@ function preload() {
   this.load.audio("background1", "assets/sfx/background1.mp3");
 
   // Jump
-  this.load.audio("jump", "assets/sfx/jump.ogg");
+  this.load.audio("jump", "assets/sfx/jump.mp3");
 
   // Mushroom jump
-  this.load.audio("mushroom", "assets/sfx/mushroom.ogg");
+  this.load.audio("mushroom", "assets/sfx/mushroom.mp3");
 
   // Coin
   this.load.audio("coin", "assets/sfx/coin.wav");
 
   // Carrot
-  this.load.audio("carrot", "assets/sfx/carrot.ogg");
+  this.load.audio("carrot", "assets/sfx/carrot.mp3");
+
+  // Sword
+  this.load.audio("sword", "assets/sfx/sword.mp3");
 
   // Explosion
   this.load.audio("explosion", "assets/sfx/explosion.wav");
 
   // Box
-  this.load.audio("box", "assets/sfx/box.ogg");
+  this.load.audio("box", "assets/sfx/box.mp3");
 
   // CarrotPowerup
-  this.load.audio("powerup", "assets/sfx/powerup.ogg");
+  this.load.audio("powerup", "assets/sfx/powerup.mp3");
 
   // Die
   this.load.audio("die", "assets/sfx/die.mp3");
@@ -141,7 +151,13 @@ function preload() {
   this.load.audio("checkpoint", "assets/sfx/checkpoint.wav");
 
   // Shield
-  this.load.audio("shield", "assets/sfx/shield.ogg");
+  this.load.audio("shield", "assets/sfx/shield.mp3");
+
+  // SpeedBlock
+  this.load.audio("speedBlock", "assets/sfx/speedBlock.mp3");
+
+  // Respawn
+  this.load.audio("respawn", "assets/sfx/respawn.mp3");
 }
 
 // Create
@@ -153,12 +169,15 @@ function create() {
   sfx.mushroom = this.sound.add("mushroom");
   sfx.coin = this.sound.add("coin");
   sfx.carrot = this.sound.add("carrot");
+  sfx.sword = this.sound.add("sword");
   sfx.explosion = this.sound.add("explosion");
   sfx.box = this.sound.add("box");
   sfx.powerup = this.sound.add("powerup");
   sfx.die = this.sound.add("die");
   sfx.checkpoint = this.sound.add("checkpoint");
   sfx.shield = this.sound.add("shield");
+  sfx.speedBlock = this.sound.add("speedBlock");
+  sfx.respawn = this.sound.add("respawn");
 
   // Loop music
   sfx.background0.setLoop(true);
@@ -214,7 +233,14 @@ function create() {
   }
 
   // Collider, Player, Block
-  this.physics.add.collider(game.player, game.blocks);
+  this.physics.add.collider(game.player, game.blocks, function(player, block) {
+    if (player.body.touching.down && block.body.touching.up && block.texture.key === "speedBlock") {
+      if (!block.touched) {
+        block.destroyTimer = 7;
+      }
+      block.touched = true;
+    }
+  });
 
   // Coins
   game.coins = this.physics.add.group();
@@ -347,6 +373,46 @@ function create() {
     carrot.destroy();
   });
 
+  // Swords
+  game.swords = this.physics.add.group();
+
+  // Collider Sword, Block
+  this.physics.add.collider(game.swords, game.blocks, function(sword, platform) {
+    sword.destroy();
+  });
+
+  // Collider Sword, Mushroom
+  this.physics.add.collider(game.swords, game.mushrooms, function(sword, mushroom) {
+    sword.destroy();
+  });
+
+  // Collider Sword, Box
+  this.physics.add.collider(game.swords, game.boxes, function(sword, box) {
+    sword.destroy();
+  });
+
+  // Collider Sword, Coin
+  this.physics.add.collider(game.swords, game.coins, function(sword, coin) {
+    // SFX
+    sfx.coin.play();
+
+    // Add to coins
+    stats.coins++;
+
+    // Update stat
+    game.coinNumbers.getChildren().forEach(num => {
+      num.destroy();
+    });
+
+    for (var i = 0; i < stats.coins.toString().split("").length; i++) {
+      game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
+    }
+
+    // Destroy
+    coin.destroy();
+    sword.destroy();
+  });
+
   // Spikes
   game.spikes = this.physics.add.group();
 
@@ -354,6 +420,7 @@ function create() {
   for (var x = 0; x < world.spikes.length; x++) {
     spike = game.spikes.create(world.spikes[x][0], world.spikes[x][1], "spike0").setCollideWorldBounds(true).setScale(0.4);
     spike.dir = ["R", "L"][x];
+    spike.moves = world.spikes[x][2];
     if (spike.dir === "R") {
       spike.vel = 200;
     } else {
@@ -402,6 +469,16 @@ function create() {
 
     // Destroy
     carrot.destroy();
+  });
+
+  // Collider Spike, Sword
+  this.physics.add.overlap(game.spikes, game.swords, function(spike, sword) {
+    // SFX
+    sfx.explosion.play();
+
+    // Destroy
+    spike.destroy();
+    sword.destroy();
   });
 
   // Snail
@@ -485,6 +562,19 @@ function create() {
     snail.timer = 250;
   });
 
+  // Collider Snails, Sword
+  this.physics.add.overlap(game.snails, game.swords, function(snail, sword) {
+    // SFX
+    sfx.shield.play();
+
+    // Destroy
+    sword.destroy();
+
+    // Shell
+    snail.active = false;
+    snail.timer = 250;
+  });
+
   // Springs
   game.springs = this.physics.add.group();
 
@@ -514,6 +604,16 @@ function create() {
 
     // Destroy
     carrot.destroy();
+    spring.destroy();
+  });
+
+  // Collider Springs, Swords
+  this.physics.add.collider(game.springs, game.swords, function(spring, sword) {
+    // SFX
+    sfx.explosion.play();
+
+    // Destroy
+    sword.destroy();
     spring.destroy();
   });
 
@@ -568,6 +668,16 @@ function create() {
 
     // Destroy
     carrot.destroy();
+    spider.destroy();
+  });
+
+  // Collider Spider, Sword
+  this.physics.add.collider(game.spiders, game.swords, function(spider, sword) {
+    // SFX
+    sfx.explosion.play();
+
+    // Destroy
+    sword.destroy();
     spider.destroy();
   });
 
@@ -662,6 +772,15 @@ function create() {
     carrot.destroy();
   });
 
+  // Collider LaserBlasts, Swords
+  this.physics.add.collider(game.laserBlasts, game.swords, function(blast, sword) {
+    // SFX
+    sfx.explosion.play();
+
+    // Destroy
+    sword.destroy();
+  });
+
   // Collider LaserBlasts, Blocks
   this.physics.add.collider(game.laserBlasts, game.blocks, function(blast, block) {
     // Destroy
@@ -675,6 +794,16 @@ function create() {
 
     // Destroy
     carrot.destroy();
+  });
+
+  // Collider Lasers, Sword
+  this.physics.add.overlap(game.lasers, game.swords, function(laser, sword) {
+    // SFX
+    sfx.explosion.play();
+
+    // Destroy
+    laser.destroy();
+    sword.destroy();
   });
 
   // Flags
@@ -909,6 +1038,26 @@ function update() {
     } else {
       game.carrots.create(game.player.x, game.player.y, "carrot").setVelocityY(-400).setVelocityX(-500).setScale(0.5);
     }
+  } else if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X)) && game.sword) {
+    // SFX
+    sfx.sword.play();
+
+    // Flip
+    if (game.player.dir === "R") {
+      game.swords.create(game.player.x, game.player.y, "sword").setVelocityY(-400).setVelocityX(600).setScale(0.7);
+    } else {
+      game.swords.create(game.player.x, game.player.y, "sword").setVelocityY(-400).setVelocityX(-600).setScale(0.7);
+    }
+  }
+
+  // Respawn
+  if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R))) {
+    // SFX
+    sfx.respawn.play()
+
+    // Move
+    game.player.x = game.checkpoint[0];
+    game.player.y = game.checkpoint[1] - 10;
   }
 
   // Coin animation
@@ -923,6 +1072,11 @@ function update() {
 
   // Rotate carrots
   game.carrots.getChildren().forEach(sprite => {
+    sprite.angle += 20;
+  });
+
+  // Rotate swords
+  game.swords.getChildren().forEach(sprite => {
     sprite.angle += 20;
   });
 
@@ -962,7 +1116,9 @@ function update() {
     }
 
     // Move
-    sprite.setVelocityX(sprite.vel);
+    if (sprite.moves) {
+      sprite.setVelocityX(sprite.vel);
+    }
   });
 
   // Snail
@@ -1040,13 +1196,6 @@ function update() {
     sprite.setVelocityX(sprite.vel);
   });
 
-  // Change music
-  if (game.player.x < 2536) {
-    sfx.background1.play();
-  } else {
-    sfx.background0.play();
-  }
-
   // Laser
   game.lasers.getChildren().forEach(sprite => {
     // Decrement
@@ -1073,6 +1222,39 @@ function update() {
       }
     }
   });
+
+  // SpeedBlock
+  game.blocks.getChildren().forEach(sprite => {
+    if (sprite.texture.key === "speedBlock") {
+      if (sprite.touched) {
+        sprite.destroyTimer--;
+        if (sprite.destroyTimer < 0) {
+          sfx.speedBlock.play();
+          sprite.body.enable = false;
+          sprite.respawnTimer = 200;
+          sprite.destroyTimer = 7;
+          sprite.visible = false;
+          sprite.touched = false;
+        }
+      }
+      if (sprite.respawnTimer > 0) {
+        sprite.respawnTimer--;
+      }
+      if (!sprite.visible && sprite.respawnTimer <= 0) {
+        sprite.visible = true;
+        sprite.body.enable = true;
+      }
+    }
+  });
+
+  // Change music
+  if (game.player.x < 2536) {
+    sfx.background1.play({
+      volume: 0.6
+    });
+  } else {
+    sfx.background0.play();
+  }
 }
 
 // Phaser config

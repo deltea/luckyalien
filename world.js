@@ -407,6 +407,9 @@ const world = {
 
     // On box
     [1640, 421],
+
+    // Underground
+    [5926, 1110],
   ],
   boxes: [
     // Alternate
@@ -434,6 +437,7 @@ const world = {
 
     // Underground
     [2880, 922, "coin"],
+    [5771, 922, "swordPowerup"],
   ],
   spiders: [
     // Floating platform
@@ -510,6 +514,8 @@ const world = {
     [5080, 1110, false],
     [5320, 1110, false],
     [5440, 1110, false],
+
+    [5706, 1110, false],
   ],
   snails: [
     [3000, 1122],
@@ -520,7 +526,7 @@ const world = {
     [4330, 953, "R"],
     [4380, 995, "R"],
     [4426, 1040, "R"],
-    [4526, 4426, "L"],
+    [5526, 1115, "L"],
   ],
   flags: [
     // Box

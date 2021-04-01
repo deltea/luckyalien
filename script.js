@@ -322,9 +322,12 @@ function create() {
         } else if (box.entity === "carrotPowerup") {
           // Create carrotPowerup
           game.carrotPowerup.create(box.x, box.y - 30, "carrotPowerup").setCollideWorldBounds(true).setScale(0.5).setVelocityY(-500);
-        } else {
+        } else if (box.entity === "mushroomPowerup") {
           // Create mushroomPowerup
           game.mushroomPowerup.create(box.x, box.y - 30, "mushroomPowerup").setCollideWorldBounds(true).setScale(0.8).setVelocityY(-500);
+        } else {
+          // Create swordPowerup
+          game.swordPowerup.create(box.x, box.y - 30, "sword").setCollideWorldBounds(true).setScale(0.8).setVelocityY(-500);
         }
       }
     }
@@ -710,8 +713,26 @@ function create() {
     // SFX
     sfx.powerup.play();
 
-    // Add to coins
+    // Enable
     game.carrot = true;
+
+    // Destroy
+    powerup.destroy();
+  });
+
+  // SwordPowerup
+  game.swordPowerup = this.physics.add.group();
+
+  // Collider Box, SwordPowerup
+  this.physics.add.collider(game.boxes, game.swordPowerup);
+
+  // Collider Player, SwordPowerup
+  this.physics.add.overlap(game.player, game.swordPowerup, function(player, powerup) {
+    // SFX
+    sfx.powerup.play();
+
+    // Enable
+    game.sword = true;
 
     // Destroy
     powerup.destroy();
@@ -728,7 +749,7 @@ function create() {
     // SFX
     sfx.powerup.play();
 
-    // Add to coins
+    // Enable
     game.bounceMagic = true;
 
     // Destroy
@@ -1204,7 +1225,7 @@ function update() {
     // Check
     if (sprite.timer < 0) {
       // Reset timer
-      sprite.timer = 100;
+      sprite.timer = 200;
 
       // Attributes
       laserBlast = game.laserBlasts.create(sprite.x, sprite.y, "laser");

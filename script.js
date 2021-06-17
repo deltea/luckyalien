@@ -141,8 +141,9 @@ function preload() {
   // Box
   this.load.audio("box", "assets/sfx/box.mp3");
 
-  // CarrotPowerup
-  this.load.audio("powerup", "assets/sfx/powerup.mp3");
+  // Powerups
+  this.load.audio("powerup", "assets/sfx/powerup.wav");
+  this.load.audio("powerup2", "assets/sfx/powerup2.wav");
 
   // Die
   this.load.audio("die", "assets/sfx/die.mp3");
@@ -173,6 +174,7 @@ function create() {
   sfx.explosion = this.sound.add("explosion");
   sfx.box = this.sound.add("box");
   sfx.powerup = this.sound.add("powerup");
+  sfx.powerup2 = this.sound.add("powerup2");
   sfx.die = this.sound.add("die");
   sfx.checkpoint = this.sound.add("checkpoint");
   sfx.shield = this.sound.add("shield");
@@ -206,7 +208,6 @@ function create() {
 
   // Player
   game.player = this.physics.add.sprite(200, 1100, "player").setScale(0.8);
-
   this.physics.add.collider(game.player, game.house);
 
   // Camera
@@ -234,6 +235,12 @@ function create() {
 
   // Collider, Player, Block
   this.physics.add.collider(game.player, game.blocks, function(player, block) {
+    if (player.body.touching.right && block.body.touching.left) {
+      player.x -= 2;
+    }
+    if (player.body.touching.left && block.body.touching.right) {
+      player.x += 2;
+    }
     if (player.body.touching.down && block.body.touching.up && block.texture.key === "speedBlock") {
       if (!block.touched) {
         block.destroyTimer = 7;
@@ -310,7 +317,13 @@ function create() {
     if (player.body.touching.up && box.body.touching.down) {
       if (box.active) {
         // SFX
-        sfx.box.play();
+        if (box.entity === "carrotPowerup" || box.entity === "mushroomPowerup" || box.entity === "swordPowerup") {
+          sfx.powerup2.play({
+            volume: 4
+          });
+        } else {
+          sfx.box.play();
+        }
 
         // Box
         box.setTexture("inactiveBox");
@@ -459,7 +472,9 @@ function create() {
 
   // Collider Spikes, Player
   this.physics.add.overlap(game.player, game.spikes, (player, spike) => {
-    sfx.die.play();
+    sfx.die.play({
+      volume: 2.5
+    });
     this.cameras.main.shake(240, 0.05, false);
     player.x = game.checkpoint[0];
     player.y = game.checkpoint[1] - 10;
@@ -544,7 +559,9 @@ function create() {
         player.setVelocityY(-500);
       } else {
         // Die
-        sfx.die.play();
+        sfx.die.play({
+          volume: 2.5
+        });
         this.cameras.main.shake(240, 0.05, false);
         player.x = game.checkpoint[0];
         player.y = game.checkpoint[1] - 10;
@@ -594,7 +611,9 @@ function create() {
 
   // Collider Springs, Player
   this.physics.add.overlap(game.player, game.springs, (player, spring) => {
-    sfx.die.play();
+    sfx.die.play({
+      volume: 2.5
+    });
     this.cameras.main.shake(240, 0.05, false);
     player.x = game.checkpoint[0];
     player.y = game.checkpoint[1];
@@ -695,7 +714,9 @@ function create() {
       spider.destroy();
     } else {
       // Die
-      sfx.die.play();
+      sfx.die.play({
+        volume: 2.5
+      });
       this.cameras.main.shake(240, 0.05, false);
       player.x = game.checkpoint[0];
       player.y = game.checkpoint[1] - 10;
@@ -711,7 +732,9 @@ function create() {
   // Collider Player, CarrotPowerup
   this.physics.add.overlap(game.player, game.carrotPowerup, function(player, powerup) {
     // SFX
-    sfx.powerup.play();
+    sfx.powerup.play({
+      volume: 4
+    });
 
     // Enable
     game.carrot = true;
@@ -729,7 +752,9 @@ function create() {
   // Collider Player, SwordPowerup
   this.physics.add.overlap(game.player, game.swordPowerup, function(player, powerup) {
     // SFX
-    sfx.powerup.play();
+    sfx.powerup.play({
+      volume: 4
+    });
 
     // Enable
     game.sword = true;
@@ -747,7 +772,9 @@ function create() {
   // Collider Player, MushroomPowerup
   this.physics.add.overlap(game.player, game.mushroomPowerup, function(player, powerup) {
     // SFX
-    sfx.powerup.play();
+    sfx.powerup.play({
+      volume: 4
+    });
 
     // Enable
     game.bounceMagic = true;
@@ -778,7 +805,9 @@ function create() {
   // Collider LaserBlasts, Player
   this.physics.add.collider(game.laserBlasts, game.player, (player, blast) => {
     // Die
-    sfx.die.play();
+    sfx.die.play({
+      volume: 2.5
+    });
     this.cameras.main.shake(240, 0.05, false);
     player.x = game.checkpoint[0];
     player.y = game.checkpoint[1] - 10;
@@ -1048,8 +1077,17 @@ function update() {
     game.jumpHeight = 700;
   }
 
+  // Key function
+  const keyPress = (key) => {
+    if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(key))) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   // Shoot
-  if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.C)) && game.carrot) {
+  if ((keyPress(Phaser.Input.Keyboard.KeyCodes.SPACE) || keyPress(Phaser.Input.Keyboard.KeyCodes.C)) && game.carrot) {
     // SFX
     sfx.carrot.play();
 
@@ -1059,7 +1097,8 @@ function update() {
     } else {
       game.carrots.create(game.player.x, game.player.y, "carrot").setVelocityY(-400).setVelocityX(-500).setScale(0.5);
     }
-  } else if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.X)) && game.sword) {
+    this.children.bringToTop(game.player);
+  } else if ((keyPress(Phaser.Input.Keyboard.KeyCodes.DOWN) || keyPress(Phaser.Input.Keyboard.KeyCodes.X)) && game.sword) {
     // SFX
     sfx.sword.play();
 
@@ -1069,6 +1108,7 @@ function update() {
     } else {
       game.swords.create(game.player.x, game.player.y, "sword").setVelocityY(-400).setVelocityX(-600).setScale(0.7);
     }
+    this.children.bringToTop(game.player);
   }
 
   // Respawn
@@ -1287,7 +1327,7 @@ const config = {
   width: 1300,
 	height: 643,
 
-  // Color
+  // Color of sky
   backgroundColor: 0xcfeffc,
 
   // Physics

@@ -7,10 +7,10 @@ let game = {
   isFirstScene: true,
   jumpsMade: 0,
   abilities: {
-    carrot: true,
-    sword: true,
-    bounceMagic: true,
-    doubleJumps: true
+    carrot: false,
+    sword: false,
+    bounceMagic: false,
+    doubleJumps: false
   }
 };
 

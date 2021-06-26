@@ -7,10 +7,10 @@ let game = {
   isFirstScene: true,
   jumpsMade: 0,
   abilities: {
-    carrot: false,
-    sword: false,
-    bounceMagic: false,
-    doubleJumps: false
+    carrot: true,
+    sword: true,
+    bounceMagic: true,
+    doubleJumps: true
   }
 };
 
@@ -364,6 +364,9 @@ class Scene extends Phaser.Scene {
       door.location = world[this.sceneKey].doors[x][2];
     }
 
+    // Bring to top layer
+    this.children.bringToTop(game.player);
+
     // Collider Player, Door
     // HACK: Can't reach "this" from collider function
     const thisClass = this;
@@ -479,6 +482,9 @@ class Scene extends Phaser.Scene {
       let spike = game.spikes.create(world[this.sceneKey].spikes[x][0], world[this.sceneKey].spikes[x][1], "spike0").setCollideWorldBounds(true).setScale(0.4);
       spike.dir = ["R", "L"][x];
       spike.moves = world[this.sceneKey].spikes[x][2];
+      if (spike.moves === false) {
+        spike.setGravityY(-config.physics.arcade.gravity.y);
+      }
       if (spike.dir === "R") {
         spike.vel = 200;
       } else {
@@ -1175,7 +1181,6 @@ class Scene extends Phaser.Scene {
       } else {
         game.abilities.carrots.create(game.player.x, game.player.y, "carrot").setVelocityY(-400).setVelocityX(-500).setScale(0.5);
       }
-      this.children.bringToTop(game.player);
     } else if (keyPress(Phaser.Input.Keyboard.KeyCodes.X) && game.abilities.sword) {
       // SFX
       sfx.sword.play();
@@ -1186,7 +1191,6 @@ class Scene extends Phaser.Scene {
       } else {
         game.abilities.swords.create(game.player.x, game.player.y, "sword").setVelocityY(-400).setVelocityX(-600).setScale(0.7);
       }
-      this.children.bringToTop(game.player);
     }
 
     // Respawn

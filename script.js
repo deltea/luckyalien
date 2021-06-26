@@ -8,10 +8,10 @@ let game = {
   jumpsMade: 0,
   sound: true,
   abilities: {
-    carrot: false,
-    sword: false,
-    bounceMagic: false,
-    doubleJumps: false
+    carrot: true,
+    sword: true,
+    bounceMagic: true,
+    doubleJumps: true
   }
 };
 
@@ -1507,15 +1507,6 @@ class Forest extends Scene {
   }
 }
 
-// Secret
-class Secret extends Scene {
-  // Constructor
-  constructor() {
-    // Super
-    super("Secret");
-  }
-}
-
 // Clouds
 class Clouds extends Scene {
   // Constructor
@@ -1556,7 +1547,7 @@ const config = {
   },
 
   // Scenes
-  scene: [Grassland, Forest, Secret, Clouds]
+  scene: [Grassland, Forest, Clouds]
 };
 
 // Phaser game

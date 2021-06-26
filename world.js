@@ -364,7 +364,6 @@ const world = {
     doors: [
       // Test
       [2750, 1110, "Forest"],
-      [150, 868, "Secret"],
       [3300, 405, "Clouds"]
     ]
   },
@@ -661,42 +660,6 @@ const world = {
     ],
     doors: [
       [200, 1110, "Grassland"]
-    ]
-  },
-  "Secret": {
-    length: 1300,
-    height: 643,
-    hasClouds: false,
-    backgroundImage: "background2",
-    boxes: [
-      [325, 341.5, "coin"],
-      [285, 341.5, "coin"],
-      [975, 341.5,"coin"],
-      [1015, 341.5,"coin"],
-
-      [487.5, 502.25,"coin"],
-      [325, 502.25,"coin"],
-      [812.5, 502.25,"coin"],
-      [975, 502.25,"coin"],
-    ],
-    blocks: [
-    ],
-    mushrooms: [
-    ],
-    spiders: [
-    ],
-    springs: [
-    ],
-    spikes: [
-    ],
-    snails: [
-    ],
-    lasers: [
-    ],
-    flags: [
-    ],
-    doors: [
-      [650, 1110, "Grassland"]
     ]
   }
 }

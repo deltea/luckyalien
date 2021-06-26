@@ -7,10 +7,10 @@ let game = {
   isFirstScene: true,
   jumpsMade: 0,
   abilities: {
-    carrot: true,
-    sword: true,
-    bounceMagic: true,
-    doubleJumps: true
+    carrot: false,
+    sword: false,
+    bounceMagic: false,
+    doubleJumps: false
   }
 };
 
@@ -1451,12 +1451,12 @@ const config = {
 
       // Options
       enableBody: true,
-      debug: true
+      // debug: true
     }
   },
 
   // Scenes
-  scene: [Clouds, Forest, Secret, Grassland]
+  scene: [Grassland, Forest, Secret, Clouds]
 };
 
 // Phaser game

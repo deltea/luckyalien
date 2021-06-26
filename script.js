@@ -6,6 +6,7 @@ let game = {
   lastScene: "",
   isFirstScene: true,
   jumpsMade: 0,
+  sound: true,
   abilities: {
     carrot: false,
     sword: false,
@@ -95,6 +96,10 @@ class Scene extends Phaser.Scene {
 
     // Door
     this.load.image("door", "assets/imgs/door.png");
+
+    // Sound UI
+    this.load.image("soundOn", "assets/imgs/soundOn.png");
+    this.load.image("soundOff", "assets/imgs/soundOff.png");
 
     // Numbers
     this.load.image("0", "assets/imgs/0.png");
@@ -220,7 +225,9 @@ class Scene extends Phaser.Scene {
     sfx.background.setLoop(true);
 
     // Play music
-    sfx.background.play();
+    if (game.sound) {
+      sfx.background.play();
+    }
 
     // Create background
     for (var i = 0; i < 8; i++) {
@@ -312,7 +319,9 @@ class Scene extends Phaser.Scene {
     // Collider Player, Coin
     this.physics.add.overlap(game.player, game.coins, function(player, coin) {
       // SFX
-      sfx.coin.play();
+      if (game.sound) {
+        sfx.coin.play();
+      }
 
       // Add to coins
       stats.coins++;
@@ -348,7 +357,9 @@ class Scene extends Phaser.Scene {
     this.physics.add.collider(game.player, game.mushrooms, function(player, mushroom) {
       if (player.body.touching.down && mushroom.body.touching.up && game.abilities.bounceMagic) {
         // SFX
-        sfx.mushroom.play();
+        if (game.sound) {
+          sfx.mushroom.play();
+        }
 
         // Bounce
         game.player.setVelocityY(-1050);
@@ -373,9 +384,11 @@ class Scene extends Phaser.Scene {
     this.physics.add.overlap(game.player, game.doors, function(player, door) {
       if (game.cursors.down.isDown) {
         // Play SFX
-        sfx.door.play({
-          volume: 3
-        });
+        if (game.sound) {
+          sfx.door.play({
+            volume: 3
+          });
+        }
 
         // Stop music
         sfx.background.stop();
@@ -406,11 +419,15 @@ class Scene extends Phaser.Scene {
         if (box.active) {
           // SFX
           if (box.entity === "carrotPowerup" || box.entity === "mushroomPowerup" || box.entity === "swordPowerup"  || box.entity === "doubleJumpPowerup") {
-            sfx.powerup2.play({
-              volume: 4
-            });
+            if (game.sound) {
+              sfx.powerup2.play({
+                volume: 4
+              });
+            }
           } else {
-            sfx.box.play();
+            if (game.sound) {
+              sfx.box.play();
+            }
           }
 
           // Box
@@ -452,7 +469,9 @@ class Scene extends Phaser.Scene {
         this.physics.add.collider(throwingSprite, sprites, function(throwSprite, sprite) {
           if (sprites === game.coins) {
             // SFX
-            sfx.coin.play();
+            if (game.sound) {
+              sfx.coin.play();
+            }
 
             // Add to coins
             stats.coins++;
@@ -520,9 +539,11 @@ class Scene extends Phaser.Scene {
 
     // Collider Spikes, Player
     this.physics.add.overlap(game.player, game.spikes, (player, spike) => {
-      sfx.die.play({
-        volume: 2.5
-      });
+      if (game.sound) {
+        sfx.die.play({
+          volume: 2.5
+        });
+      }
       this.cameras.main.shake(240, 0.05, false);
       player.x = game.checkpoint[0];
       player.y = game.checkpoint[1] - 10;
@@ -531,7 +552,9 @@ class Scene extends Phaser.Scene {
     // Collider Spike, Carrot
     this.physics.add.overlap(game.spikes, game.abilities.carrots, function(spike, carrot) {
       // SFX
-      sfx.shield.play();
+      if (game.sound) {
+        sfx.shield.play();
+      }
 
       // Destroy
       carrot.destroy();
@@ -540,7 +563,9 @@ class Scene extends Phaser.Scene {
     // Collider Spike, Sword
     this.physics.add.overlap(game.spikes, game.abilities.swords, function(spike, sword) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       spike.destroy();
@@ -597,7 +622,9 @@ class Scene extends Phaser.Scene {
       if (snail.active) {
         if (player.body.touching.down && snail.body.touching.up) {
           // SFX
-          sfx.shield.play();
+          if (game.sound) {
+            sfx.shield.play();
+          }
 
           // Shell
           snail.active = false;
@@ -607,9 +634,11 @@ class Scene extends Phaser.Scene {
           player.setVelocityY(-500);
         } else {
           // Die
-          sfx.die.play({
-            volume: 2.5
-          });
+          if (game.sound) {
+            sfx.die.play({
+              volume: 2.5
+            });
+          }
           this.cameras.main.shake(240, 0.05, false);
           player.x = game.checkpoint[0];
           player.y = game.checkpoint[1] - 10;
@@ -620,7 +649,9 @@ class Scene extends Phaser.Scene {
     // Collider Snails, Carrot
     this.physics.add.overlap(game.snails, game.abilities.carrots, function(snail, carrot) {
       // SFX
-      sfx.shield.play();
+      if (game.sound) {
+        sfx.shield.play();
+      }
 
       // Destroy
       carrot.destroy();
@@ -633,7 +664,9 @@ class Scene extends Phaser.Scene {
     // Collider Snails, Sword
     this.physics.add.overlap(game.snails, game.abilities.swords, function(snail, sword) {
       // SFX
-      sfx.shield.play();
+      if (game.sound) {
+        sfx.shield.play();
+      }
 
       // Destroy
       sword.destroy();
@@ -659,9 +692,11 @@ class Scene extends Phaser.Scene {
 
     // Collider Springs, Player
     this.physics.add.overlap(game.player, game.springs, (player, spring) => {
-      sfx.die.play({
-        volume: 2.5
-      });
+      if (game.sound) {
+        sfx.die.play({
+          volume: 2.5
+        });
+      }
       this.cameras.main.shake(240, 0.05, false);
       player.x = game.checkpoint[0];
       player.y = game.checkpoint[1];
@@ -670,7 +705,9 @@ class Scene extends Phaser.Scene {
     // Collider Springs, Carrots
     this.physics.add.collider(game.springs, game.abilities.carrots, function(spring, carrot) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       carrot.destroy();
@@ -680,7 +717,9 @@ class Scene extends Phaser.Scene {
     // Collider Springs, Swords
     this.physics.add.collider(game.springs, game.abilities.swords, function(spring, sword) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       sword.destroy();
@@ -734,7 +773,9 @@ class Scene extends Phaser.Scene {
     // Collider Spider, Carrot
     this.physics.add.collider(game.spiders, game.abilities.carrots, function(spider, carrot) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       carrot.destroy();
@@ -744,7 +785,9 @@ class Scene extends Phaser.Scene {
     // Collider Spider, Sword
     this.physics.add.collider(game.spiders, game.abilities.swords, function(spider, sword) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       sword.destroy();
@@ -755,16 +798,20 @@ class Scene extends Phaser.Scene {
     this.physics.add.collider(game.player, game.spiders, (player, spider) => {
       if (player.body.touching.down && spider.body.touching.up) {
         // SFX
-        sfx.explosion.play();
+        if (game.sound) {
+          sfx.explosion.play();
+        }
 
         // Bounce
         game.player.setVelocityY(-500);
         spider.destroy();
       } else {
         // Die
-        sfx.die.play({
-          volume: 2.5
-        });
+        if (game.sound) {
+          sfx.die.play({
+            volume: 2.5
+          });
+        }
         this.cameras.main.shake(240, 0.05, false);
         player.x = game.checkpoint[0];
         player.y = game.checkpoint[1] - 10;
@@ -780,9 +827,11 @@ class Scene extends Phaser.Scene {
     // Collider Player, CarrotPowerup
     this.physics.add.overlap(game.player, game.abilities.carrotPowerup, function(player, powerup) {
       // SFX
-      sfx.powerup.play({
-        volume: 4
-      });
+      if (game.sound) {
+        sfx.powerup.play({
+          volume: 4
+        });
+      }
 
       // Enable
       game.abilities.carrot = true;
@@ -800,9 +849,11 @@ class Scene extends Phaser.Scene {
     // Collider Player, SwordPowerup
     this.physics.add.overlap(game.player, game.abilities.swordPowerup, function(player, powerup) {
       // SFX
-      sfx.powerup.play({
-        volume: 4
-      });
+      if (game.sound) {
+        sfx.powerup.play({
+          volume: 4
+        });
+      }
 
       // Enable
       game.abilities.sword = true;
@@ -820,9 +871,11 @@ class Scene extends Phaser.Scene {
     // Collider Player, MushroomPowerup
     this.physics.add.overlap(game.player, game.mushroomPowerup, function(player, powerup) {
       // SFX
-      sfx.powerup.play({
-        volume: 4
-      });
+      if (game.sound) {
+        sfx.powerup.play({
+          volume: 4
+        });
+      }
 
       // Enable
       game.abilities.bounceMagic = true;
@@ -840,9 +893,11 @@ class Scene extends Phaser.Scene {
     // Collider Player, DoubleJumpPowerup
     this.physics.add.overlap(game.player, game.doubleJumpPowerup, function(player, powerup) {
       // SFX
-      sfx.powerup.play({
-        volume: 4
-      });
+      if (game.sound) {
+        sfx.powerup.play({
+          volume: 4
+        });
+      }
 
       // Enable
       game.abilities.doubleJumpPowerup = true;
@@ -873,9 +928,11 @@ class Scene extends Phaser.Scene {
     // Collider LaserBlasts, Player
     this.physics.add.collider(game.laserBlasts, game.player, (player, blast) => {
       // Die
-      sfx.die.play({
-        volume: 2.5
-      });
+      if (game.sound) {
+        sfx.die.play({
+          volume: 2.5
+        });
+      }
       this.cameras.main.shake(240, 0.05, false);
       player.x = game.checkpoint[0];
       player.y = game.checkpoint[1] - 10;
@@ -884,7 +941,9 @@ class Scene extends Phaser.Scene {
     // Collider LaserBlasts, Carrots
     this.physics.add.collider(game.laserBlasts, game.abilities.carrots, function(blast, carrot) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       carrot.destroy();
@@ -893,7 +952,9 @@ class Scene extends Phaser.Scene {
     // Collider LaserBlasts, Swords
     this.physics.add.collider(game.laserBlasts, game.abilities.swords, function(blast, sword) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       sword.destroy();
@@ -908,7 +969,9 @@ class Scene extends Phaser.Scene {
     // Collider Lasers, Carrot
     this.physics.add.overlap(game.lasers, game.abilities.carrots, function(laser, carrot) {
       // SFX
-      sfx.shield.play();
+      if (game.sound) {
+        sfx.shield.play();
+      }
 
       // Destroy
       carrot.destroy();
@@ -917,7 +980,9 @@ class Scene extends Phaser.Scene {
     // Collider Lasers, Sword
     this.physics.add.overlap(game.lasers, game.abilities.swords, function(laser, sword) {
       // SFX
-      sfx.explosion.play();
+      if (game.sound) {
+        sfx.explosion.play();
+      }
 
       // Destroy
       laser.destroy();
@@ -936,7 +1001,9 @@ class Scene extends Phaser.Scene {
     this.physics.add.overlap(game.flags, game.player, function(player, flag) {
       // SFX
       if (flag.active === false) {
-        sfx.checkpoint.play();
+        if (game.sound) {
+          sfx.checkpoint.play();
+        }
       }
 
       // Reset flags
@@ -953,6 +1020,23 @@ class Scene extends Phaser.Scene {
 
       // Animation
       flag.anims.play("flag", true);
+    });
+
+    // Coin stat
+    game.soundStat = this.physics.add.staticSprite(1260, 40, "soundOn").setScale(1.2).setScrollFactor(0).setInteractive();
+
+    // Interaction
+    game.soundStat.on("pointerdown", () => {
+      // Change status
+      if (game.sound) {
+        game.soundStat.setTexture("soundOff");
+        sfx.background.stop();
+        game.sound = false;
+      } else {
+        game.soundStat.setTexture("soundOn");
+        sfx.background.play();
+        game.sound = true;
+      }
     });
 
     // Animation
@@ -1145,7 +1229,9 @@ class Scene extends Phaser.Scene {
     // Jump
     if (game.cursors.up.isDown && game.player.body.blocked.down) {
       // SFX
-      sfx.jump.play();
+      if (game.sound) {
+        sfx.jump.play();
+      }
 
       // Jump
       game.player.setVelocityY(-game.jumpHeight);
@@ -1158,7 +1244,9 @@ class Scene extends Phaser.Scene {
     }
     if (keyPress(Phaser.Input.Keyboard.KeyCodes.UP) && game.jumpsMade % 2 === 0 && !game.player.body.blocked.down && game.abilities.doubleJumps) {
       // SFX
-      sfx.jump.play();
+      if (game.sound) {
+        sfx.jump.play();
+      }
 
       // Jump
       game.player.setVelocityY(-game.jumpHeight);
@@ -1173,7 +1261,9 @@ class Scene extends Phaser.Scene {
     // Shoot
     if (keyPress(Phaser.Input.Keyboard.KeyCodes.C) && game.abilities.carrot) {
       // SFX
-      sfx.carrot.play();
+      if (game.sound) {
+        sfx.carrot.play();
+      }
 
       // Flip
       if (game.player.dir === "R") {
@@ -1183,7 +1273,9 @@ class Scene extends Phaser.Scene {
       }
     } else if (keyPress(Phaser.Input.Keyboard.KeyCodes.X) && game.abilities.sword) {
       // SFX
-      sfx.sword.play();
+      if (game.sound) {
+        sfx.sword.play();
+      }
 
       // Flip
       if (game.player.dir === "R") {
@@ -1196,7 +1288,9 @@ class Scene extends Phaser.Scene {
     // Respawn
     if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R))) {
       // SFX
-      sfx.respawn.play()
+      if (game.sound) {
+        sfx.respawn.play()
+      }
 
       // Move
       game.player.x = game.checkpoint[0];
@@ -1372,7 +1466,9 @@ class Scene extends Phaser.Scene {
         if (sprite.touched) {
           sprite.destroyTimer--;
           if (sprite.destroyTimer < 0) {
-            sfx.speedBlock.play();
+            if (game.sound) {
+              sfx.speedBlock.play();
+            }
             sprite.body.enable = false;
             sprite.respawnTimer = 200;
             sprite.destroyTimer = 7;

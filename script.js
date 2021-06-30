@@ -8,10 +8,10 @@ let game = {
   jumpsMade: 0,
   sound: true,
   abilities: {
-    carrot: false,
-    sword: false,
-    bounceMagic: false,
-    doubleJumps: false
+    carrot: true,
+    sword: true,
+    bounceMagic: true,
+    doubleJumps: true
   }
 };
 
@@ -1072,7 +1072,7 @@ class Scene extends Phaser.Scene {
       game.boss.attack = true;
       game.cloud.attack = false;
       game.boss.animHit = false;
-      game.boss.health = 30;
+      game.boss.health = 1;
       game.boss.speed = 350;
 
       // Collider Flame, Player
@@ -1712,16 +1712,69 @@ class Scene extends Phaser.Scene {
       if (game.boss.dead && game.boss.dieTimer >= 200) {
         sfx.win.play();
         this.scene.stop();
+        this.scene.start("Credits");
       }
-      if (game.boss.dead && game.boss.dieTimer < 200) {
+      if (game.boss.dead && game.boss.dieTimer < 400) {
         game.boss.dieTimer++;
-        console.log(game.boss.dieTimer);
       }
     }
   }
 }
 
 // Scenes
+// Credits
+class Credits extends Phaser.Scene {
+  // Constructor
+  constructor() {
+    super("Credits")
+  }
+
+  // Load assets
+  preload() {
+    // Load credits music
+    this.load.audio("credits", "assets/sfx/credits.mp3");
+  }
+
+  // Main create function
+  create() {
+    // Load music
+    sfx.credits = this.sound.add("credits");
+
+    // Play music
+    sfx.credits.setLoop(true);
+    sfx.credits.play();
+
+    // Credits title
+    game.creditsTitle = this.add.text(500, 321.5, "Credits", {
+      fontFamily: "Arial",
+      fontSize: 100,
+      color: "#f5f5f5"
+    }).setOrigin(0, 0);
+
+    // Credits
+    game.credits = this.add.text(300, 500, "Programmer: thcheetah777\nGraphics: Kenney.nl\nMusic: Kirby\nFramework: Phaser.js\nLevel design: thcheetah777 and sister\n\n\n\n\n\n\n           Thanks for playing!", {
+      fontFamily: "Arial",
+      fontSize: 50
+    });
+
+    // Timer
+    game.credits.timer = 0;
+  }
+
+  // Update animations, sprites
+  update() {
+    // Move credits
+    game.creditsTitle.y--;
+    game.credits.y--;
+
+    // Increment timer
+    game.credits.timer++;
+    if (game.credits.timer >= 800) {
+      this.scene.pause();
+    }
+  }
+}
+
 // Grassland
 class Grassland extends Scene {
   // Constructor
@@ -1784,12 +1837,12 @@ const config = {
 
       // Options
       enableBody: true,
-      // debug: true
+      debug: true
     }
   },
 
   // Scenes
-  scene: [Grassland, Forest, Clouds, Boss]
+  scene: [Boss, Grassland, Forest, Clouds, Credits]
 };
 
 // Phaser game

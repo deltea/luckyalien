@@ -1741,6 +1741,12 @@ class Credits extends Phaser.Scene {
       fontFamily: "Arial",
       fontSize: 100
     }).setOrigin(0, 0);
+
+    // Credits
+    game.credits = this.add.text(350, 500, "Programmer: Thcheetah777\nGraphics: Kenney.nl", {
+      fontFamily: "Arial",
+      fontSize: 50
+    });
   }
 
   // Update animations, sprites

@@ -1722,6 +1722,29 @@ class Scene extends Phaser.Scene {
 }
 
 // Scenes
+// Credits
+class Credits extends Phaser.Scene {
+  // Constructor
+  constructor() {
+    super("Credits")
+  }
+
+  // Load assets
+  preload() {
+
+  }
+
+  // Main create function
+  create() {
+
+  }
+
+  // Update animations, sprites
+  update() {
+    
+  }
+}
+
 // Grassland
 class Grassland extends Scene {
   // Constructor

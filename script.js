@@ -1072,7 +1072,7 @@ class Scene extends Phaser.Scene {
       game.boss.attack = true;
       game.cloud.attack = false;
       game.boss.animHit = false;
-      game.boss.health = 30;
+      game.boss.health = 1;
       game.boss.speed = 350;
 
       // Collider Flame, Player
@@ -1712,10 +1712,10 @@ class Scene extends Phaser.Scene {
       if (game.boss.dead && game.boss.dieTimer >= 200) {
         sfx.win.play();
         this.scene.stop();
+        this.scene.start("Credits");
       }
-      if (game.boss.dead && game.boss.dieTimer < 200) {
+      if (game.boss.dead && game.boss.dieTimer < 400) {
         game.boss.dieTimer++;
-        console.log(game.boss.dieTimer);
       }
     }
   }
@@ -1842,7 +1842,7 @@ const config = {
   },
 
   // Scenes
-  scene: [Credits, Grassland, Forest, Clouds, Boss]
+  scene: [Boss, Grassland, Forest, Clouds, Credits]
 };
 
 // Phaser game

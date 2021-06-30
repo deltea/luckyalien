@@ -1842,7 +1842,7 @@ const config = {
   },
 
   // Scenes
-  scene: [Grassland, Boss, Forest, Clouds, Credits]
+  scene: [Clouds, Boss, Forest, Grassland, Credits]
 };
 
 // Phaser game

@@ -1743,7 +1743,7 @@ class Credits extends Phaser.Scene {
     }).setOrigin(0, 0);
 
     // Credits
-    game.credits = this.add.text(350, 500, "Programmer: Thcheetah777\nGraphics: Kenney.nl", {
+    game.credits = this.add.text(300, 500, "Programmer: thcheetah777\nGraphics: Kenney.nl\nMusic: Kirby\nFramework: Phaser.js\nLevel design: thcheetah777 and sister\n\n\n           Thanks for playing!", {
       fontFamily: "Arial",
       fontSize: 50
     });

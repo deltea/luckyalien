@@ -1736,8 +1736,11 @@ class Credits extends Phaser.Scene {
 
   // Main create function
   create() {
-    // Text
-    game.credits = scene.add.text(0, 0, "hello");
+    // Credits title
+    game.creditsTitle = this.add.text(500, 321.5, "Credits", {
+      fontFamily: "Arial",
+      fontSize: 100
+    }).setOrigin(0, 0);
   }
 
   // Update animations, sprites
@@ -1813,7 +1816,7 @@ const config = {
   },
 
   // Scenes
-  scene: [Grassland, Forest, Clouds, Boss]
+  scene: [Credits, Grassland, Forest, Clouds, Boss]
 };
 
 // Phaser game

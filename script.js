@@ -8,10 +8,10 @@ let game = {
   jumpsMade: 0,
   sound: true,
   abilities: {
-    carrot: false,
-    sword: false,
-    bounceMagic: false,
-    doubleJumps: false
+    carrot: true,
+    sword: true,
+    bounceMagic: true,
+    doubleJumps: true
   }
 };
 
@@ -50,6 +50,7 @@ class Scene extends Phaser.Scene {
     this.load.image("background0", "assets/imgs/background0.png");
     this.load.image("background1", "assets/imgs/background1.png");
     this.load.image("background2", "assets/imgs/background2.png");
+    this.load.image("background3", "assets/imgs/background3.png");
 
     // Grass block
     this.load.image("grassBlock", "assets/imgs/grassBlock.png");
@@ -96,6 +97,18 @@ class Scene extends Phaser.Scene {
 
     // Door
     this.load.image("door", "assets/imgs/door.png");
+
+    // Boss hit
+    this.load.image("bossHit", "assets/imgs/bossHit.png");
+
+    // Boss smoke
+    this.load.image("smoke", "assets/imgs/smoke.png");
+
+    // Cloud
+    this.load.image("cloud", "assets/imgs/cloud.png");
+
+    // Fire
+    this.load.image("fire", "assets/imgs/fire.png");
 
     // Sound UI
     this.load.image("soundOn", "assets/imgs/soundOn.png");
@@ -156,6 +169,7 @@ class Scene extends Phaser.Scene {
     // SFX
     // Backgrounds
     this.load.audio("background", "assets/sfx/background.mp3");
+    this.load.audio("boss", "assets/sfx/boss.mp3");
 
     // Jump
     this.load.audio("jump", "assets/sfx/jump.mp3");
@@ -199,6 +213,15 @@ class Scene extends Phaser.Scene {
 
     // Door
     this.load.audio("door", "assets/sfx/door.wav");
+
+    // Boss explosion
+    this.load.audio("bossExplode", "assets/sfx/bossExplode.ogg");
+
+    // Win
+    this.load.audio("win", "assets/sfx/win.mp3");
+
+    // Flame
+    this.load.audio("flames", "assets/sfx/flame.ogg");
   }
 
   // Create
@@ -220,6 +243,10 @@ class Scene extends Phaser.Scene {
     sfx.speedBlock = this.sound.add("speedBlock");
     sfx.respawn = this.sound.add("respawn");
     sfx.door = this.sound.add("door");
+    sfx.bossExplode = this.sound.add("bossExplode");
+    sfx.boss = this.sound.add("boss");
+    sfx.win = this.sound.add("win");
+    sfx.flames = this.sound.add("flames");
 
     // Loop music
     sfx.background.setLoop(true);
@@ -544,9 +571,14 @@ class Scene extends Phaser.Scene {
           volume: 2.5
         });
       }
-      this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      if (this.sceneKey === "Boss") {
+        sfx.boss.stop();
+        this.scene.restart();
+      } else {
+        this.cameras.main.shake(240, 0.05, false);
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     });
 
     // Collider Spike, Carrot
@@ -1022,7 +1054,88 @@ class Scene extends Phaser.Scene {
       flag.anims.play("flag", true);
     });
 
-    // Coin stat
+    // Boss
+    if (this.sceneKey === "Boss") {
+      sfx.background.stop();
+      sfx.boss.play();
+      sfx.boss.setLoop(true);
+
+      game.boss = this.physics.add.sprite(650, 321.5, "spike0").setCollideWorldBounds(true).setScale(1);
+      game.cloud = this.physics.add.sprite(650, 50, "cloud").setCollideWorldBounds(true).setVelocityX(500).setScale(0.5);
+      game.flames = this.physics.add.group();
+      game.boss.setGravityY(-config.physics.arcade.gravity.y);
+      game.cloud.setGravityY(-config.physics.arcade.gravity.y);
+      game.boss.setBounce(1);
+      game.cloud.setBounce(1);
+      game.boss.attackTime = 0;
+      game.cloud.timer = 0;
+      game.boss.attack = true;
+      game.cloud.attack = false;
+      game.boss.animHit = false;
+      game.boss.health = 30;
+      game.boss.speed = 350;
+
+      // Collider Flame, Player
+      this.physics.add.overlap(game.player, game.flames, (player, flames) => {
+        if (game.sound) {
+          sfx.die.play({
+            volume: 2.5
+          });
+        }
+        sfx.boss.stop();
+        this.scene.restart();
+        this.cameras.main.shake(240, 0.05, false);
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      });
+
+      // Collider Boss, Player
+      this.physics.add.overlap(game.player, game.boss, (player, boss) => {
+        if (game.sound) {
+          sfx.die.play({
+            volume: 2.5
+          });
+        }
+        sfx.boss.stop();
+        this.scene.restart();
+        this.cameras.main.shake(240, 0.05, false);
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      });
+
+      // Collider Boss, Carrot
+      this.physics.add.overlap(game.boss, game.abilities.carrots, function(boss, carrot) {
+        // SFX
+        if (game.sound) {
+          sfx.shield.play();
+        }
+
+        // Destroy
+        carrot.destroy();
+      });
+
+      // Collider Boss, Sword
+      this.physics.add.overlap(game.boss, game.abilities.swords, function(boss, sword) {
+        // SFX
+        if (game.sound) {
+          if (boss.attack) {
+            sfx.shield.play();
+          } else {
+            // Hit
+            game.boss.animHitTimer = 0;
+            game.boss.animHit = true;
+            game.boss.setTexture("bossHit");
+            sfx.explosion.play();
+            boss.health--;
+          }
+        }
+
+        // Destroy
+        sword.destroy();
+      });
+    }
+
+    // Sound stat
     game.soundStat = this.physics.add.staticSprite(1260, 40, "soundOn").setScale(1.2).setScrollFactor(0).setInteractive();
 
     // Interaction
@@ -1031,10 +1144,15 @@ class Scene extends Phaser.Scene {
       if (game.sound) {
         game.soundStat.setTexture("soundOff");
         sfx.background.stop();
+        sfx.boss.stop();
         game.sound = false;
       } else {
         game.soundStat.setTexture("soundOn");
-        sfx.background.play();
+        if (this.sceneKey === "Boss") {
+          sfx.boss.play();
+        } else {
+          sfx.background.play();
+        }
         game.sound = true;
       }
     });
@@ -1322,6 +1440,13 @@ class Scene extends Phaser.Scene {
       // Animation
       sprite.anims.play("spike", true);
 
+      // Check if booos scene
+      if (this.sceneKey === "Boss") {
+        if (sprite.body.blocked.down) {
+          sprite.setVelocityX(0);
+        }
+      }
+
       // Check pos
       // Left edge
       if (sprite.x < 30) {
@@ -1485,6 +1610,114 @@ class Scene extends Phaser.Scene {
         }
       }
     });
+
+    // Boss
+    if (this.sceneKey === "Boss") {
+      if (!game.boss.dead) {
+        game.boss.anims.play("spike", true);
+      }
+
+      // Hit animation
+      if (game.boss.animHit && game.boss.animHitTimer < 50) {
+        game.boss.animHitTimer++;
+      }
+      if (game.boss.animHit && game.boss.animHitTimer >= 50) {
+        game.boss.anims.play("spike", true);
+        game.boss.animHit = false;
+      }
+
+      // Cloud
+      if (game.boss.attack) {
+        game.cloud.attack = false;
+      } else {
+        game.cloud.attack = true;
+      }
+      if (game.cloud.attack && game.cloud.timer >= (game.boss.health <= 20 ? 59 : 99) && !game.boss.dead) {
+        let spike = game.spikes.create(game.cloud.x, game.cloud.y, "spike0").setCollideWorldBounds(true).setScale(0.4);
+        spike.setVelocityX(game.player.x - game.cloud.x);
+        if (Math.random() * 2 > 1) {
+          spike.vel = 200;
+        } else {
+          spike.vel = -200;
+        }
+        game.cloud.timer = 0;
+      }
+      if (game.cloud.attack && game.cloud.timer < (game.boss.health <= 20 ? 59 : 99)) {
+        game.cloud.timer++;
+      }
+
+      // Phases
+      // Attack
+      if (game.boss.attack && !game.boss.attacked) {
+        game.boss.setVelocityX(game.boss.speed).setVelocityY(game.boss.speed);
+        game.boss.attackTime++;
+        game.boss.timer = 0;
+        game.boss.attacked = true;
+      }
+      if (game.boss.attack && game.boss.attacked && !game.boss.dead) {
+        game.boss.timer++
+        if (game.boss.timer === 250 && game.boss.attackTime >= 2) {
+          if (game.sound) {
+            sfx.flames.play();
+          }
+          let flameNum = 15;
+          for (var i = 0; i < flameNum; i++) {
+            let flame = game.flames.create(game.boss.x, game.boss.y, "fire").setCircle(30).setOffset(0, 10);
+            flame.angle = i * 360 / flameNum;
+            flame.setVelocityX(300 * Math.cos(flame.rotation - 67.5));
+            flame.setVelocityY(300 * Math.sin(flame.rotation - 67.5));
+            flame.setGravityY(-config.physics.arcade.gravity.y);
+          }
+        }
+      }
+      if (game.boss.timer >= 500) {
+        game.boss.attack = false;
+        game.boss.timer = 0;
+        game.boss.speed += 50;
+        game.boss.setVelocityX(0).setVelocityY(0);
+        game.boss.x = 650;
+        game.boss.y = 321.5;
+      }
+
+      // Player attack
+      if (!game.boss.attack && game.boss.timer <= 300) {
+        game.boss.timer++;
+      }
+      if (!game.boss.attack && game.boss.timer > 300) {
+        game.boss.attack = true;
+        game.boss.timer = 0;
+        game.boss.attacked = false;
+      }
+
+      // Boss die
+      if (game.boss.health <= 0 && !game.boss.dead) {
+        if (game.sound) {
+          sfx.bossExplode.play({
+            volume: 2,
+            rate: 0.5
+          });
+        }
+        sfx.boss.stop();
+        game.cloud.visible = false;
+        game.cloud.body.enable = false;
+        game.boss.anims.stop("spike");
+        game.boss.dead = true;
+        game.boss.dieTimer = 0;
+        game.boss.setTexture("smoke").setScale(10);
+        game.boss.body.enable = false;
+      }
+      if (game.boss.dead && game.boss.dieTimer >= 50) {
+        game.boss.visible = false;
+      }
+      if (game.boss.dead && game.boss.dieTimer >= 200) {
+        sfx.win.play();
+        this.scene.stop();
+      }
+      if (game.boss.dead && game.boss.dieTimer < 200) {
+        game.boss.dieTimer++;
+        console.log(game.boss.dieTimer);
+      }
+    }
   }
 }
 
@@ -1516,6 +1749,15 @@ class Clouds extends Scene {
   }
 }
 
+// Boss
+class Boss extends Scene {
+  // Constructor
+  constructor() {
+    // Super
+    super("Boss");
+  }
+}
+
 // Phaser config
 const config = {
   // Type
@@ -1542,12 +1784,12 @@ const config = {
 
       // Options
       enableBody: true,
-      // debug: true
+      debug: true
     }
   },
 
   // Scenes
-  scene: [Grassland, Forest, Clouds]
+  scene: [Grassland, Forest, Clouds, Boss]
 };
 
 // Phaser game

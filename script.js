@@ -1731,11 +1731,19 @@ class Credits extends Phaser.Scene {
 
   // Load assets
   preload() {
-    // No assets to load
+    // Load credits music
+    this.load.audio("credits", "assets/sfx/credits.mp3");
   }
 
   // Main create function
   create() {
+    // Load music
+    sfx.credits = this.sound.add("credits");
+
+    // Play music
+    sfx.credits.setLoop(true);
+    sfx.credits.play();
+
     // Credits title
     game.creditsTitle = this.add.text(500, 321.5, "Credits", {
       fontFamily: "Arial",

@@ -457,7 +457,8 @@ const world = {
       [1305, 530]
     ],
     doors: [
-      [100, 1257, "Grassland"]
+      [100, 1257, "Grassland"],
+      [970, 428, ""]
     ]
   },
   "Forest": {

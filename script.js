@@ -1739,7 +1739,8 @@ class Credits extends Phaser.Scene {
     // Credits title
     game.creditsTitle = this.add.text(500, 321.5, "Credits", {
       fontFamily: "Arial",
-      fontSize: 100
+      fontSize: 100,
+      color: "#f5f5f5"
     }).setOrigin(0, 0);
 
     // Credits

@@ -364,7 +364,6 @@ const world = {
     doors: [
       // Test
       [2750, 1110, "Forest"],
-      [2800, 1110, "Boss"],
       [3300, 405, "Clouds"]
     ]
   },

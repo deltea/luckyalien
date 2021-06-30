@@ -1731,17 +1731,18 @@ class Credits extends Phaser.Scene {
 
   // Load assets
   preload() {
-
+    // No assets to load
   }
 
   // Main create function
   create() {
-
+    // Text
+    game.credits = scene.add.text(0, 0, "hello");
   }
 
   // Update animations, sprites
   update() {
-    
+
   }
 }
 

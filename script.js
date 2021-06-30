@@ -1743,10 +1743,13 @@ class Credits extends Phaser.Scene {
     }).setOrigin(0, 0);
 
     // Credits
-    game.credits = this.add.text(300, 500, "Programmer: thcheetah777\nGraphics: Kenney.nl\nMusic: Kirby\nFramework: Phaser.js\nLevel design: thcheetah777 and sister\n\n\n           Thanks for playing!", {
+    game.credits = this.add.text(300, 500, "Programmer: thcheetah777\nGraphics: Kenney.nl\nMusic: Kirby\nFramework: Phaser.js\nLevel design: thcheetah777 and sister\n\n\n\n\n\n\n           Thanks for playing!", {
       fontFamily: "Arial",
       fontSize: 50
     });
+
+    // Timer
+    game.credits.timer = 0;
   }
 
   // Update animations, sprites
@@ -1754,6 +1757,12 @@ class Credits extends Phaser.Scene {
     // Move credits
     game.creditsTitle.y--;
     game.credits.y--;
+
+    // Increment timer
+    game.credits.timer++;
+    if (game.credits.timer >= 800) {
+      this.scene.pause();
+    }
   }
 }
 

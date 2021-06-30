@@ -1751,7 +1751,9 @@ class Credits extends Phaser.Scene {
 
   // Update animations, sprites
   update() {
-
+    // Move credits
+    game.creditsTitle.y--;
+    game.credits.y--;
   }
 }
 

@@ -40,7 +40,7 @@ python3 -m http.server
 
 ## Contribution
 
-Read CONTRIBUTION.md for more info
+Read CONTRIBUTING.md for more info
 
 ## Version History
 

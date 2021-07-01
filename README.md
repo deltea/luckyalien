@@ -11,9 +11,18 @@ Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platform
 ### Cloning
 
 * Open your preferred command line or terminal
-* Copy and enter this into the prompt: ``` git clone https://github.com/thcheetah777/alien/```
+* Copy and enter this into the prompt:
+
+```
+git clone https://github.com/thcheetah777/alien/
+ ```
+
 * Wait for it to unpack
-* After it's done cloning, enter ``` cd alien ```
+* After it's done cloning, enter
+
+```
+cd alien
+```
 
 ### Executing program
 

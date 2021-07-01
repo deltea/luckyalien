@@ -11,11 +11,11 @@ Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platform
 ### Cloning
 
 * Open your preferred command line or terminal
-* Copy and enter this into the prompt:
+* Copy and enter this into the prompt
 
 ```
 git clone https://github.com/thcheetah777/alien/
- ```
+```
 
 * Wait for it to unpack
 * After it's done cloning, enter
@@ -24,22 +24,29 @@ git clone https://github.com/thcheetah777/alien/
 cd alien
 ```
 
-### Executing program
+### Running the game
 
-* How to run the program
-* Step-by-step bullets
+* First, you need to set up the server via Python. (If you don't have Python, download it [here](https://www.python.org/)) Do this by entering
 ```
-code blocks for commands
+python -m http.server
+```
+or
+```
+python3 -m http.server
 ```
 
-## Authors
+## Contribution
 
-Contributors names and contact info
-
-ex.
+Read CONTRIBUTION.md for more info
 
 ## Version History
 
+| Version | Description |
+| :------------- | :------------- |
+| v1.0 | This was the first release. the player is a stickman figure and the game doesn't have losing or winning |
+| v1.1 | Created first area |
+| v1.5 | Added a lot more new enemies and changed player image |
+| v1.6 | Added more area data plus powerups and SFX |
 
 ## License
 

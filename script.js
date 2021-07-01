@@ -1837,12 +1837,12 @@ const config = {
 
       // Options
       enableBody: true,
-      debug: true
+      // debug: true
     }
   },
 
   // Scenes
-  scene: [Clouds, Boss, Forest, Grassland, Credits]
+  scene: [Grassland, Boss, Forest, Clouds, Credits]
 };
 
 // Phaser game

@@ -1,6 +1,6 @@
 # Alien :alien:
 
-![]()
+![Screenshot](assets/imgs/screenshot.png)
 
 Alien, Adventure Island inspired RPG platformer
 

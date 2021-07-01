@@ -1,4 +1,4 @@
-# Alien :alien:
+# Alien (Not finished) :alien:
 
 ![Screenshot](assets/imgs/screenshot.png)
 

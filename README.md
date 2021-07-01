@@ -43,10 +43,12 @@ Read CONTRIBUTION.md for more info
 
 | Version | Description |
 | :------------- | :------------- |
-| v1.0 | This was the first release. the player is a stickman figure and the game doesn't have losing or winning |
+| v1.0 | This was the first release. The player is a stickman figure and the game doesn't have losing or winning |
 | v1.1 | Created first area |
 | v1.5 | Added a lot more new enemies and changed player image |
 | v1.6 | Added more area data plus powerups and SFX |
+
+More to come! :grinning:
 
 ## License
 

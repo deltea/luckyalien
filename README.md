@@ -4,7 +4,7 @@ Alien, Adventure Island inspired RPG platformer
 
 ## Description
 
-Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, **Wikipedia:** "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, a alien, must go through many enemies and defeat the boss at the end
+Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, **Wikipedia:** "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, a alien, must go through many enemies by collecting powerups, and defeat the boss at the end
 
 ## Getting Started
 

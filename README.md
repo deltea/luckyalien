@@ -52,9 +52,10 @@ More to come! :grinning:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details
+This project is licensed under the MIT License - see the LICENSE file for full details
 
 ## Acknowledgments
 
-Inspiration, code snippets, etc.
-*
+* Inspiration: [Adventure Island 4](https://en.wikipedia.org/wiki/Adventure_Island_(video_game))
+* Music: Kirby
+* Graphics: [Kenney.nl](https://kenney.nl/assets)

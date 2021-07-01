@@ -1,7 +1,7 @@
 ---
 name: Bug report
 about: Create a report to help improve this repo
-title: ''
+title: 'BUG: '
 labels: ''
 assignees: ''
 

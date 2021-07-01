@@ -364,7 +364,6 @@ const world = {
     doors: [
       // Test
       [2750, 1110, "Forest"],
-      [2800, 1110, "Boss"],
       [3300, 405, "Clouds"]
     ]
   },
@@ -444,6 +443,11 @@ const world = {
       [570, 1180, false],
       [510, 1180, false],
       [450, 1180, false],
+
+      [770, 428, false],
+      [710, 428, false],
+      [650, 428, false],
+      [590, 428, false],
     ],
     snails: [
     ],
@@ -453,7 +457,8 @@ const world = {
       [1305, 530]
     ],
     doors: [
-      [100, 1257, "Grassland"]
+      [100, 1257, "Grassland"],
+      [970, 428, ""]
     ]
   },
   "Forest": {

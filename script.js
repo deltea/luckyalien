@@ -318,7 +318,7 @@ class Scene extends Phaser.Scene {
 
     // Create blocks
     for (var x = 0; x < world[this.sceneKey].blocks.length; x++) {
-      let block = game.blocks.create(world[this.sceneKey].blocks[x][0], world[this.sceneKey].blocks[x][1], world[this.sceneKey].blocks[x][2]).setScale(0.3).setSize(40, 39).setOffset(44, 44);
+      game.blocks.create(world[this.sceneKey].blocks[x][0], world[this.sceneKey].blocks[x][1], world[this.sceneKey].blocks[x][2]).setScale(0.3).setSize(40, 39).setOffset(44, 44);
     }
 
     // Collider, Player, Block

@@ -1,5 +1,7 @@
 # Alien :alien:
 
+![]()
+
 Alien, Adventure Island inspired RPG platformer
 
 ## Description
@@ -34,6 +36,7 @@ or
 ```
 python3 -m http.server
 ```
+* After you activate the server, got to [localhost:8000](localhost:8000) to play the game
 
 ## Contribution
 

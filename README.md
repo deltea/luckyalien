@@ -1,6 +1,6 @@
-# Project Title
+# Alien :alien:
 
-Simple overview of use/purpose.
+Alien, Adventure Island inspired RPG platformer
 
 ## Description
 

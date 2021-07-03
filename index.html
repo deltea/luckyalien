@@ -44,6 +44,18 @@
         margin-right: 20px;
         float: right;
       }
+      #licenseLink, #github {
+        text-decoration: none;
+        color: #0000ee;
+      }
+      #licenseLink:active, #github:active {
+        color: #020263;
+      }
+      #githubLogo {
+        width: 30px;
+        position: absolute;
+        left: 1200px;
+      }
     </style>
   </head>
   <body>
@@ -61,8 +73,15 @@
 
     <!-- Footer -->
     <footer>
-      <p id="license">1021 - Alien - <a href="https://github.com/thcheetah777/alien/blob/master/LICENSE.md" target="_blank">MIT License</a></p><br>
-      <a href="https://github.com/thcheetah777/alien" target="_blank" id="github">GitHub</a>
+      <p id="license">
+        1021 - Alien -
+        <a id="licenseLink" href="https://github.com/thcheetah777/alien/blob/master/LICENSE.md" target="_blank">MIT License</a>
+      </p>
+      <br>
+      <a href="https://github.com/thcheetah777/alien" target="_blank" id="github">
+        <img id="githubLogo" src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/91/Octicons-mark-github.svg/2048px-Octicons-mark-github.svg.png" alt="GitHub Logo">
+        GitHub
+      </a>
     </footer>
   </body>
 </html>

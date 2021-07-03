@@ -1821,7 +1821,7 @@ const config = {
 	height: 643,
 
   // Color of sky
-  backgroundColor: 0xcfeffc,
+  backgroundColor: 0xd0f4f7,
 
   // Physics
   physics: {

@@ -319,6 +319,12 @@ class Scene extends Phaser.Scene {
     // Signs
     game.signs = this.physics.add.staticGroup();
 
+    // Create signs
+    for (var x = 0; x < world[this.sceneKey].signs.length; x++) {
+      let sign = game.signs.create(world[this.sceneKey].signs[x][0], world[this.sceneKey].signs[x][1], "sign");
+      sign.content = world[this.sceneKey].signs[x][2];
+    }
+
     // Blocks
     game.blocks = this.physics.add.staticGroup();
 

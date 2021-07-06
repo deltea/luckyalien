@@ -110,6 +110,9 @@ class Scene extends Phaser.Scene {
     // Fire
     this.load.image("fire", "assets/imgs/fire.png");
 
+    // Sign
+    this.load.image("sign", "assets/imgs/sign.png");
+
     // Sound UI
     this.load.image("soundOn", "assets/imgs/soundOn.png");
     this.load.image("soundOff", "assets/imgs/soundOff.png");

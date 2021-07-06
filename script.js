@@ -326,6 +326,14 @@ class Scene extends Phaser.Scene {
       sign.content = world[this.sceneKey].signs[x][2];
     }
 
+    // Collider Sign, Player
+    const thisScene = this;
+    this.physics.add.overlap(game.player, game.signs, function(player, sign) {
+      if (Phaser.Input.Keyboard.JustDown(thisScene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN))) {
+        console.log(sign.content);
+      }
+    });
+
     // Blocks
     game.blocks = this.physics.add.staticGroup();
 

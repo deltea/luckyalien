@@ -1743,11 +1743,31 @@ class Scene extends Phaser.Scene {
 }
 
 // Scenes
+// Sign content
+class SignContent extends Phaser.Scene {
+  // Constructor
+  constructor() {
+    super("SignContent");
+  }
+
+  // Load assets
+  preload() {
+  }
+
+  // Main create function
+  create() {
+  }
+
+  // Update animations, sprites
+  update() {
+  }
+}
+
 // Credits
 class Credits extends Phaser.Scene {
   // Constructor
   constructor() {
-    super("Credits")
+    super("Credits");
   }
 
   // Load assets

@@ -3,7 +3,8 @@
 ![Screenshot](assets/imgs/screenshot.png)
 
 Alien, Adventure Island inspired RPG platformer
-[thcheetah777.github.io/alien](https://thcheetah777.github.io/alien/)
+
+Live Demo: [thcheetah777.github.io/alien](https://thcheetah777.github.io/alien/)
 
 ## Description
 

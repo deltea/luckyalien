@@ -7,10 +7,25 @@ Please ask questions in the [Discussions tab](https://github.com/thcheetah777/al
 ## Feedback
 I have made a [Feedback discussion](https://github.com/thcheetah777/alien/discussions/16) for feedback.
 
-## Feature Request
+## Debug Mode
+To enter debug mode, change
+```javascript
+// Options
+enableBody: true,
+// debug: true
+```
+to
+```javascript
+// Options
+enableBody: true,
+debug: true
+```
+
+## Reports
+### Feature Request
 Please use the *Feature Request* issue template. Also be sure to add appropriate labels.
 
-## Bug Report
+### Bug Report
 Use the *Bug Report* template.
 
 ## Pull Requests

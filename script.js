@@ -110,6 +110,9 @@ class Scene extends Phaser.Scene {
     // Fire
     this.load.image("fire", "assets/imgs/fire.png");
 
+    // Sign
+    this.load.image("sign", "assets/imgs/sign.png");
+
     // Sound UI
     this.load.image("soundOn", "assets/imgs/soundOn.png");
     this.load.image("soundOff", "assets/imgs/soundOff.png");
@@ -312,6 +315,24 @@ class Scene extends Phaser.Scene {
 
     // Input
     game.cursors = this.input.keyboard.createCursorKeys();
+
+    // Signs
+    game.signs = this.physics.add.staticGroup();
+
+    // Create signs
+    for (var x = 0; x < world[this.sceneKey].signs.length; x++) {
+      let sign = game.signs.create(world[this.sceneKey].signs[x][0], world[this.sceneKey].signs[x][1], "sign");
+      sign.setScale(0.5).setSize(64, 64).setOffset(32, 32);
+      sign.content = world[this.sceneKey].signs[x][2];
+    }
+
+    // Collider Sign, Player
+    const thisScene = this;
+    this.physics.add.overlap(game.player, game.signs, function(player, sign) {
+      if (Phaser.Input.Keyboard.JustDown(thisScene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN))) {
+        console.log(sign.content);
+      }
+    });
 
     // Blocks
     game.blocks = this.physics.add.staticGroup();
@@ -1837,7 +1858,7 @@ const config = {
 
       // Options
       enableBody: true,
-      // debug: true
+      debug: true
     }
   },
 

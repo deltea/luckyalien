@@ -666,6 +666,8 @@ const world = {
     ],
     doors: [
       [200, 1110, "Grassland"]
+    ],
+    signs: [
     ]
   },
   "Boss": {

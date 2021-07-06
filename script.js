@@ -330,7 +330,9 @@ class Scene extends Phaser.Scene {
     const thisScene = this;
     this.physics.add.overlap(game.player, game.signs, function(player, sign) {
       if (Phaser.Input.Keyboard.JustDown(thisScene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN))) {
-        console.log(sign.content);
+        game.signContent = sign.content;
+        thisScene.scene.stop(this.sceneKey);
+        thisScene.scene.start("SignContent");
       }
     });
 
@@ -1746,9 +1748,8 @@ class Scene extends Phaser.Scene {
 // Sign content
 class SignContent extends Phaser.Scene {
   // Constructor
-  constructor(content) {
+  constructor() {
     super("SignContent");
-    this.content = content;
   }
 
   // Load assets
@@ -1760,20 +1761,36 @@ class SignContent extends Phaser.Scene {
   create() {
     // Set background color
     // HACK: Don't know how to set background color
-    game.background = this.add.rectangle(0, 0, config.width, config.height, 0x000).setOrigin(0, 0);
+    game.background = this.add.rectangle(0, 0, config.width, config.height, 0xae7640).setOrigin(0, 0);
 
     // Sign title
-    this.add.text(580, 50, "Sign", {
+    this.add.text(580, 50, "Sign:", {
       fontFamily: "kenneyPixel",
       fontSize: 125,
       color: "#fff"
     });
 
     // Sign content
-    this.add.text(100, 200, this.content, {
+    game.signText = this.add.text(100, 200, "", {
       fontFamily: "kenneyPixel",
-      fontSize: 100,
+      fontSize: 80,
       color: "#fff"
+    });
+
+    let i = 0;
+    this.time.addEvent({
+      // Time
+      delay: 50,
+
+      // Callback
+      callback: () => {
+        game.signText.text += game.signContent[i]
+        i++
+      },
+      callbackScope: this,
+
+      // Options
+      repeat: game.signContent.length - 1
     });
   }
 
@@ -1902,7 +1919,7 @@ const config = {
   },
 
   // Scenes
-  scene: [SignContent, Grassland, Boss, Forest, Clouds, Credits]
+  scene: [Grassland, SignContent, Boss, Forest, Clouds, Credits]
 };
 
 // Phaser game

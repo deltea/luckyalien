@@ -365,6 +365,9 @@ const world = {
       // Test
       [2750, 1110, "Forest"],
       [3300, 405, "Clouds"]
+    ],
+    signs: [
+      [500, 800, "Hello World"]
     ]
   },
   "Clouds": {
@@ -459,6 +462,8 @@ const world = {
     doors: [
       [100, 1257, "Grassland"],
       [970, 428, ""]
+    ],
+    signs: [
     ]
   },
   "Forest": {
@@ -700,6 +705,8 @@ const world = {
     flags: [
     ],
     doors: [
+    ],
+    signs: [
     ]
   }
 }

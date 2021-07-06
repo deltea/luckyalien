@@ -322,6 +322,7 @@ class Scene extends Phaser.Scene {
     // Create signs
     for (var x = 0; x < world[this.sceneKey].signs.length; x++) {
       let sign = game.signs.create(world[this.sceneKey].signs[x][0], world[this.sceneKey].signs[x][1], "sign");
+      sign.setScale(0.5).setSize(64, 64).setOffset(32, 32);
       sign.content = world[this.sceneKey].signs[x][2];
     }
 
@@ -1849,7 +1850,7 @@ const config = {
 
       // Options
       enableBody: true,
-      // debug: true
+      debug: true
     }
   },
 

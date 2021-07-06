@@ -367,6 +367,7 @@ const world = {
       [3300, 405, "Clouds"]
     ],
     signs: [
+      [500, 800, "Hello World"]
     ]
   },
   "Clouds": {

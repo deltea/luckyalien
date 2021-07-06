@@ -316,6 +316,9 @@ class Scene extends Phaser.Scene {
     // Input
     game.cursors = this.input.keyboard.createCursorKeys();
 
+    // Signs
+    game.signs = this.physics.add.staticGroup();
+
     // Blocks
     game.blocks = this.physics.add.staticGroup();
 

@@ -38,29 +38,30 @@ or
 ```
 python3 -m http.server
 ```
-* After you activate the server, got to [localhost:8000](localhost:8000) to play the game
+* After you activate the server, got to [localhost:8000](http://localhost:8000/) to play the game
 
 ## Contribution
 
-Read CONTRIBUTING.md for more info
+Read [CONTRIBUTING.md](https://github.com/thcheetah777/alien/blob/master/CONTRIBUTING.md) for more info
 
 ## Version History
 
 | Version | Description |
 | :------------- | :------------- |
-| v1.0 | This was the first release. The player is a stickman figure and the game doesn't have losing or winning |
-| v1.1 | Created first area |
-| v1.5 | Added a lot more new enemies and changed player image |
-| v1.6 | Added more area data plus powerups and SFX |
+| [v1.0](https://github.com/thcheetah777/alien/releases/tag/v1.0) | This was the first release. The player is a stickman figure and the game doesn't have losing or winning |
+| [v1.1](https://github.com/thcheetah777/alien/releases/tag/v1.1) | Created first area |
+| [v1.5](https://github.com/thcheetah777/alien/releases/tag/v1.5) | Added a lot more new enemies and changed player image |
+| [v1.6](https://github.com/thcheetah777/alien/releases/tag/v1.6) | Added more area data plus powerups and SFX |
 
 More to come! :grinning:
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for full details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/thcheetah777/alien/blob/master/LICENSE.md) file for full details
 
 ## Acknowledgments
 
 * Inspiration: [Adventure Island 4](https://en.wikipedia.org/wiki/Adventure_Island_(video_game))
-* Music: Kirby
+* Music: [Video Game Music (Kirby)](https://downloads.khinsider.com/game-soundtracks/album/kirby-the-very-best-of-kirby)
 * Graphics: [Kenney.nl](https://kenney.nl/assets)
+* Level Design: Me and sister

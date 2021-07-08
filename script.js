@@ -8,10 +8,10 @@ let game = {
   jumpsMade: 0,
   sound: true,
   abilities: {
-    carrot: false,
-    sword: false,
-    bounceMagic: false,
-    doubleJumps: false
+    carrot: true,
+    sword: true,
+    bounceMagic: true,
+    doubleJumps: true
   }
 };
 
@@ -1698,8 +1698,10 @@ class Scene extends Phaser.Scene {
         game.boss.timer = 0;
         game.boss.speed += 50;
         game.boss.setVelocityX(0).setVelocityY(0);
-        game.boss.x = 650;
-        game.boss.y = 321.5;
+        // game.boss.x = 650;
+        // game.boss.y = 321.5;
+        game.boss.setVelocityX(650 - game.boss.x);
+        game.boss.setVelocityY(321.5 - game.boss.y);
       }
 
       // Player attack
@@ -1919,7 +1921,7 @@ const config = {
   },
 
   // Scenes
-  scene: [Grassland, Boss, SignContent, Forest, Clouds, Credits]
+  scene: [Boss, Grassland, SignContent, Forest, Clouds, Credits]
 };
 
 // Phaser game

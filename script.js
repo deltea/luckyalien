@@ -8,10 +8,10 @@ let game = {
   jumpsMade: 0,
   sound: true,
   abilities: {
-    carrot: true,
-    sword: true,
-    bounceMagic: true,
-    doubleJumps: true
+    carrot: false,
+    sword: false,
+    bounceMagic: false,
+    doubleJumps: false
   }
 };
 
@@ -1095,7 +1095,7 @@ class Scene extends Phaser.Scene {
       game.boss.attack = true;
       game.cloud.attack = false;
       game.boss.animHit = false;
-      game.boss.health = 1;
+      game.boss.health = 30;
       game.boss.speed = 350;
 
       // Collider Flame, Player
@@ -1914,12 +1914,12 @@ const config = {
 
       // Options
       enableBody: true,
-      debug: true
+      // debug: true
     }
   },
 
   // Scenes
-  scene: [Grassland, SignContent, Boss, Forest, Clouds, Credits]
+  scene: [SignContent, Boss, Grassland, Forest, Clouds, Credits]
 };
 
 // Phaser game

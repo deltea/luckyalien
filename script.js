@@ -1919,7 +1919,7 @@ const config = {
   },
 
   // Scenes
-  scene: [SignContent, Boss, Grassland, Forest, Clouds, Credits]
+  scene: [Grassland, Boss, SignContent, Forest, Clouds, Credits]
 };
 
 // Phaser game

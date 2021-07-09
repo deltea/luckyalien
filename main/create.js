@@ -155,10 +155,14 @@ Scene.prototype.create = function() {
 
   // Coin stat
   game.coinStat = this.physics.add.staticSprite(40, 40, "coinStat").setScale(0.7).setScrollFactor(0);
-  for (var i = 0; i < stats.coins.toString().split("").length; i++) {
-    game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
-  }
 
+  // Number of coins
+  game.numCoinStat = this.add.text(70, 12, "0", {
+    fontFamily: "kenneyPixel",
+    fontSize: 60,
+    fontColor: 0x000
+  }).setScrollFactor(0);
+  
   // Mushrooms
   game.mushrooms = this.physics.add.staticGroup();
 

@@ -72,18 +72,6 @@ Scene.prototype.preload = function() {
   this.load.image("soundOn", "assets/imgs/soundOn.png");
   this.load.image("soundOff", "assets/imgs/soundOff.png");
 
-  // Numbers
-  this.load.image("0", "assets/imgs/0.png");
-  this.load.image("1", "assets/imgs/1.png");
-  this.load.image("2", "assets/imgs/2.png");
-  this.load.image("3", "assets/imgs/3.png");
-  this.load.image("4", "assets/imgs/4.png");
-  this.load.image("5", "assets/imgs/5.png");
-  this.load.image("6", "assets/imgs/6.png");
-  this.load.image("7", "assets/imgs/7.png");
-  this.load.image("8", "assets/imgs/8.png");
-  this.load.image("9", "assets/imgs/9.png");
-
   // Clouds
   this.load.image("cloud0", "assets/imgs/cloud0.png");
   this.load.image("cloud1", "assets/imgs/cloud1.png");

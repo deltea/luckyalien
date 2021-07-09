@@ -78,7 +78,6 @@ Scene.prototype.create = function() {
   this.cameras.main.startFollow(game.player, true, 0.1, 0.1);
 
   // Number stats
-  game.coinNumbers = this.physics.add.staticGroup();
   game.abilities.carrotNumbers = this.physics.add.staticGroup();
 
   // Bounds
@@ -148,13 +147,7 @@ Scene.prototype.create = function() {
     stats.coins++;
 
     // Update stat
-    game.coinNumbers.getChildren().forEach(num => {
-      num.destroy();
-    });
-
-    for (var i = 0; i < stats.coins.toString().split("").length; i++) {
-      game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
-    }
+    game.numCoinStat.text = stats.coins;
 
     // Destroy
     coin.destroy();
@@ -298,13 +291,7 @@ Scene.prototype.create = function() {
           stats.coins++;
 
           // Update stat
-          game.coinNumbers.getChildren().forEach(num => {
-            num.destroy();
-          });
-
-          for (var i = 0; i < stats.coins.toString().split("").length; i++) {
-            game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
-          }
+          game.numCoinStat.text = stats.coins;
 
           // Destroy
           sprite.destroy();

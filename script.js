@@ -117,18 +117,6 @@ class Scene extends Phaser.Scene {
     this.load.image("soundOn", "assets/imgs/soundOn.png");
     this.load.image("soundOff", "assets/imgs/soundOff.png");
 
-    // Numbers
-    this.load.image("0", "assets/imgs/0.png");
-    this.load.image("1", "assets/imgs/1.png");
-    this.load.image("2", "assets/imgs/2.png");
-    this.load.image("3", "assets/imgs/3.png");
-    this.load.image("4", "assets/imgs/4.png");
-    this.load.image("5", "assets/imgs/5.png");
-    this.load.image("6", "assets/imgs/6.png");
-    this.load.image("7", "assets/imgs/7.png");
-    this.load.image("8", "assets/imgs/8.png");
-    this.load.image("9", "assets/imgs/9.png");
-
     // Clouds
     this.load.image("cloud0", "assets/imgs/cloud0.png");
     this.load.image("cloud1", "assets/imgs/cloud1.png");
@@ -307,7 +295,6 @@ class Scene extends Phaser.Scene {
     this.cameras.main.startFollow(game.player, true, 0.1, 0.1);
 
     // Number stats
-    game.coinNumbers = this.physics.add.staticGroup();
     game.abilities.carrotNumbers = this.physics.add.staticGroup();
 
     // Bounds
@@ -376,14 +363,8 @@ class Scene extends Phaser.Scene {
       // Add to coins
       stats.coins++;
 
-      // Update stat
-      game.coinNumbers.getChildren().forEach(num => {
-        num.destroy();
-      });
-
-      for (var i = 0; i < stats.coins.toString().split("").length; i++) {
-        game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
-      }
+      // Update coin stat
+      game.numCoinStat.text = stats.coins;
 
       // Destroy
       coin.destroy();
@@ -391,9 +372,13 @@ class Scene extends Phaser.Scene {
 
     // Coin stat
     game.coinStat = this.physics.add.staticSprite(40, 40, "coinStat").setScale(0.7).setScrollFactor(0);
-    for (var i = 0; i < stats.coins.toString().split("").length; i++) {
-      game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
-    }
+
+    // Number of coins
+    game.numCoinStat = this.add.text(70, 12, "0", {
+      fontFamily: "kenneyPixel",
+      fontSize: 60,
+      fontColor: 0x000
+    }).setScrollFactor(0);
 
     // Mushrooms
     game.mushrooms = this.physics.add.staticGroup();
@@ -526,14 +511,8 @@ class Scene extends Phaser.Scene {
             // Add to coins
             stats.coins++;
 
-            // Update stat
-            game.coinNumbers.getChildren().forEach(num => {
-              num.destroy();
-            });
-
-            for (var i = 0; i < stats.coins.toString().split("").length; i++) {
-              game.coinNumbers.create(90 + i * 28, 40, stats.coins.toString().split("")[i]).setScrollFactor(0);
-            }
+            // Update coin stat
+            game.numCoinStat.text = stats.coins;
 
             // Destroy
             sprite.destroy();
@@ -1822,15 +1801,15 @@ class Credits extends Phaser.Scene {
     sfx.credits.play();
 
     // Credits title
-    game.creditsTitle = this.add.text(500, 321.5, "Credits", {
-      fontFamily: "Arial",
+    game.creditsTitle = this.add.text(550, 321.5, "Credits", {
+      fontFamily: "kenneyPixel",
       fontSize: 100,
       color: "#f5f5f5"
     }).setOrigin(0, 0);
 
     // Credits
-    game.credits = this.add.text(300, 500, "Programmer: thcheetah777\nGraphics: Kenney.nl\nMusic: Kirby\nFramework: Phaser.js\nLevel design: thcheetah777 and sister\n\n\n\n\n\n\n           Thanks for playing!", {
-      fontFamily: "Arial",
+    game.credits = this.add.text(400, 500, "Programmer: thcheetah777\nGraphics: Kenney.nl\nMusic: Kirby\nFramework: Phaser.js\nLevel design: thcheetah777 and sister\n\n\n\n\n\n\n              Thanks for playing!", {
+      fontFamily: "kenneyPixel",
       fontSize: 50
     });
 

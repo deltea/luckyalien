@@ -1463,7 +1463,7 @@ class Scene extends Phaser.Scene {
       // Animation
       sprite.anims.play("spike", true);
 
-      // Check if booos scene
+      // Check if boss scene
       if (this.sceneKey === "Boss") {
         if (sprite.body.blocked.down) {
           sprite.setVelocityX(0);
@@ -1697,9 +1697,6 @@ class Scene extends Phaser.Scene {
         game.boss.attack = false;
         game.boss.timer = 0;
         game.boss.speed += 50;
-        game.boss.setVelocityX(0).setVelocityY(0);
-        // game.boss.x = 650;
-        // game.boss.y = 321.5;
         game.boss.setVelocityX(650 - game.boss.x);
         game.boss.setVelocityY(321.5 - game.boss.y);
       }

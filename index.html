@@ -62,14 +62,37 @@
     <!-- Header -->
     <h1>Alien</h1>
 
+    <!-- World variable -->
+    <script type="text/javascript">
+      const world = {};
+    </script>
+
     <!-- Phaser -->
     <script src="https://cdn.jsdelivr.net/npm/phaser@3.16.2/dist/phaser.min.js"></script>
 
     <!-- World -->
-    <script src="world.js"></script>
+    <script src="data/Grassland.js" charset="utf-8"></script>
+    <script src="data/Forest.js" charset="utf-8"></script>
+    <script src="data/Clouds.js" charset="utf-8"></script>
+    <script src="data/Boss.js" charset="utf-8"></script>
 
     <!-- Main script -->
     <script src="script.js"></script>
+
+    <!-- Scenes -->
+    <script src="scenes/Levels.js" charset="utf-8"></script>
+    <script src="scenes/Credits.js" charset="utf-8"></script>
+    <script src="scenes/SignContent.js" charset="utf-8"></script>
+
+    <!-- Secondary files -->
+    <script src="main/Controls.js" charset="utf-8"></script>
+    <script src="main/Animations.js" charset="utf-8"></script>
+    <script src="main/Boss.js" charset="utf-8"></script>
+
+    <!-- Main files -->
+    <script src="main/preload.js" charset="utf-8"></script>
+    <script src="main/create.js" charset="utf-8"></script>
+    <script src="main/update.js" charset="utf-8"></script>
 
     <!-- Footer -->
     <footer>

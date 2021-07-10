@@ -199,6 +199,11 @@ Scene.prototype.update = function() {
     }
   });
 
+  // Bat
+  game.bats.getChildren().forEach(sprite => {
+    sprite.anims.play("bat", true);
+  });
+
   // Boss scene
   this.boss();
 }

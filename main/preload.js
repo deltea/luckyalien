@@ -77,6 +77,11 @@ Scene.prototype.preload = function() {
   this.load.image("cloud1", "assets/imgs/cloud1.png");
   this.load.image("cloud2", "assets/imgs/cloud2.png");
 
+  // Bat poop
+  this.load.image("batPoop0", "assets/imgs/batPoop0.png");
+  this.load.image("batPoop1", "assets/imgs/batPoop1.png");
+  this.load.image("batPoop2", "assets/imgs/batPoop2.png");
+
   // Spritesheets
   // Player frames
   this.load.image("player", "assets/imgs/player.png");
@@ -111,6 +116,10 @@ Scene.prototype.preload = function() {
   this.load.image("snail0", "assets/imgs/snail0.png");
   this.load.image("snail1", "assets/imgs/snail1.png");
   this.load.image("snailShell", "assets/imgs/snailShell.png");
+
+  // Bat frames
+  this.load.image("bat0", "assets/imgs/bat0.png");
+  this.load.image("bat1", "assets/imgs/bat1.png");
 
   // SFX
   // Backgrounds

@@ -135,4 +135,22 @@ Scene.prototype.animations = function() {
     frameRate: 5,
     repeat: -1
   });
+
+  // Bat
+  this.anims.create({
+    // Animation key
+    key: "bat",
+
+    // Frames
+    frames: [{
+      key: "bat0"
+    },
+    {
+      key: "bat1"
+    }],
+
+    // Options
+    frameRate: 4,
+    repeat: -1
+  });
 };

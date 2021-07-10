@@ -92,5 +92,7 @@ world["Clouds"] = {
     [970, 428, "Boss"]
   ],
   signs: [
+  ],
+  bats: [
   ]
 }

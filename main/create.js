@@ -162,7 +162,7 @@ Scene.prototype.create = function() {
     fontSize: 60,
     fontColor: 0x000
   }).setScrollFactor(0);
-  
+
   // Mushrooms
   game.mushrooms = this.physics.add.staticGroup();
 
@@ -838,6 +838,52 @@ Scene.prototype.create = function() {
     // Animation
     flag.anims.play("flag", true);
   });
+
+  // Bats and bat poop
+  game.bats = this.physics.add.group();
+  game.batPoop = this.physics.add.group();
+
+  // Create bats
+  for (var i = 0; i < world[this.sceneKey].bats.length; i++) {
+    let bat = game.bats.create(world[this.sceneKey].bats[i][0], world[this.sceneKey].bats[i][1], "bat0").setCollideWorldBounds(true);
+    bat.poops = world[this.sceneKey].bats[i][5];
+    bat.setGravityY(-config.physics.arcade.gravity.y);
+    bat.endX = world[this.sceneKey].bats[i][2];
+    bat.endY = world[this.sceneKey].bats[i][3];
+    bat.tweenDur = world[this.sceneKey].bats[i][4];
+
+    // Bat move tween
+    bat.fly = this.tweens.add({
+      // Target
+      targets: bat,
+
+      // Move
+      x: bat.endX,
+      y: bat.endY,
+
+      // Ease
+      ease: "Linear",
+
+      // Duration
+      duration: bat.tweenDur,
+
+      // On start
+      onRepeat: () => {
+        bat.flipX = false;
+      },
+
+      // On complete
+      onYoyo: () => {
+        bat.flipX = true;
+      },
+
+      // Repeat forever
+      repeat: -1,
+
+      // Yoyo
+      yoyo: true
+    });
+  }
 
   // Boss
   if (this.sceneKey === "Boss") {

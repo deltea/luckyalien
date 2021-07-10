@@ -32,5 +32,7 @@ world["Boss"] = {
   doors: [
   ],
   signs: [
+  ],
+  bats: [
   ]
 }

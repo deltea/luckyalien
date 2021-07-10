@@ -205,5 +205,7 @@ world["Forest"] = {
     [200, 1110, "Grassland"]
   ],
   signs: [
+  ],
+  bats: [
   ]
 }

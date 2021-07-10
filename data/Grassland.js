@@ -366,5 +366,8 @@ world["Grassland"] = {
   ],
   signs: [
     // [500, 1110, "Hello World"]
+  ],
+  bats: [
+    [500, 1000, 300, 800, 1100, true]
   ]
 }

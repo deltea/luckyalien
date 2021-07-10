@@ -24,7 +24,7 @@ const config = {
 
       // Options
       enableBody: true,
-      // debug: true
+      debug: true
     }
   },
 

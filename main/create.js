@@ -883,6 +883,21 @@ Scene.prototype.create = function() {
       // Yoyo
       yoyo: true
     });
+
+    // Bat poop timer
+    this.time.addEvent({
+      // Time
+      delay: 2000,
+
+      // Callback
+      callback: () => {
+        game.batPoop.create(bat.x, bat.y, `batPoop${Math.floor(Math.random() * 3)}`).setScale(0.7);
+      },
+      callbackScope: this,
+
+      // Options
+      repeat: -1
+    });
   }
 
   // Boss

@@ -885,7 +885,7 @@ Scene.prototype.create = function() {
     });
 
     // Bat poop timer
-    this.time.addEvent({
+    bat.batPoopTimer = this.time.addEvent({
       // Time
       delay: 2000,
 
@@ -913,11 +913,14 @@ Scene.prototype.create = function() {
   });
 
   // Collider Bat, Sword and Carrot
-  this.physics.add.collider(game.bats, [game.carrots, game.swords], function(bats, shoot) {
+  this.physics.add.collider(game.bats, [game.abilities.swords, game.abilities.carrots], function(bat, shoot) {
     // SFX
     if (game.sound) {
       sfx.explosion.play();
     }
+
+    // Stop timer
+    bat.batPoopTimer.destroy();
 
     // Destroy
     bat.destroy();

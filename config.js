@@ -29,5 +29,5 @@ const config = {
   },
 
   // Scenes
-  scene: [Clouds, Boss, SignContent, Forest, Grassland, Credits]
+  scene: [Grassland, Boss, SignContent, Forest, Clouds, Credits]
 };

@@ -368,6 +368,5 @@ world["Grassland"] = {
     // [500, 1110, "Hello World"]
   ],
   bats: [
-    [500, 1000, 300, 800, 1300, true]
   ]
 }

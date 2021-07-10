@@ -112,6 +112,10 @@ Scene.prototype.preload = function() {
   this.load.image("snail1", "assets/imgs/snail1.png");
   this.load.image("snailShell", "assets/imgs/snailShell.png");
 
+  // Bat frames
+  this.load.image("bat0", "assets/imgs/bat0.png");
+  this.load.image("bat1", "assets/imgs/bat1.png");
+
   // SFX
   // Backgrounds
   this.load.audio("background", "assets/sfx/background.mp3");

@@ -900,6 +900,30 @@ Scene.prototype.create = function() {
     });
   }
 
+  // Collider Bat and bat poop, Player
+  this.physics.add.collider(game.player, [game.bats, game.batPoop], function(player, bat) {
+    if (game.sound) {
+      sfx.die.play({
+        volume: 2.5
+      });
+    }
+    thisClass.cameras.main.shake(240, 0.05, false);
+    player.x = game.checkpoint[0];
+    player.y = game.checkpoint[1] - 10;
+  });
+
+  // Collider Bat, Sword and Carrot
+  this.physics.add.collider(game.bats, [game.carrots, game.swords], function(bats, shoot) {
+    // SFX
+    if (game.sound) {
+      sfx.explosion.play();
+    }
+
+    // Destroy
+    bat.destroy();
+    shoot.destroy();
+  });
+
   // Boss
   if (this.sceneKey === "Boss") {
     sfx.background.stop();

@@ -77,6 +77,11 @@ Scene.prototype.preload = function() {
   this.load.image("cloud1", "assets/imgs/cloud1.png");
   this.load.image("cloud2", "assets/imgs/cloud2.png");
 
+  // Bat poop
+  this.load.image("batPoop0", "assets/imgs/batPoop0.png");
+  this.load.image("batPoop1", "assets/imgs/batPoop1.png");
+  this.load.image("batPoop2", "assets/imgs/batPoop2.png");
+
   // Spritesheets
   // Player frames
   this.load.image("player", "assets/imgs/player.png");

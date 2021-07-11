@@ -1,4 +1,4 @@
-world."Forest" = {
+world["Forest"] = {
   length: 4000,
   height: 643,
   hasClouds: true,

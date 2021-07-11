@@ -1,5 +1,6 @@
 // Create
 Scene.prototype.create = function() {
+  const thisScene = this;
   // SFX
   sfx.background = this.sound.add("background");
   sfx.jump = this.sound.add("jump");
@@ -97,7 +98,6 @@ Scene.prototype.create = function() {
   }
 
   // Collider Sign, Player
-  const thisScene = this;
   this.physics.add.overlap(game.player, game.signs, function(player, sign) {
     if (Phaser.Input.Keyboard.JustDown(thisScene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN))) {
       game.signContent = sign.content;
@@ -198,7 +198,6 @@ Scene.prototype.create = function() {
 
   // Collider Player, Door
   // HACK: Can't reach "this" from collider function
-  const thisClass = this;
   this.physics.add.overlap(game.player, game.doors, function(player, door) {
     if (game.cursors.down.isDown) {
       // Play SFX
@@ -212,11 +211,11 @@ Scene.prototype.create = function() {
       sfx.background.stop();
 
       // Set variables
-      game.lastScene = thisClass.sceneKey;
+      game.lastScene = thisScene.sceneKey;
       game.isFirstScene = false;
 
       // Transport to new location
-      thisClass.scene.start(door.location);
+      thisScene.scene.start(door.location);
     }
   });
 
@@ -361,8 +360,19 @@ Scene.prototype.create = function() {
       this.scene.restart();
     } else {
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
+        stats.coins = 0;
+        game.numCoinStat.text = stats.coins;
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     }
   });
 
@@ -457,8 +467,16 @@ Scene.prototype.create = function() {
           });
         }
         this.cameras.main.shake(240, 0.05, false);
-        player.x = game.checkpoint[0];
-        player.y = game.checkpoint[1] - 10;
+        stats.lives--;
+        if (stats.lives <= 0) {
+          this.scene.stop();
+          this.scene.start("Grassland")
+          player.x = 200;
+          player.y = 1100;
+        } else {
+          player.x = game.checkpoint[0];
+          player.y = game.checkpoint[1] - 10;
+        }
       }
     }
   });
@@ -515,8 +533,16 @@ Scene.prototype.create = function() {
       });
     }
     this.cameras.main.shake(240, 0.05, false);
-    player.x = game.checkpoint[0];
-    player.y = game.checkpoint[1];
+    stats.lives--;
+    if (stats.lives <= 0) {
+      this.scene.stop();
+      this.scene.start("Grassland")
+      player.x = 200;
+      player.y = 1100;
+    } else {
+      player.x = game.checkpoint[0];
+      player.y = game.checkpoint[1] - 10;
+    }
   });
 
   // Collider Springs, Carrots
@@ -630,8 +656,19 @@ Scene.prototype.create = function() {
         });
       }
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
+        stats.coins = 0;
+        game.numCoinStat.text = stats.coins;
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     }
   });
 
@@ -751,8 +788,16 @@ Scene.prototype.create = function() {
       });
     }
     this.cameras.main.shake(240, 0.05, false);
-    player.x = game.checkpoint[0];
-    player.y = game.checkpoint[1] - 10;
+    stats.lives--;
+    if (stats.lives <= 0) {
+      this.scene.stop();
+      this.scene.start("Grassland")
+      player.x = 200;
+      player.y = 1100;
+    } else {
+      player.x = game.checkpoint[0];
+      player.y = game.checkpoint[1] - 10;
+    }
   });
 
   // Collider LaserBlasts, Carrots
@@ -907,9 +952,17 @@ Scene.prototype.create = function() {
         volume: 2.5
       });
     }
-    thisClass.cameras.main.shake(240, 0.05, false);
-    player.x = game.checkpoint[0];
-    player.y = game.checkpoint[1] - 10;
+    thisScene.cameras.main.shake(240, 0.05, false);
+    stats.lives--;
+    if (stats.lives <= 0) {
+      this.scene.stop();
+      this.scene.start("Grassland")
+      player.x = 200;
+      player.y = 1100;
+    } else {
+      player.x = game.checkpoint[0];
+      player.y = game.checkpoint[1] - 10;
+    }
   });
 
   // Collider Bat, Sword and Carrot
@@ -958,8 +1011,19 @@ Scene.prototype.create = function() {
       sfx.boss.stop();
       this.scene.restart();
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
+        stats.coins = 0;
+        game.numCoinStat.text = stats.coins;
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     });
 
     // Collider Boss, Player
@@ -972,8 +1036,19 @@ Scene.prototype.create = function() {
       sfx.boss.stop();
       this.scene.restart();
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
+        stats.coins = 0;
+        game.numCoinStat.text = stats.coins;
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     });
 
     // Collider Boss, Carrot
@@ -1029,6 +1104,14 @@ Scene.prototype.create = function() {
       game.sound = true;
     }
   });
+
+  // Lives stat
+  game.liveStats = this.physics.add.staticGroup();
+
+  // Create hearts
+  for (var i = 0; i < stats.maxLives; i++) {
+    game.liveStats.create(150 + i * 50, 40, "fullHeart").setScrollFactor(0).setScale(0.45);
+  }
 
   // Load animations
   this.animations();

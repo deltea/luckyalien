@@ -199,10 +199,20 @@ Scene.prototype.update = function() {
     }
   });
 
-  // Bat
+  // Bats
   game.bats.getChildren().forEach(sprite => {
     sprite.anims.play("bat", true);
   });
+
+  // Update live
+  for (var i = 0; i < game.liveStats.getChildren().length; i++) {
+    // Check if it's int or float
+    if (stats.lives % 1 === 0 && stats.lives - 1 >= i) {
+      game.liveStats.getChildren()[i].setTexture("fullHeart");
+    } else if (stats.lives % 1 === 0 && stats.lives - 1 < i) {
+      game.liveStats.getChildren()[i].setTexture("emptyHeart");
+    }
+  }
 
   // Boss scene
   this.boss();

@@ -37,8 +37,8 @@ class SignContent extends Phaser.Scene {
 
       // Callback
       callback: () => {
-        game.signText.text += game.signContent[i]
-        i++
+        game.signText.text += game.signContent[i];
+        i++;
       },
       callbackScope: this,
 

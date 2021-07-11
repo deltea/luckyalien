@@ -1,4 +1,4 @@
-world["Boss"] = {
+world."Boss" = {
   length: 1300,
   height: 643,
   hasClouds: false,
@@ -35,4 +35,4 @@ world["Boss"] = {
   ],
   bats: [
   ]
-}
+};

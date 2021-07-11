@@ -206,4 +206,4 @@ Scene.prototype.update = function() {
 
   // Boss scene
   this.boss();
-}
+};

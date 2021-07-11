@@ -44,7 +44,7 @@ Scene.prototype.controls = function() {
     } else {
       return false;
     }
-  }
+  };
 
   // Jump
   if (game.cursors.up.isDown && game.player.body.blocked.down) {
@@ -109,11 +109,11 @@ Scene.prototype.controls = function() {
   if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.R))) {
     // SFX
     if (game.sound) {
-      sfx.respawn.play()
+      sfx.respawn.play();
     }
 
     // Move
     game.player.x = game.checkpoint[0];
     game.player.y = game.checkpoint[1] - 10;
   }
-}
+};

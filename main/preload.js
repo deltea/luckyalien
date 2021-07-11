@@ -177,4 +177,4 @@ Scene.prototype.preload = function() {
 
   // Flame
   this.load.audio("flames", "assets/sfx/flame.ogg");
-}
+};

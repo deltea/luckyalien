@@ -39,7 +39,7 @@ Scene.prototype.create = function() {
   if (this.hasClouds) {
     game.clouds = this.physics.add.staticGroup();
     for (var i = 0; i < 10; i++) {
-      game.clouds.create(Math.random() * this.sceneLength, Math.random() * this.sceneHeight - 500, `cloud${Math.round(Math.random() * 2)}`)
+      game.clouds.create(Math.random() * this.sceneLength, Math.random() * this.sceneHeight - 500, `cloud${Math.round(Math.random() * 2)}`);
     }
   }
 
@@ -810,7 +810,7 @@ Scene.prototype.create = function() {
   game.flags = this.physics.add.staticGroup();
   world[this.sceneKey].flags.forEach(data => {
     let flag = game.flags.create(data[0], data[1], "flagDown").setScale(0.5).setSize(20, 60).setOffset(30, 35);
-    flag.active = false
+    flag.active = false;
     flag.area = data[1];
   });
 
@@ -1032,4 +1032,4 @@ Scene.prototype.create = function() {
 
   // Load animations
   this.animations();
-}
+};

@@ -1,4 +1,4 @@
-world["Clouds"] = {
+world."Clouds" = {
   length: 2600,
   height: 1200,
   hasClouds: true,
@@ -95,4 +95,4 @@ world["Clouds"] = {
   ],
   bats: [
   ]
-}
+};

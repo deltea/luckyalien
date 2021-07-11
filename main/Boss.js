@@ -43,7 +43,7 @@ Scene.prototype.boss = function() {
       game.boss.attacked = true;
     }
     if (game.boss.attack && game.boss.attacked && !game.boss.dead) {
-      game.boss.timer++
+      game.boss.timer++;
       if (game.boss.timer === 250 && game.boss.attackTime >= 2) {
         if (game.sound) {
           sfx.flames.play();

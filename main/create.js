@@ -361,8 +361,16 @@ Scene.prototype.create = function() {
       this.scene.restart();
     } else {
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     }
   });
 

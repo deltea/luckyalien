@@ -364,6 +364,7 @@ Scene.prototype.create = function() {
       if (stats.lives <= 0) {
         this.scene.stop();
         this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
         player.x = 200;
         player.y = 1100;
       } else {
@@ -657,6 +658,7 @@ Scene.prototype.create = function() {
       if (stats.lives <= 0) {
         this.scene.stop();
         this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
         player.x = 200;
         player.y = 1100;
       } else {
@@ -1009,6 +1011,7 @@ Scene.prototype.create = function() {
       if (stats.lives <= 0) {
         this.scene.stop();
         this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
         player.x = 200;
         player.y = 1100;
       } else {
@@ -1031,6 +1034,7 @@ Scene.prototype.create = function() {
       if (stats.lives <= 0) {
         this.scene.stop();
         this.scene.start("Grassland")
+        stats.lives = stats.maxLives;
         player.x = 200;
         player.y = 1100;
       } else {

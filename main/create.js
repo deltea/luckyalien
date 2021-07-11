@@ -1030,6 +1030,14 @@ Scene.prototype.create = function() {
     }
   });
 
+  // Lives stat
+  game.liveStats = this.physics.add.staticGroup();
+
+  // Create hearts
+  for (var i = 0; i < stats.maxLives; i++) {
+    game.liveStats.create(150 + i * 50, 40, "fullHeart").setScrollFactor(0).setScale(0.45);
+  }
+
   // Load animations
   this.animations();
 };

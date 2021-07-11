@@ -82,6 +82,11 @@ Scene.prototype.preload = function() {
   this.load.image("batPoop1", "assets/imgs/batPoop1.png");
   this.load.image("batPoop2", "assets/imgs/batPoop2.png");
 
+  // Heart stats
+  this.load.image("fullHeart", "assets/imgs/fullHeart.png");
+  this.load.image("emptytHeart", "assets/imgs/emptyHeart.png");
+  this.load.image("halfHeart", "assets/imgs/halfHeart.png");
+
   // Spritesheets
   // Player frames
   this.load.image("player", "assets/imgs/player.png");

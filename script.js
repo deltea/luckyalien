@@ -7,8 +7,6 @@ let game = {
   isFirstScene: true,
   jumpsMade: 0,
   sound: true,
-  lives: 3,
-  maxLives: 3,
   abilities: {
     carrot: false,
     sword: false,
@@ -19,6 +17,8 @@ let game = {
 
 // Stats obj
 let stats = {
+  lives: 3,
+  maxLives: 3,
   coins: 0
 }
 

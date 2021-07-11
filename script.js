@@ -7,6 +7,8 @@ let game = {
   isFirstScene: true,
   jumpsMade: 0,
   sound: true,
+  lives: 3,
+  maxLives: 3,
   abilities: {
     carrot: false,
     sword: false,

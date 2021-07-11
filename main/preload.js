@@ -84,7 +84,7 @@ Scene.prototype.preload = function() {
 
   // Heart stats
   this.load.image("fullHeart", "assets/imgs/fullHeart.png");
-  this.load.image("emptytHeart", "assets/imgs/emptyHeart.png");
+  this.load.image("emptyHeart", "assets/imgs/emptyHeart.png");
   this.load.image("halfHeart", "assets/imgs/halfHeart.png");
 
   // Spritesheets

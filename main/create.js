@@ -1,5 +1,6 @@
 // Create
 Scene.prototype.create = function() {
+  const thisScene = this;
   // SFX
   sfx.background = this.sound.add("background");
   sfx.jump = this.sound.add("jump");
@@ -97,7 +98,6 @@ Scene.prototype.create = function() {
   }
 
   // Collider Sign, Player
-  const thisScene = this;
   this.physics.add.overlap(game.player, game.signs, function(player, sign) {
     if (Phaser.Input.Keyboard.JustDown(thisScene.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN))) {
       game.signContent = sign.content;
@@ -198,7 +198,6 @@ Scene.prototype.create = function() {
 
   // Collider Player, Door
   // HACK: Can't reach "this" from collider function
-  const thisClass = this;
   this.physics.add.overlap(game.player, game.doors, function(player, door) {
     if (game.cursors.down.isDown) {
       // Play SFX
@@ -212,11 +211,11 @@ Scene.prototype.create = function() {
       sfx.background.stop();
 
       // Set variables
-      game.lastScene = thisClass.sceneKey;
+      game.lastScene = thisScene.sceneKey;
       game.isFirstScene = false;
 
       // Transport to new location
-      thisClass.scene.start(door.location);
+      thisScene.scene.start(door.location);
     }
   });
 
@@ -907,7 +906,7 @@ Scene.prototype.create = function() {
         volume: 2.5
       });
     }
-    thisClass.cameras.main.shake(240, 0.05, false);
+    thisScene.cameras.main.shake(240, 0.05, false);
     player.x = game.checkpoint[0];
     player.y = game.checkpoint[1] - 10;
   });

@@ -464,8 +464,16 @@ Scene.prototype.create = function() {
           });
         }
         this.cameras.main.shake(240, 0.05, false);
-        player.x = game.checkpoint[0];
-        player.y = game.checkpoint[1] - 10;
+        stats.lives--;
+        if (stats.lives <= 0) {
+          this.scene.stop();
+          this.scene.start("Grassland")
+          player.x = 200;
+          player.y = 1100;
+        } else {
+          player.x = game.checkpoint[0];
+          player.y = game.checkpoint[1] - 10;
+        }
       }
     }
   });
@@ -522,8 +530,16 @@ Scene.prototype.create = function() {
       });
     }
     this.cameras.main.shake(240, 0.05, false);
-    player.x = game.checkpoint[0];
-    player.y = game.checkpoint[1];
+    stats.lives--;
+    if (stats.lives <= 0) {
+      this.scene.stop();
+      this.scene.start("Grassland")
+      player.x = 200;
+      player.y = 1100;
+    } else {
+      player.x = game.checkpoint[0];
+      player.y = game.checkpoint[1] - 10;
+    }
   });
 
   // Collider Springs, Carrots
@@ -637,8 +653,16 @@ Scene.prototype.create = function() {
         });
       }
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     }
   });
 
@@ -758,8 +782,16 @@ Scene.prototype.create = function() {
       });
     }
     this.cameras.main.shake(240, 0.05, false);
-    player.x = game.checkpoint[0];
-    player.y = game.checkpoint[1] - 10;
+    stats.lives--;
+    if (stats.lives <= 0) {
+      this.scene.stop();
+      this.scene.start("Grassland")
+      player.x = 200;
+      player.y = 1100;
+    } else {
+      player.x = game.checkpoint[0];
+      player.y = game.checkpoint[1] - 10;
+    }
   });
 
   // Collider LaserBlasts, Carrots
@@ -915,8 +947,16 @@ Scene.prototype.create = function() {
       });
     }
     thisScene.cameras.main.shake(240, 0.05, false);
-    player.x = game.checkpoint[0];
-    player.y = game.checkpoint[1] - 10;
+    stats.lives--;
+    if (stats.lives <= 0) {
+      this.scene.stop();
+      this.scene.start("Grassland")
+      player.x = 200;
+      player.y = 1100;
+    } else {
+      player.x = game.checkpoint[0];
+      player.y = game.checkpoint[1] - 10;
+    }
   });
 
   // Collider Bat, Sword and Carrot
@@ -965,8 +1005,16 @@ Scene.prototype.create = function() {
       sfx.boss.stop();
       this.scene.restart();
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     });
 
     // Collider Boss, Player
@@ -979,8 +1027,16 @@ Scene.prototype.create = function() {
       sfx.boss.stop();
       this.scene.restart();
       this.cameras.main.shake(240, 0.05, false);
-      player.x = game.checkpoint[0];
-      player.y = game.checkpoint[1] - 10;
+      stats.lives--;
+      if (stats.lives <= 0) {
+        this.scene.stop();
+        this.scene.start("Grassland")
+        player.x = 200;
+        player.y = 1100;
+      } else {
+        player.x = game.checkpoint[0];
+        player.y = game.checkpoint[1] - 10;
+      }
     });
 
     // Collider Boss, Carrot

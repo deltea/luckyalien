@@ -286,24 +286,24 @@ world["Grassland"] = {
   ],
   boxes: [
     // Alternate
-    [980, 882, "coin"],
-    [1180, 642, "coin"],
-    [980, 722, "coin"],
-    [980, 562, "coin"],
-    [1180, 482, "coin"],
+    [980, 882, "bronzeCoin"],
+    [1180, 642, "goldCoin"],
+    [980, 722, "goldCoin"],
+    [980, 562, "goldCoin"],
+    [1180, 482, "goldCoin"],
 
     // Platform
-    [1780, 1002, "coin"],
-    [1820, 1002, "coin"],
-    [1940, 1002, "coin"],
-    [1980, 1002, "coin"],
+    [1780, 1002, "goldCoin"],
+    [1820, 1002, "goldCoin"],
+    [1940, 1002, "goldCoin"],
+    [1980, 1002, "goldCoin"],
 
     // Mushroom magic
     [1520, 602, "mushroomPowerup"],
 
     // In box
-    [2260, 460, "coin"],
-    [2560, 460, "coin"],
+    [2260, 460, "goldCoin"],
+    [2560, 460, "goldgoldCoin"],
 
     // CarrotPowerup
     [3300, 460, "carrotPowerup"],

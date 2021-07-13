@@ -5,7 +5,11 @@ Scene.prototype.update = function() {
 
   // Coin animation
   game.coins.getChildren().forEach(sprite => {
-    sprite.anims.play("coin", true);
+    if (sprite.value === 1) {
+      sprite.anims.play("goldCoin", true);
+    } else {
+      sprite.anims.play("bronzeCoin", true);
+    }
   });
 
   // Spring animation

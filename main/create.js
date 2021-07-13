@@ -253,9 +253,14 @@ Scene.prototype.create = function() {
         box.setTexture("inactiveBox");
         box.active = false;
 
-        if (box.entity === "coin") {
-          // Create coin
-          game.coins.create(box.x, box.y - 30, "coin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+        if (box.entity === "goldCoin") {
+          // Create gold coin
+          let coin = game.coins.create(box.x, box.y - 30, "goldCoin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+          coin.value = 1;
+        } else if (box.entity === "bronzeCoin") {
+          // Create bronze coin
+          let coin = game.coins.create(box.x, box.y - 30, "bronzeCoin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+          coin.value = 5;
         } else if (box.entity === "carrotPowerup") {
           // Create carrotPowerup
           game.abilities.carrotPowerup.create(box.x, box.y - 30, "carrotPowerup").setCollideWorldBounds(true).setScale(0.5).setVelocityY(-500);

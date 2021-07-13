@@ -142,7 +142,7 @@ world["Forest"] = {
   ],
   boxes: [
     // Underground
-    [880, 422, "coin"],
+    [880, 422, "goldCoin"],
     [3771, 422, "swordPowerup"],
   ],
   spiders: [

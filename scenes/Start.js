@@ -54,6 +54,13 @@ class Start extends Phaser.Scene {
     sfx.startMusic = this.sound.add("background");
     sfx.startMusic.setLoop(true);
     sfx.startMusic.play();
+
+    // Options
+    game.startOptions = this.add.text(630, 321.5, "Play", {
+      fontFamily: "kenneyPixel",
+      fontSize: 60,
+      color: "#000"
+    });
   }
 
   // Update animations, sprites

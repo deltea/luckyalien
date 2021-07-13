@@ -8,10 +8,10 @@ let game = {
   jumpsMade: 0,
   sound: true,
   abilities: {
-    carrot: false,
-    sword: false,
-    bounceMagic: false,
-    doubleJumps: false
+    carrot: true,
+    sword: true,
+    bounceMagic: true,
+    doubleJumps: true
   }
 };
 

@@ -286,7 +286,7 @@ world["Grassland"] = {
   ],
   boxes: [
     // Alternate
-    [980, 882, "coin"],
+    [980, 882, "heartContainer"],
     [1180, 642, "coin"],
     [980, 722, "coin"],
     [980, 562, "coin"],

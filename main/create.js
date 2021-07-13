@@ -257,6 +257,9 @@ Scene.prototype.create = function() {
         } else if (box.entity === "carrotPowerup") {
           // Create carrotPowerup
           game.abilities.carrotPowerup.create(box.x, box.y - 30, "carrotPowerup").setCollideWorldBounds(true).setScale(0.5).setVelocityY(-500);
+        } else if (box.entity === "heartContainer") {
+          // Create heart container
+          game.heartContainers.create(box.x, box.y - 30, "emptyHeart").setCollideWorldBounds(true).setScale(0.35).setVelocityY(-500);
         } else if (box.entity === "mushroomPowerup") {
           // Create mushroomPowerup
           game.mushroomPowerup.create(box.x, box.y - 30, "mushroomPowerup").setCollideWorldBounds(true).setScale(0.8).setVelocityY(-500);

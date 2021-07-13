@@ -95,10 +95,17 @@ Scene.prototype.preload = function() {
   this.load.image("playerWalk2", "assets/imgs/playerWalk2.png");
 
   // Coin frames
-  this.load.image("coin0", "assets/imgs/coin0.png");
-  this.load.image("coin1", "assets/imgs/coin1.png");
-  this.load.image("coin2", "assets/imgs/coin2.png");
-  this.load.image("coin3", "assets/imgs/coin3.png");
+  // Gold
+  this.load.image("goldCoin0", "assets/imgs/goldCoin0.png");
+  this.load.image("goldCoin1", "assets/imgs/goldCoin1.png");
+  this.load.image("goldCoin2", "assets/imgs/goldCoin2.png");
+  this.load.image("goldCoin3", "assets/imgs/goldCoin3.png");
+
+  // Bronze
+  this.load.image("bronzeCoin0", "assets/imgs/bronzeCoin0.png");
+  this.load.image("bronzeCoin1", "assets/imgs/bronzeCoin1.png");
+  this.load.image("bronzeCoin2", "assets/imgs/bronzeCoin2.png");
+  this.load.image("bronzeCoin3", "assets/imgs/bronzeCoin3.png");
 
   // Spike frames
   this.load.image("spike0", "assets/imgs/spikeBall0.png");

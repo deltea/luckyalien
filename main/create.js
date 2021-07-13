@@ -263,7 +263,7 @@ Scene.prototype.create = function() {
           coin.value = 5;
         } else if (box.entity === "carrotPowerup") {
           // Create carrotPowerup
-          if (game.abilities.carrot) {
+          if (!game.abilities.carrot) {
             game.abilities.carrotPowerup.create(box.x, box.y - 30, "carrotPowerup").setCollideWorldBounds(true).setScale(0.5).setVelocityY(-500);
           } else {
             // Create coin instead, can't collect powerup two times
@@ -274,7 +274,7 @@ Scene.prototype.create = function() {
           game.heartContainers.create(box.x, box.y - 30, "emptyHeart").setCollideWorldBounds(true).setScale(0.35).setVelocityY(-500);
         } else if (box.entity === "mushroomPowerup") {
           // Create mushroomPowerup
-          if (game.abilities.mushroom) {
+          if (!game.abilities.mushroom) {
             game.mushroomPowerup.create(box.x, box.y - 30, "mushroomPowerup").setCollideWorldBounds(true).setScale(0.8).setVelocityY(-500);
           } else {
             // Create coin instead, can't collect powerup two times
@@ -282,7 +282,7 @@ Scene.prototype.create = function() {
           }
         } else if (box.entity === "swordPowerup") {
           // Create swordPowerup
-          if (game.abilities.sword) {
+          if (!game.abilities.sword) {
             game.abilities.swordPowerup.create(box.x, box.y - 30, "sword").setCollideWorldBounds(true).setScale(0.8).setVelocityY(-500);
           } else {
             // Create coin instead, can't collect powerup two times
@@ -290,7 +290,7 @@ Scene.prototype.create = function() {
           }
         } else {
           // Create doubleJumpPowerup
-          if (game.abilities.doubleJumps) {
+          if (!game.abilities.doubleJumps) {
             game.abilities.doubleJumpPowerup.create(box.x, box.y - 30, "doubleJumpPowerup").setCollideWorldBounds(true).setScale(0.5).setVelocityY(-500);
           } else {
             // Create coin instead, can't collect powerup two times

@@ -536,7 +536,12 @@ Scene.prototype.create = function() {
     stats.lives--;
     if (stats.lives <= 0) {
       this.scene.stop();
+      sfx.background.stop();
       this.scene.start("Grassland")
+      stats.lives = stats.maxLives;
+      sfx.background.stop();
+      stats.coins = 0;
+      game.numCoinStat.text = stats.coins;
       player.x = 200;
       player.y = 1100;
     } else {
@@ -790,6 +795,7 @@ Scene.prototype.create = function() {
     this.cameras.main.shake(240, 0.05, false);
     stats.lives--;
     if (stats.lives <= 0) {
+      sfx.background.stop();
       this.scene.stop();
       this.scene.start("Grassland")
       player.x = 200;
@@ -955,6 +961,7 @@ Scene.prototype.create = function() {
     thisScene.cameras.main.shake(240, 0.05, false);
     stats.lives--;
     if (stats.lives <= 0) {
+      sfx.background.stop();
       this.scene.stop();
       this.scene.start("Grassland")
       player.x = 200;

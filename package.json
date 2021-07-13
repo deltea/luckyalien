@@ -1,0 +1,27 @@
+{
+  "name": "alien",
+  "version": "1.6.0",
+  "description": "Alien, Phaser3.js implementation of Adventure Island inspired RPG platformer",
+  "homepage": "https://thcheetah777.github.io/alien/",
+  "main": "config.js",
+  "keywords": [
+    "game",
+    "rpg",
+    "phaser",
+    "platformer",
+    "phaserjs",
+    "phaser3-game"
+  ],
+  "author": "thcheetah777",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/thcheetah777/alien"
+  },
+  "bugs": {
+    "url": "https://github.com/thcheetah777/alien/issues/new?assignees=&labels=&template=bug_report.md&title=BUG%3A+"
+  },
+  "devDependencies": {
+    "jshint": "^2.13.0"
+  }
+}

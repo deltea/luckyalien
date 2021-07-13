@@ -765,6 +765,29 @@ Scene.prototype.create = function() {
     powerup.destroy();
   });
 
+  // Heart container
+  game.heartContainers = this.physics.add.group();
+
+  // Collider Box, HeartContainer
+  this.physics.add.collider(game.boxes, game.heartContainers);
+
+  // Collider Player, HeartContainer
+  this.physics.add.overlap(game.player, game.heartContainers, function(player, container) {
+    // SFX
+    if (game.sound) {
+      sfx.powerup.play({
+        volume: 4
+      });
+    }
+
+    // Add to max lives
+    stats.maxLives++;
+    stats.lives = stats.maxLives;
+
+    // Destroy
+    container.destroy();
+  });
+
   // Laser
   game.lasers = this.physics.add.staticGroup();
   game.laserBlasts = this.physics.add.group();

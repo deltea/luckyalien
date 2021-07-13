@@ -784,8 +784,8 @@ Scene.prototype.create = function() {
     }
 
     // Add to max lives
+    game.liveStats.create(150 + stats.maxLives * 50, 40, "fullHeart").setScrollFactor(0).setScale(0.45);
     stats.maxLives++;
-    stats.lives = stats.maxLives;
 
     // Destroy
     container.destroy();

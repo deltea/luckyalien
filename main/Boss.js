@@ -99,6 +99,8 @@ Scene.prototype.boss = function() {
     }
     if (game.boss.dead && game.boss.dieTimer >= 200) {
       sfx.win.play();
+    }
+    if (game.boss.dead && game.boss.dieTimer === 400) {
       this.scene.stop();
       this.scene.start("Credits");
     }

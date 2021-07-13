@@ -7,7 +7,8 @@ class Start extends Phaser.Scene {
 
   // Load assets
   preload() {
-
+    // Cursor
+    this.load.image("cursor", "assets/imgs/cursor.png")
   }
 
   // Main create function
@@ -17,6 +18,6 @@ class Start extends Phaser.Scene {
 
   // Update animations, sprites
   update() {
-    
+
   }
 }

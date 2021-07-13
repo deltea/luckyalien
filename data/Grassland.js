@@ -286,7 +286,7 @@ world["Grassland"] = {
   ],
   boxes: [
     // Alternate
-    [980, 882, "bronzeCoin"],
+    [980, 882, "goldCoin"],
     [1180, 642, "goldCoin"],
     [980, 722, "goldCoin"],
     [980, 562, "goldCoin"],
@@ -303,7 +303,7 @@ world["Grassland"] = {
 
     // In box
     [2260, 460, "goldCoin"],
-    [2560, 460, "goldgoldCoin"],
+    [2560, 460, "goldCoin"],
 
     // CarrotPowerup
     [3300, 460, "carrotPowerup"],

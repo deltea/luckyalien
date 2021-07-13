@@ -21,27 +21,53 @@ Scene.prototype.animations = function() {
     repeat: -1
   });
 
-  // Coin
+  // Coin animations
+  // Gold coin
   this.anims.create({
     // Animation key
-    key: "coin",
+    key: "goldCoin",
 
     // Frames
     frames: [{
-      key: "coin0"
+      key: "goldCoin0"
     },
     {
-      key: "coin1"
+      key: "goldCoin1"
     },
     {
-      key: "coin2"
+      key: "goldCoin2"
     },
     {
-      key: "coin3"
+      key: "goldCoin3"
     }],
 
     // Options
     frameRate: 8,
+    repeat: -1,
+    yoyo: true
+  });
+
+  // Bronze coin
+  this.anims.create({
+    // Animation key
+    key: "bronzeCoin",
+
+    // Frames
+    frames: [{
+      key: "bronzeCoin0"
+    },
+    {
+      key: "bronzeCoin1"
+    },
+    {
+      key: "bronzeCoin2"
+    },
+    {
+      key: "bronzeCoin3"
+    }],
+
+    // Options
+    frameRate: 10,
     repeat: -1,
     yoyo: true
   });

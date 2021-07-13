@@ -50,7 +50,7 @@ world["Clouds"] = {
   mushrooms: [
   ],
   boxes: [
-    [690, 320.5, "coin"],
+    [690, 320.5, "goldCoin"],
   ],
   spiders: [
   ],

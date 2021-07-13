@@ -1,6 +1,8 @@
 // Create
 Scene.prototype.create = function() {
+  // This class
   const thisScene = this;
+
   // SFX
   sfx.background = this.sound.add("background");
   sfx.jump = this.sound.add("jump");
@@ -144,7 +146,7 @@ Scene.prototype.create = function() {
     }
 
     // Add to coins
-    stats.coins++;
+    stats.coins += coin.value;
 
     // Update stat
     game.numCoinStat.text = stats.coins;

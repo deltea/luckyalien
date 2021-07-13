@@ -8,14 +8,20 @@ class Start extends Phaser.Scene {
   // Load assets
   preload() {
     // Cursor
-    this.load.image("cursor", "assets/imgs/cursor.png")
+    this.load.image("cursor", "assets/imgs/cursor.png");
+
+    // Background image
+    this.load.image("background", "assets/imgs/background0.png");
 
     // Background music
-    this.load.audio("background", "assets/sfx/start.mp3")
+    this.load.audio("background", "assets/sfx/start.mp3");
   }
 
   // Main create function
   create() {
+    // Backgrond image
+    game.background = this.add.tileSprite(0, -100, 1300, 1024, "background").setOrigin(0);
+
     // Title
     game.gameTitle = this.add.text(580, 200, "Alien", {
       fontFamily: "kenneyPixel",
@@ -31,6 +37,7 @@ class Start extends Phaser.Scene {
 
   // Update animations, sprites
   update() {
-
+    // Scroll background image
+    game.background.tilePositionX += 2;
   }
 }

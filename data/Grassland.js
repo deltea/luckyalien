@@ -341,7 +341,6 @@ world["Grassland"] = {
   spikes: [
     // In box
     [2330, 582, true],
-    [3180, 582, true],
 
     // On box
     [1650, 430, true],

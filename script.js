@@ -17,8 +17,8 @@ let game = {
 
 // Stats obj
 let stats = {
-  lives: 5,
-  maxLives: 5,
+  lives: 3,
+  maxLives: 3,
   coins: 0
 }
 

@@ -23,10 +23,31 @@ class Start extends Phaser.Scene {
     game.background = this.add.tileSprite(0, -100, 1300, 1024, "background").setOrigin(0);
 
     // Title
-    game.gameTitle = this.add.text(580, 200, "Alien", {
+    game.gameTitle = this.add.text(580, 100, "Alien", {
       fontFamily: "kenneyPixel",
       fontSize: 125,
       color: "#fff"
+    });
+
+    // Title tween
+    game.gameTitle.hover = this.tweens.add({
+      // Target
+      targets: game.gameTitle,
+
+      // Move
+      y: 80,
+
+      // Ease
+      ease: "Quad.easeInOut",
+
+      // Duration
+      duration: 600,
+
+      // Repeat forever
+      repeat: -1,
+
+      // Yoyo
+      yoyo: true
     });
 
     // Play music

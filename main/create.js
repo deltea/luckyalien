@@ -264,6 +264,9 @@ Scene.prototype.create = function() {
         } else if (box.entity === "carrotPowerup") {
           // Create carrotPowerup
           game.abilities.carrotPowerup.create(box.x, box.y - 30, "carrotPowerup").setCollideWorldBounds(true).setScale(0.5).setVelocityY(-500);
+        } else if (box.entity === "heartContainer") {
+          // Create heart container
+          game.heartContainers.create(box.x, box.y - 30, "emptyHeart").setCollideWorldBounds(true).setScale(0.35).setVelocityY(-500);
         } else if (box.entity === "mushroomPowerup") {
           // Create mushroomPowerup
           game.mushroomPowerup.create(box.x, box.y - 30, "mushroomPowerup").setCollideWorldBounds(true).setScale(0.8).setVelocityY(-500);
@@ -770,6 +773,29 @@ Scene.prototype.create = function() {
 
     // Destroy
     powerup.destroy();
+  });
+
+  // Heart container
+  game.heartContainers = this.physics.add.group();
+
+  // Collider Box, HeartContainer
+  this.physics.add.collider(game.boxes, game.heartContainers);
+
+  // Collider Player, HeartContainer
+  this.physics.add.overlap(game.player, game.heartContainers, function(player, container) {
+    // SFX
+    if (game.sound) {
+      sfx.powerup.play({
+        volume: 4
+      });
+    }
+
+    // Add to max lives
+    game.liveStats.create(150 + stats.maxLives * 50, 40, "fullHeart").setScrollFactor(0).setScale(0.45);
+    stats.maxLives++;
+
+    // Destroy
+    container.destroy();
   });
 
   // Laser

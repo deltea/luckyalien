@@ -268,6 +268,7 @@ Scene.prototype.create = function() {
           } else {
             // Create coin instead, can't collect powerup two times
             let coin = game.coins.create(box.x, box.y - 30, "goldCoin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+            coin.value = 1;
           }
         } else if (box.entity === "heartContainer") {
           // Create heart container
@@ -279,6 +280,7 @@ Scene.prototype.create = function() {
           } else {
             // Create coin instead, can't collect powerup two times
             let coin = game.coins.create(box.x, box.y - 30, "goldCoin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+            coin.value = 1;
           }
         } else if (box.entity === "swordPowerup") {
           // Create swordPowerup
@@ -287,6 +289,7 @@ Scene.prototype.create = function() {
           } else {
             // Create coin instead, can't collect powerup two times
             let coin = game.coins.create(box.x, box.y - 30, "goldCoin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+            coin.value = 1;
           }
         } else {
           // Create doubleJumpPowerup
@@ -295,6 +298,7 @@ Scene.prototype.create = function() {
           } else {
             // Create coin instead, can't collect powerup two times
             let coin = game.coins.create(box.x, box.y - 30, "goldCoin0").setCollideWorldBounds(true).setScale(0.4).setVelocityY(-500);
+            coin.value = 1;
           }
         }
       }

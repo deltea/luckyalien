@@ -19,6 +19,9 @@ class Start extends Phaser.Scene {
 
   // Main create function
   create() {
+    // Input
+    game.cursors = this.input.keyboard.createCursorKeys();
+
     // Backgrond image
     game.background = this.add.tileSprite(0, -100, 1300, 1024, "background").setOrigin(0);
 
@@ -57,6 +60,7 @@ class Start extends Phaser.Scene {
 
     // Cursor
     game.chooseCursor = this.add.image(600, 350, "cursor");
+    game.chooseCursor.selection = "start";
 
     // Cursor tween
     game.chooseCursor.hover = this.tweens.add({
@@ -83,7 +87,7 @@ class Start extends Phaser.Scene {
     game.startOptions = this.add.text(630, 321.5, "Play", {
       fontFamily: "kenneyPixel",
       fontSize: 60,
-      color: "#000"
+      color: "#fff"
     });
   }
 
@@ -91,5 +95,13 @@ class Start extends Phaser.Scene {
   update() {
     // Scroll background image
     game.background.tilePositionX += 2;
+
+    // Cursor functionality
+    if (game.chooseCursor.selection === "start") {
+      game.startOptions.color = "#fff";
+      if (game.cursors.down.isDown) {
+        this.scene.start("Grassland");
+      }
+    }
   }
 }

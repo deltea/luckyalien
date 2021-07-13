@@ -85,10 +85,7 @@ Scene.prototype.create = function() {
 
   // Bounds
   game.player.setCollideWorldBounds(true);
-
-  // Input
-  game.cursors = this.input.keyboard.createCursorKeys();
-
+  
   // Signs
   game.signs = this.physics.add.staticGroup();
 

@@ -9,6 +9,9 @@ class Start extends Phaser.Scene {
   preload() {
     // Cursor
     this.load.image("cursor", "assets/imgs/cursor.png")
+
+    // Background music
+    this.load.audio("background", "assets/sfx/start.mp3")
   }
 
   // Main create function
@@ -19,6 +22,11 @@ class Start extends Phaser.Scene {
       fontSize: 125,
       color: "#fff"
     });
+
+    // Play music
+    sfx.startMusic = this.sound.add("background");
+    sfx.startMusic.setLoop(true);
+    sfx.startMusic.play();
   }
 
   // Update animations, sprites

@@ -1704,6 +1704,9 @@ class Scene extends Phaser.Scene {
       // Player attack
       if (!game.boss.attack && game.boss.timer <= 300) {
         game.boss.timer++;
+        if (600 < game.boss.x && game.boss.x < 700 && 271.5 < game.boss.y && game.boss.y < 371.5) {
+          game.boss.setVelocityX(0).setVelocityY(0);
+        }
       }
       if (!game.boss.attack && game.boss.timer > 300) {
         game.boss.attack = true;

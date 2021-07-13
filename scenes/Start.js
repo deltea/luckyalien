@@ -55,6 +55,30 @@ class Start extends Phaser.Scene {
     sfx.startMusic.setLoop(true);
     sfx.startMusic.play();
 
+    // Cursor
+    game.chooseCursor = this.add.image(600, 350, "cursor");
+
+    // Cursor tween
+    game.chooseCursor.hover = this.tweens.add({
+      // Target
+      targets: game.chooseCursor,
+
+      // Move
+      x: 580,
+
+      // Ease
+      ease: "Quad.easeInOut",
+
+      // Duration
+      duration: 600,
+
+      // Repeat forever
+      repeat: -1,
+
+      // Yoyo
+      yoyo: true
+    });
+
     // Options
     game.startOptions = this.add.text(630, 321.5, "Play", {
       fontFamily: "kenneyPixel",

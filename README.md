@@ -8,7 +8,7 @@ Alien, Adventure Island inspired RPG platformer
 
 ## Description
 
-Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, **Wikipedia:** "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, an alien, must go through many enemies by collecting powerups, and defeat the boss at the end
+Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, According to **Wikipedia**, a RPG is a "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, an alien, must go through many enemies by collecting powerups, and defeat the boss at the end
 
 ## Getting Started
 
@@ -38,6 +38,8 @@ or
 ```
 python3 -m http.server
 ```
+or
+```python -m SimpleHTTPServer``` and ```python3 -m SimpleHTTPSServer```
 * After you activate the server, got to [localhost:8000](http://localhost:8000/) to play the game
 
 ## Contribution

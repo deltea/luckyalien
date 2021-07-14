@@ -86,9 +86,6 @@ Scene.prototype.create = function() {
   // Bounds
   game.player.setCollideWorldBounds(true);
 
-  // Input
-  game.cursors = this.input.keyboard.createCursorKeys();
-
   // Signs
   game.signs = this.physics.add.staticGroup();
 
@@ -970,7 +967,7 @@ Scene.prototype.create = function() {
       y: bat.endY,
 
       // Ease
-      ease: "Linear",
+      ease: "Quad.easeInOut",
 
       // Duration
       duration: bat.tweenDur,

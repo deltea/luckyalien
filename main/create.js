@@ -85,7 +85,7 @@ Scene.prototype.create = function() {
 
   // Bounds
   game.player.setCollideWorldBounds(true);
-  
+
   // Signs
   game.signs = this.physics.add.staticGroup();
 
@@ -967,7 +967,7 @@ Scene.prototype.create = function() {
       y: bat.endY,
 
       // Ease
-      ease: "Linear",
+      ease: "Quad.easeInOut",
 
       // Duration
       duration: bat.tweenDur,

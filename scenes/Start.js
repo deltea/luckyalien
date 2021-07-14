@@ -94,6 +94,42 @@ class Start extends Phaser.Scene {
       fontSize: 60,
       color: "#fff"
     });
+
+    // Press right to select
+    game.selectInstruction = this.add.text(510, 580, "Press right to select", {
+      fontFamily: "upheaval",
+      fontSize: 30,
+      color: "#fff"
+    });
+
+    // Blink event
+    game.selectInstruction.hover = this.tweens.add({
+      // Target
+      targets: game.selectInstruction,
+
+      // Ease
+      ease: "Linear",
+
+      // Stay where it is
+      x: game.selectInstruction.x,
+
+      // Duration
+      duration: 600,
+
+      // Callback
+      onYoyo: () => {
+        game.selectInstruction.visible = false;
+      },
+      onRepeat: () => {
+        game.selectInstruction.visible = true;
+      },
+
+      // Repeat forever
+      repeat: -1,
+
+      // Yoyo
+      yoyo: true
+    });
   }
 
   // Update animations, sprites

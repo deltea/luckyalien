@@ -89,6 +89,11 @@ class Start extends Phaser.Scene {
       fontSize: 60,
       color: "#fff"
     });
+    game.githubOption = this.add.text(630, 381.5, "GitHub", {
+      fontFamily: "kenneyPixel",
+      fontSize: 60,
+      color: "#fff"
+    });
   }
 
   // Update animations, sprites
@@ -97,12 +102,30 @@ class Start extends Phaser.Scene {
     game.background.tilePositionX += 2;
 
     // Cursor functionality
+    if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)) && game.chooseCursor.selection === "start") {
+      game.chooseCursor.selection = "github";
+      game.chooseCursor.y += 60;
+    }
+    if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)) && game.chooseCursor.selection === "github") {
+      game.chooseCursor.selection = "start";
+      game.chooseCursor.y -= 60;
+    }
     if (game.chooseCursor.selection === "start") {
-      game.startOptions.color = "#fff";
-      if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN))) {
+      game.startOptions.setColor("#949494");
+      if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT))) {
         sfx.startMusic.stop();
         this.scene.start("Grassland");
       }
+    } else {
+      game.startOptions.setColor("#fff");
+    }
+    if (game.chooseCursor.selection === "github") {
+      game.githubOption.setColor("#949494");
+      if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT))) {
+        open("https://github.com/thcheetah777/alien");
+      }
+    } else {
+      game.githubOption.setColor("#fff");
     }
   }
 }

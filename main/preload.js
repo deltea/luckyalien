@@ -1,5 +1,30 @@
 // Preload
 Scene.prototype.preload = function() {
+  // Progress bar
+  game.progressBar = this.add.graphics();
+  game.progressPercent = this.add.text(550, 250, "0%", {
+    fontFamily: "kenneyPixel",
+    fontSize: 50,
+    color: "#fff"
+  })
+  game.progressFile = this.add.text(550, 400, "", {
+    fontFamily: "kenneyPixel",
+    fontSize: 40,
+    color: "#fff"
+  })
+  this.load.on("progress", function(value) {
+      game.progressPercent.text = parseInt(value * 100) + "%";
+      game.progressBar.clear();
+      game.progressBar.fillStyle(0xffffff);
+      game.progressBar.fillRect(550, 321.5, 300 * value, 30);
+  });
+  this.load.on('fileprogress', function(file) {
+    game.progressFile.text = file.src;
+  });
+  this.load.on("complete", function() {
+    game.progressBar.destroy();
+  });
+
   // Load images
   // Backgrounds
   this.load.image("background0", "assets/imgs/background0.png");

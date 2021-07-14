@@ -14,7 +14,7 @@ class Start extends Phaser.Scene {
     this.load.image("background", "assets/imgs/background0.png");
 
     // Background music
-    this.load.audio("background", "assets/sfx/start.mp3");
+    this.load.audio("statrBackground", "assets/sfx/start.mp3");
   }
 
   // Main create function
@@ -54,7 +54,7 @@ class Start extends Phaser.Scene {
     });
 
     // Play music
-    sfx.startMusic = this.sound.add("background");
+    sfx.startMusic = this.sound.add("statrBackground");
     sfx.startMusic.setLoop(true);
     sfx.startMusic.play();
 
@@ -99,7 +99,8 @@ class Start extends Phaser.Scene {
     // Cursor functionality
     if (game.chooseCursor.selection === "start") {
       game.startOptions.color = "#fff";
-      if (game.cursors.down.isDown) {
+      if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN))) {
+        sfx.startMusic.stop();
         this.scene.start("Grassland");
       }
     }

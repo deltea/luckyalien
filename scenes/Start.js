@@ -111,7 +111,7 @@ class Start extends Phaser.Scene {
       game.chooseCursor.y -= 60;
     }
     if (game.chooseCursor.selection === "start") {
-      game.startOptions.setColor("#949494");
+      game.startOptions.setColor("#d1d1d1");
       if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT))) {
         sfx.startMusic.stop();
         this.scene.start("Grassland");
@@ -120,7 +120,7 @@ class Start extends Phaser.Scene {
       game.startOptions.setColor("#fff");
     }
     if (game.chooseCursor.selection === "github") {
-      game.githubOption.setColor("#949494");
+      game.githubOption.setColor("#d1d1d1");
       if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT))) {
         open("https://github.com/thcheetah777/alien");
       }

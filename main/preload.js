@@ -23,6 +23,8 @@ Scene.prototype.preload = function() {
   });
   this.load.on("complete", function() {
     game.progressBar.destroy();
+    game.progressFile.destroy();
+    game.progressPercent.destroy();
   });
 
   // Load images

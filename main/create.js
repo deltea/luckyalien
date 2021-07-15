@@ -65,6 +65,9 @@ Scene.prototype.create = function() {
       if (game.lastScene === sprite[2]) {
         xPos = sprite[0];
         yPos = sprite[1];
+      } else {
+        xPos = 200;
+        yPos = 1100;
       }
     }
   });

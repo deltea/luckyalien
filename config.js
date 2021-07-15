@@ -3,6 +3,12 @@ const config = {
   // Type
   type: Phaser.AUTO,
 
+  // Scaling
+  scale: {
+    autoCenter: Phaser.Scale.CENTER_BOTH,
+    mode: Phaser.Scale.FIT,
+  },
+
   // Proportions
   width: 1300,
 	height: 643,

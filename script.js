@@ -7,6 +7,7 @@ let game = {
   isFirstScene: true,
   jumpsMade: 0,
   sound: true,
+  fullscreen: false,
   abilities: {
     carrot: false,
     sword: false,

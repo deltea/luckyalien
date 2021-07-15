@@ -396,6 +396,7 @@ Scene.prototype.create = function() {
       this.cameras.main.shake(240, 0.05, false);
       stats.lives--;
       if (stats.lives <= 0) {
+        sfx.background.stop();
         this.scene.stop();
         this.scene.start("Grassland")
         stats.lives = stats.maxLives;
@@ -503,6 +504,7 @@ Scene.prototype.create = function() {
         this.cameras.main.shake(240, 0.05, false);
         stats.lives--;
         if (stats.lives <= 0) {
+          sfx.background.stop();
           this.scene.stop();
           this.scene.start("Grassland")
           player.x = 200;
@@ -569,6 +571,7 @@ Scene.prototype.create = function() {
     this.cameras.main.shake(240, 0.05, false);
     stats.lives--;
     if (stats.lives <= 0) {
+      sfx.background.stop();
       this.scene.stop();
       sfx.background.stop();
       this.scene.start("Grassland")
@@ -697,6 +700,7 @@ Scene.prototype.create = function() {
       this.cameras.main.shake(240, 0.05, false);
       stats.lives--;
       if (stats.lives <= 0) {
+        sfx.background.stop();
         this.scene.stop();
         this.scene.start("Grassland")
         stats.lives = stats.maxLives;
@@ -852,6 +856,7 @@ Scene.prototype.create = function() {
     this.cameras.main.shake(240, 0.05, false);
     stats.lives--;
     if (stats.lives <= 0) {
+      sfx.background.stop();
       sfx.background.stop();
       this.scene.stop();
       this.scene.start("Grassland")
@@ -1019,6 +1024,7 @@ Scene.prototype.create = function() {
     stats.lives--;
     if (stats.lives <= 0) {
       sfx.background.stop();
+      sfx.background.stop();
       this.scene.stop();
       this.scene.start("Grassland")
       player.x = 200;
@@ -1077,6 +1083,7 @@ Scene.prototype.create = function() {
       this.cameras.main.shake(240, 0.05, false);
       stats.lives--;
       if (stats.lives <= 0) {
+        sfx.background.stop();
         this.scene.stop();
         this.scene.start("Grassland")
         stats.lives = stats.maxLives;
@@ -1102,6 +1109,7 @@ Scene.prototype.create = function() {
       this.cameras.main.shake(240, 0.05, false);
       stats.lives--;
       if (stats.lives <= 0) {
+        sfx.background.stop();
         this.scene.stop();
         this.scene.start("Grassland")
         stats.lives = stats.maxLives;

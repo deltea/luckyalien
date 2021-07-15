@@ -6,6 +6,7 @@ let game = {
   lastScene: "",
   isFirstScene: true,
   jumpsMade: 0,
+  paused: false,
   sound: true,
   abilities: {
     carrot: false,

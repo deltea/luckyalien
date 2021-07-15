@@ -1166,6 +1166,22 @@ Scene.prototype.create = function() {
     }
   });
 
+  // Pause and resume button
+  game.pauseButton = this.physics.add.staticSprite(1200, 40, "pause").setScrollFactor(0).setInteractive();
+
+  // Interaction
+  game.pauseButton.on("pointerdown", () => {
+    // Change status
+    game.paused = !game.paused;
+    if (game.paused) {
+      game.pauseButton.setTexture("cursor");
+      this.scene.pause();
+    } else {
+      game.pauseButton.setTexture("pause");
+      this.scene.resume();
+    }
+  });
+
   // Lives stat
   game.liveStats = this.physics.add.staticGroup();
 

@@ -1171,9 +1171,6 @@ Scene.prototype.create = function() {
 
   // Interaction
   game.fullscreenButton.on("pointerdown", () => {
-    // Script element
-    const script = document.getElementById("script");
-
     // Change status
     game.fullscreen = !game.fullscreen;
     if (game.fullscreen) {

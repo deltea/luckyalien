@@ -1166,6 +1166,25 @@ Scene.prototype.create = function() {
     }
   });
 
+  // Fullscreen UI
+  game.fullscreenButton = this.physics.add.staticSprite(1140, 40, "fullscreen").setScrollFactor(0).setInteractive();
+
+  // Interaction
+  game.fullscreenButton.on("pointerdown", () => {
+    // Script element
+    const script = document.getElementById("script");
+
+    // Change status
+    game.fullscreen = !game.fullscreen;
+    if (game.fullscreen) {
+      game.fullscreenButton.setTexture("closeFullscreen");
+      this.scale.startFullscreen();
+    } else {
+      game.fullscreenButton.setTexture("fullscreen");
+      this.scale.stopFullscreen();
+    }
+  });
+
   // Lives stat
   game.liveStats = this.physics.add.staticGroup();
 

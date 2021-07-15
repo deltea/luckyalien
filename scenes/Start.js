@@ -19,9 +19,6 @@ class Start extends Phaser.Scene {
 
   // Main create function
   create() {
-    // Input
-    game.cursors = this.input.keyboard.createCursorKeys();
-
     // Backgrond image
     game.background = this.add.tileSprite(0, -100, 1300, 1024, "background").setOrigin(0);
 

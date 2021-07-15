@@ -25,6 +25,9 @@ Scene.prototype.create = function() {
   sfx.win = this.sound.add("win");
   sfx.flames = this.sound.add("flames");
 
+  // Input
+  game.cursors = this.input.keyboard.createCursorKeys();
+
   // Loop music
   sfx.background.setLoop(true);
 

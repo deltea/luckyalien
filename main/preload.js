@@ -97,6 +97,10 @@ Scene.prototype.preload = function() {
   this.load.image("soundOn", "assets/imgs/soundOn.png");
   this.load.image("soundOff", "assets/imgs/soundOff.png");
 
+  // Fullscreen UI button
+  this.load.image("fullscreen", "assets/imgs/fullscreen.png");
+  this.load.image("closeFullscreen", "assets/imgs/closeFullscreen.png");
+
   // Clouds
   this.load.image("cloud0", "assets/imgs/cloud0.png");
   this.load.image("cloud1", "assets/imgs/cloud1.png");

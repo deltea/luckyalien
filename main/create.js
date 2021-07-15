@@ -1190,7 +1190,7 @@ Scene.prototype.create = function() {
   });
 
   // Fullscreen UI
-  game.fullscreenButton = this.physics.add.staticSprite(1140, 40, "fullscreen").setScrollFactor(0).setInteractive();
+  game.fullscreenButton = this.physics.add.staticSprite(1200, 40, "fullscreen").setScrollFactor(0).setInteractive();
 
   // Interaction
   game.fullscreenButton.on("pointerdown", () => {

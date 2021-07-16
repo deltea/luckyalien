@@ -23,5 +23,8 @@
   },
   "devDependencies": {
     "jshint": "^2.13.0"
+  },
+  "dependencies": {
+    "terser": "^5.7.1"
   }
 }

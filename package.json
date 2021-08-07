@@ -22,7 +22,8 @@
     "url": "https://github.com/thcheetah777/alien/issues/new?assignees=&labels=&template=bug_report.md&title=BUG%3A+"
   },
   "devDependencies": {
-    "jshint": "^2.13.0"
+    "jshint": "^2.13.0",
+    "sass": "^1.37.5"
   },
   "dependencies": {
     "terser": "^5.7.1"

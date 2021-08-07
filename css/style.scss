@@ -1,0 +1,46 @@
+@font-face {
+  font-family: kenneyPixel;
+  src: url(../assets/fonts/kenneyPixel.ttf);
+}
+@font-face {
+  font-family: upheaval;
+  src: url(../assets/fonts/upheaval.ttf);
+}
+body {
+  background-color: #d0f4f7;
+}
+h1 {
+  text-align: center;
+  color: #fff;
+  font-family: kenneyPixel;
+  font-size: 90px;
+}
+footer {
+  position: absolute;
+  top: 850px;
+  border-top: solid #000 1px;
+  width: 1335px;
+  font-family: kenneyPixel;
+  font-size: 40px;
+  margin-top: 20px;
+}
+#license {
+  margin-left: 20px;
+  float: left;
+}
+#github {
+  margin-right: 20px;
+  float: right;
+}
+#licenseLink, #github {
+  text-decoration: none;
+  color: #0000ee;
+}
+#licenseLink:active, #github:active {
+  color: #020263;
+}
+#githubLogo {
+  width: 30px;
+  position: absolute;
+  left: 1200px;
+}

@@ -9,6 +9,11 @@ const config = {
     mode: Phaser.Scale.FIT,
   },
 
+  // Rendering options
+  render: {
+    pixelArt: true
+  },
+
   // Proportions
   width: 1300,
 	height: 643,

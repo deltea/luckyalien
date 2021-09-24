@@ -197,6 +197,7 @@ world["Grassland"] = {
     [3380, 642, "grassBlock"],
 
     // Top
+    [1940, 202, "grassBlock"],
     [1980, 202, "grassBlock"],
     [2020, 202, "grassBlock"],
     [2060, 202, "grassBlock"],

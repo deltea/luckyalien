@@ -1,14 +1,14 @@
-# :alien: Alien (Not finished)
+# :four_leaf_clover: :alien: Lucky Alien (Not finished)
 
 ![Screenshot](assets/imgs/screenshot.png)
 
-Alien, Adventure Island inspired RPG platformer
+Lucky Alien, Adventure Island inspired RPG platformer
 
-**Live Demo:** [thcheetah777.github.io/alien](https://thcheetah777.github.io/alien/)
+**Live Demo:** [thcheetah777.github.io/luckyluckyalien](https://thcheetah777.github.io/luckyluckyalien/)
 
 ## Description
 
-Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, According to **Wikipedia**, a RPG is a "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, an alien, must go through many enemies by collecting powerups, and defeat the boss at the end
+Lucky Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, According to **Wikipedia**, a RPG is a "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, an alien, must go through many enemies by collecting powerups, and defeat the boss at the end
 
 ## Getting Started
 
@@ -18,14 +18,14 @@ Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platform
 * Copy and enter this into the prompt
 
 ```
-git clone https://github.com/thcheetah777/alien/
+git clone https://github.com/thcheetah777/luckyalien/
 ```
 
 * Wait for it to unpack
 * After it's done cloning, enter
 
 ```
-cd alien
+cd luckyalien
 ```
 
 ### Running the game
@@ -44,22 +44,22 @@ or
 
 ## Contribution
 
-Read [CONTRIBUTING.md](https://github.com/thcheetah777/alien/blob/master/CONTRIBUTING.md) for more info
+Read [CONTRIBUTING.md](https://github.com/thcheetah777/luckyalien/blob/master/CONTRIBUTING.md) for more info
 
 ## Version History
 
 | Version | Description |
 | :------------- | :------------- |
-| [v1.0](https://github.com/thcheetah777/alien/releases/tag/v1.0) | This was the first release. The player is a stickman figure and the game doesn't have losing or winning |
-| [v1.1](https://github.com/thcheetah777/alien/releases/tag/v1.1) | Created first area |
-| [v1.5](https://github.com/thcheetah777/alien/releases/tag/v1.5) | Added a lot more new enemies and changed player image |
-| [v1.6](https://github.com/thcheetah777/alien/releases/tag/v1.6) | Added more area data plus powerups and SFX |
+| [v1.0](https://github.com/thcheetah777/luckyalien/releases/tag/v1.0) | This was the first release. The player is a stickman figure and the game doesn't have losing or winning |
+| [v1.1](https://github.com/thcheetah777/luckyalien/releases/tag/v1.1) | Created first area |
+| [v1.5](https://github.com/thcheetah777/luckyalien/releases/tag/v1.5) | Added a lot more new enemies and changed player image |
+| [v1.6](https://github.com/thcheetah777/luckyalien/releases/tag/v1.6) | Added more area data plus powerups and SFX |
 
 More to come! :grinning:
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/thcheetah777/alien/blob/master/LICENSE.md) file for full details
+This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/thcheetah777/luckyalien/blob/master/LICENSE.md) file for full details
 
 ## Acknowledgments
 

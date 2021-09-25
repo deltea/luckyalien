@@ -23,7 +23,7 @@ class Start extends Phaser.Scene {
     game.background = this.add.tileSprite(0, -100, 1300, 1024, "background").setOrigin(0);
 
     // Title
-    game.gameTitle = this.add.text(580, 100, "Alien", {
+    game.gameTitle = this.add.text(450, 100, "Lucky Alien", {
       fontFamily: "kenneyPixel",
       fontSize: 125,
       color: "#fff"
@@ -155,7 +155,7 @@ class Start extends Phaser.Scene {
     if (game.chooseCursor.selection === "github") {
       game.githubOption.setColor("#d1d1d1");
       if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT))) {
-        open("https://github.com/thcheetah777/alien");
+        open("https://github.com/thcheetah777/luckyalien");
       }
     } else {
       game.githubOption.setColor("#fff");

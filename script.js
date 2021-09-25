@@ -1,4 +1,4 @@
-// Alien
+// Lucky Alien
 // Game obj
 let game = {
   jumpHeight: 700,

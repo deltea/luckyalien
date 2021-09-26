@@ -30,7 +30,7 @@ cd luckyalien
 
 ### Running the game
 
-* First, you need to set up the server via Python. (If you don't have Python, download it [here](https://www.python.org/)) Do this by entering
+You need to set up the server via Python. (If you don't have Python, download it [here](https://www.python.org/)) Do this by entering
 ```
 python -m http.server
 ```
@@ -39,8 +39,8 @@ or
 python3 -m http.server
 ```
 or
-```python -m SimpleHTTPServer``` and ```python3 -m SimpleHTTPSServer```
-* After you activate the server, got to [localhost:8000](http://localhost:8000/) to play the game
+```python -m SimpleHTTPServer``` and ```python3 -m SimpleHTTPSServer``` on Linux machines
+After you activate the server, got to [localhost:8000](http://localhost:8000/) to play the game
 
 ## Contribution
 

@@ -86,7 +86,12 @@ class Start extends Phaser.Scene {
       fontSize: 60,
       color: "#fff"
     });
-    game.githubOption = this.add.text(630, 381.5, "GitHub", {
+    game.instructionsOption = this.add.text(630, 381.5, "How to Play", {
+      fontFamily: "kenneyPixel",
+      fontSize: 60,
+      color: "#fff"
+    });
+    game.githubOption = this.add.text(630, 441.5, "GitHub", {
       fontFamily: "kenneyPixel",
       fontSize: 60,
       color: "#fff"

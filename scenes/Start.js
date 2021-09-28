@@ -175,7 +175,7 @@ class Start extends Phaser.Scene {
       game.instructionsOption.setColor("#d1d1d1");
       if (Phaser.Input.Keyboard.JustDown(RIGHT)) {
         sfx.startMusic.stop();
-        this.scene.start("Grassland");
+        this.scene.start("Instructions");
       }
     } else {
       game.instructionsOption.setColor("#fff");

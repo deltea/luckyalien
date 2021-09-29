@@ -1093,20 +1093,6 @@ Scene.prototype.create = function() {
       sfx.boss.stop();
       this.scene.restart();
       this.cameras.main.shake(240, 0.05, false);
-      stats.lives--;
-      if (stats.lives <= 0) {
-        sfx.background.stop();
-        this.scene.stop();
-        this.scene.start("Grassland")
-        stats.lives = stats.maxLives;
-        stats.coins = 0;
-        game.numCoinStat.text = stats.coins;
-        player.x = 200;
-        player.y = 1100;
-      } else {
-        player.x = game.checkpoint[0];
-        player.y = game.checkpoint[1] - 10;
-      }
     });
 
     // Collider Boss, Player

@@ -86,7 +86,12 @@ class Start extends Phaser.Scene {
       fontSize: 60,
       color: "#fff"
     });
-    game.githubOption = this.add.text(630, 381.5, "GitHub", {
+    game.instructionsOption = this.add.text(630, 381.5, "How to Play", {
+      fontFamily: "kenneyPixel",
+      fontSize: 60,
+      color: "#fff"
+    });
+    game.githubOption = this.add.text(630, 441.5, "GitHub", {
       fontFamily: "kenneyPixel",
       fontSize: 60,
       color: "#fff"
@@ -135,26 +140,49 @@ class Start extends Phaser.Scene {
     game.background.tilePositionX += 2;
 
     // Cursor functionality
-    if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN)) && game.chooseCursor.selection === "start") {
-      game.chooseCursor.selection = "github";
-      game.chooseCursor.y += 60;
+    const DOWN = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.DOWN);
+    const UP = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP);
+    const RIGHT = this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT);
+
+    if (Phaser.Input.Keyboard.JustDown(DOWN)) {
+      if (game.chooseCursor.selection === "instructions") {
+        game.chooseCursor.selection = "github";
+        game.chooseCursor.y += 60;
+      } else if (game.chooseCursor.selection === "start") {
+        game.chooseCursor.selection = "instructions";
+        game.chooseCursor.y += 60;
+      }
     }
-    if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.UP)) && game.chooseCursor.selection === "github") {
-      game.chooseCursor.selection = "start";
-      game.chooseCursor.y -= 60;
+    if (Phaser.Input.Keyboard.JustDown(UP)) {
+      if (game.chooseCursor.selection === "github") {
+        game.chooseCursor.selection = "instructions";
+        game.chooseCursor.y -= 60;
+      } else if (game.chooseCursor.selection === "instructions") {
+        game.chooseCursor.selection = "start";
+        game.chooseCursor.y -= 60;
+      }
     }
     if (game.chooseCursor.selection === "start") {
       game.startOptions.setColor("#d1d1d1");
-      if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT))) {
+      if (Phaser.Input.Keyboard.JustDown(RIGHT)) {
         sfx.startMusic.stop();
         this.scene.start("Grassland");
       }
     } else {
       game.startOptions.setColor("#fff");
     }
+    if (game.chooseCursor.selection === "instructions") {
+      game.instructionsOption.setColor("#d1d1d1");
+      if (Phaser.Input.Keyboard.JustDown(RIGHT)) {
+        sfx.startMusic.stop();
+        this.scene.start("Instructions");
+      }
+    } else {
+      game.instructionsOption.setColor("#fff");
+    }
     if (game.chooseCursor.selection === "github") {
       game.githubOption.setColor("#d1d1d1");
-      if (Phaser.Input.Keyboard.JustDown(this.input.keyboard.addKey(Phaser.Input.Keyboard.KeyCodes.RIGHT))) {
+      if (Phaser.Input.Keyboard.JustDown(RIGHT)) {
         open("https://github.com/thcheetah777/luckyalien");
       }
     } else {

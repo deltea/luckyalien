@@ -8,6 +8,8 @@ Lucky Alien, Adventure Island inspired RPG platformer
 
 ## Description
 
+#### **It's just a normal day in alienland...**
+
 Lucky Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, According to **Wikipedia**, a RPG is a "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, an alien, must go through many enemies by collecting powerups, and defeat the boss at the end
 
 ## Getting Started

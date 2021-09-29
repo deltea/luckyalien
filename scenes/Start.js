@@ -84,24 +84,24 @@ class Start extends Phaser.Scene {
     game.startOptions = this.add.text(630, 321.5, "Play", {
       fontFamily: "kenneyPixel",
       fontSize: 60,
-      color: "#fff"
+      color: "#d1d1d1"
     });
     game.instructionsOption = this.add.text(630, 381.5, "How to Play", {
       fontFamily: "kenneyPixel",
       fontSize: 60,
-      color: "#fff"
+      color: "#d1d1d1"
     });
     game.githubOption = this.add.text(630, 441.5, "GitHub", {
       fontFamily: "kenneyPixel",
       fontSize: 60,
-      color: "#fff"
+      color: "#d1d1d1"
     });
 
     // Press right to select
     game.selectInstruction = this.add.text(510, 580, "Press right to select", {
       fontFamily: "upheaval",
       fontSize: 30,
-      color: "#fff"
+      color: "#4D4D4D"
     });
 
     // Blink event
@@ -163,30 +163,30 @@ class Start extends Phaser.Scene {
       }
     }
     if (game.chooseCursor.selection === "start") {
-      game.startOptions.setColor("#d1d1d1");
+      game.startOptions.setColor("#fff");
       if (Phaser.Input.Keyboard.JustDown(RIGHT)) {
         sfx.startMusic.stop();
         this.scene.start("Grassland");
       }
     } else {
-      game.startOptions.setColor("#fff");
+      game.startOptions.setColor("#d1d1d1");
     }
     if (game.chooseCursor.selection === "instructions") {
-      game.instructionsOption.setColor("#d1d1d1");
+      game.instructionsOption.setColor("#fff");
       if (Phaser.Input.Keyboard.JustDown(RIGHT)) {
         sfx.startMusic.stop();
         this.scene.start("Instructions");
       }
     } else {
-      game.instructionsOption.setColor("#fff");
+      game.instructionsOption.setColor("#d1d1d1");
     }
     if (game.chooseCursor.selection === "github") {
-      game.githubOption.setColor("#d1d1d1");
+      game.githubOption.setColor("#fff");
       if (Phaser.Input.Keyboard.JustDown(RIGHT)) {
         open("https://github.com/thcheetah777/luckyalien");
       }
     } else {
-      game.githubOption.setColor("#fff");
+      game.githubOption.setColor("#d1d1d1");
     }
   }
 }

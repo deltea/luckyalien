@@ -27,6 +27,35 @@ class Instructions extends Phaser.Scene {
     sfx.startMusic.setLoop(true);
     sfx.startMusic.play();
 
+    // Instructions
+    const instructions = "It's just a normal day in alienland... \n\n                    Move: Arrow keys \n                Use Powerups: X, C Keys";
+    game.instructions = this.add.text(300, 220, instructions, {
+      fontFamily: "kenneyPixel",
+      fontSize: 70,
+      color: "#4D4D4D"
+    });
+
+    // Hover instructions
+    game.gameTitle.hover = this.tweens.add({
+      // Target
+      targets: game.instructions,
+
+      // Move
+      y: 200,
+
+      // Ease
+      ease: "Quad.easeInOut",
+
+      // Duration
+      duration: 600,
+
+      // Repeat forever
+      repeat: -1,
+
+      // Yoyo
+      yoyo: true
+    });
+
     // Cursor
     game.chooseCursor = this.add.image(600, 600, "cursor");
     game.chooseCursor.selection = "back";

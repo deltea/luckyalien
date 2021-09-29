@@ -1119,20 +1119,6 @@ Scene.prototype.create = function() {
       sfx.boss.stop();
       this.scene.restart();
       this.cameras.main.shake(240, 0.05, false);
-      stats.lives--;
-      if (stats.lives <= 0) {
-        sfx.background.stop();
-        this.scene.stop();
-        this.scene.start("Grassland")
-        stats.lives = stats.maxLives;
-        stats.coins = 0;
-        game.numCoinStat.text = stats.coins;
-        player.x = 200;
-        player.y = 1100;
-      } else {
-        player.x = game.checkpoint[0];
-        player.y = game.checkpoint[1] - 10;
-      }
     });
 
     // Collider Boss, Carrot
@@ -1209,8 +1195,10 @@ Scene.prototype.create = function() {
   game.liveStats = this.physics.add.staticGroup();
 
   // Create hearts
-  for (var i = 0; i < stats.maxLives; i++) {
-    game.liveStats.create(150 + i * 50, 40, "fullHeart").setScrollFactor(0).setScale(0.45);
+  if (this.sceneKey !== "Boss") {
+    for (var i = 0; i < stats.maxLives; i++) {
+      game.liveStats.create(150 + i * 50, 40, "fullHeart").setScrollFactor(0).setScale(0.45);
+    }
   }
 
   // Load animations

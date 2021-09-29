@@ -57,20 +57,17 @@ Scene.prototype.create = function() {
   // Find other door
   let xPos;
   let yPos;
-  world[this.sceneKey].doors.forEach(sprite => {
-    if (game.lastScene === "") {
-      xPos = 200;
-      yPos = 1100;
-    } else {
+  if (game.lastScene === "") {
+    xPos = 200;
+    yPos = 1100;
+  } else {
+    world[this.sceneKey].doors.forEach(sprite => {
       if (game.lastScene === sprite[2]) {
         xPos = sprite[0];
         yPos = sprite[1];
-      } else {
-        xPos = 200;
-        yPos = 1100;
       }
-    }
-  });
+    });
+  }
 
   // Player
   game.player = this.physics.add.sprite(xPos, yPos, "player").setScale(0.8);

@@ -4,7 +4,7 @@
 
 Lucky Alien, Adventure Island inspired RPG platformer
 
-**Live Demo:** [thcheetah777.github.io/luckyluckyalien](https://thcheetah777.github.io/luckyluckyalien/)
+**Live Demo:** [thcheetah777.github.io/luckyalien](https://thcheetah777.github.io/luckyalien/)
 
 ## Description
 

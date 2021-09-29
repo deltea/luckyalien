@@ -159,7 +159,7 @@ Scene.prototype.create = function() {
   game.coinStat = this.physics.add.staticSprite(40, 40, "coinStat").setScale(0.7).setScrollFactor(0);
 
   // Number of coins
-  game.numCoinStat = this.add.text(70, 12, "0", {
+  game.numCoinStat = this.add.text(70, 12, stats.coins, {
     fontFamily: "kenneyPixel",
     fontSize: 60,
     fontColor: 0x000

@@ -9,10 +9,10 @@ let game = {
   sound: true,
   fullscreen: false,
   abilities: {
-    carrot: true,
-    sword: true,
-    bounceMagic: true,
-    doubleJumps: true
+    carrot: false,
+    sword: false,
+    bounceMagic: false,
+    doubleJumps: false
   }
 };
 

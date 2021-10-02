@@ -1026,13 +1026,13 @@ Scene.prototype.create = function() {
         volume: 2.5
       });
     }
+    bat.destroy();
     thisScene.cameras.main.shake(240, 0.05, false);
     stats.lives--;
     if (stats.lives <= 0) {
       sfx.background.stop();
-      sfx.background.stop();
-      this.scene.stop();
-      this.scene.start("Grassland");
+      thisScene.scene.stop();
+      thisScene.scene.start("Grassland");
       stats.lives = stats.maxLives;
       stats.coins = 0;
       game.numCoinStat.text = stats.coins;

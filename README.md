@@ -69,3 +69,7 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 * Music: [Video Game Music (Kirby)](https://downloads.khinsider.com/game-soundtracks/album/kirby-the-very-best-of-kirby)
 * Graphics: [Kenney.nl](https://kenney.nl/assets)
 * Level Design: Me and sister
+
+## Preview
+
+./preview.mp3

@@ -72,4 +72,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 
 ## Preview
 
-https://user-images.githubusercontent.com/6877923/125816983-610905ce-dd7a-4cbc-8559-e1e61ed5e33c.mp4
+https://github.com/thcheetah777/luckyalien/blob/master/preview.mp4

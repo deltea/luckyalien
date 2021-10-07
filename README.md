@@ -44,6 +44,10 @@ or
 ```python -m SimpleHTTPServer``` and ```python3 -m SimpleHTTPSServer``` on Linux machines
 After you activate the server, got to [localhost:8000](http://localhost:8000/) to play the game
 
+## Preview
+
+https://user-images.githubusercontent.com/67921602/136305903-429d36f5-169d-4f68-a978-5ebe1ce025a2.mp4
+
 ## Contribution
 
 Read [CONTRIBUTING.md](https://github.com/thcheetah777/luckyalien/blob/master/CONTRIBUTING.md) for more info
@@ -69,7 +73,3 @@ This project is licensed under the MIT License - see the [LICENSE.md](https://gi
 * Music: [Video Game Music (Kirby)](https://downloads.khinsider.com/game-soundtracks/album/kirby-the-very-best-of-kirby)
 * Graphics: [Kenney.nl](https://kenney.nl/assets)
 * Level Design: Me and sister
-
-## Preview
-
-https://user-images.githubusercontent.com/67921602/136305903-429d36f5-169d-4f68-a978-5ebe1ce025a2.mp4

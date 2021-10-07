@@ -24,11 +24,15 @@
   </head>
   <body>
     <!-- Header -->
-    <h1>Lucky Alien</h1>
+    <h1 id="header">Lucky Alien</h1>
 
     <!-- World variable -->
     <script type="text/javascript">
       const world = {};
+      const header = document.getElementById("header");
+      header.onclick = () => {
+        open("https://user-images.githubusercontent.com/67921602/136305903-429d36f5-169d-4f68-a978-5ebe1ce025a2.mp4");
+      }
     </script>
 
     <!-- Phaser -->

@@ -1,8 +1,7 @@
-# :four_leaf_clover: :alien: Lucky Alien (Not finished)
-
+![Screenshot](assets/imgs/luckyAlien.png)
 ![Screenshot](assets/imgs/screenshot.png)
 
-Lucky Alien, Adventure Island inspired RPG platformer
+:four_leaf_clover: :alien: Lucky Alien, Adventure Island inspired RPG platformer
 
 **Live Demo:** [thcheetah777.github.io/luckyalien/](https://thcheetah777.github.io/luckyalien/)\
 **Itch.io:** [thcheetah777.itch.io/luckyalien/](https://thcheetah777.itch.io/luckyalien/)

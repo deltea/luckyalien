@@ -1,7 +1,7 @@
 ![Screenshot](assets/imgs/luckyAlien.png)
-![Screenshot](assets/imgs/screenshot.png)
 
-:four_leaf_clover: :alien: Lucky Alien, Adventure Island inspired RPG platformer
+:four_leaf_clover: :alien: Lucky Alien, Adventure Island inspired RPG platformer\
+[![DeepScan grade](https://deepscan.io/api/teams/14666/projects/18758/branches/476737/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=14666&pid=18758&bid=476737)
 
 **Live Demo:** [thcheetah777.github.io/luckyalien/](https://thcheetah777.github.io/luckyalien/)\
 **Itch.io:** [thcheetah777.itch.io/luckyalien/](https://thcheetah777.itch.io/luckyalien/)
@@ -11,6 +11,8 @@
 #### **It's just a normal day in alienland...**
 
 Lucky Alien is a [RPG](https://en.wikipedia.org/wiki/Role-playing_video_game) Platformer, According to **Wikipedia**, a RPG is a "*video game genre where the player controls the actions of a character immersed in some well-defined world*". The player, an alien, must go through many enemies by collecting powerups, and defeat the boss at the end.
+
+![Screenshot](assets/imgs/screenshot.png)
 
 ## Getting Started
 
